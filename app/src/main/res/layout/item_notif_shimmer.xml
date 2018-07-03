@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/mentionNotifRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/notif_padding_v"
+    android:paddingBottom="@dimen/notif_padding_v"
+    android:paddingLeft="@dimen/notif_padding_h"
+    android:paddingRight="@dimen/notif_padding_h"
+    android:layout_marginBottom="5dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white">
+
+    <View
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/avatar"
+        android:layout_height="@dimen/avatar"
+        android:layout_alignParentStart="true"
+        android:background="@color/light_background"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/avatar">
+
+        <View
+            android:id="@+id/action"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:background="@color/light_background"/>
+
+        <View
+            android:id="@+id/summary"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/light_background"/>
+
+        <View
+            android:id="@+id/time"
+            android:layout_width="60dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/light_background"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

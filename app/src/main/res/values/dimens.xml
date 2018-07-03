@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    // Texts
+    <dimen name="username">15sp</dimen>
+    <dimen name="time">11sp</dimen>
+    <dimen name="name">14sp</dimen>
+    <dimen name="location">12sp</dimen>
+    <dimen name="message_hint">14sp</dimen>
+    <dimen name="notif_summary">15.5sp</dimen>
+
+    // Views
+    <dimen name="avatar">35dp</dimen>
+    <dimen name="notif_padding_v">10dp</dimen>
+    <dimen name="notif_padding_h">10dp</dimen>
+
+
+</resources>
