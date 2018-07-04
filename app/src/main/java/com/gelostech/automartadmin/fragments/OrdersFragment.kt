@@ -37,7 +37,7 @@ class OrdersFragment : BaseFragment() {
         v.rv.layoutManager = LinearLayoutManager(activity)
         v.rv.itemAnimator = DefaultItemAnimator()
 
-        bookingsAdapter = BookingsAdapter()
+        bookingsAdapter = BookingsAdapter(activity!!)
         v.rv.adapter = bookingsAdapter
         v.rv.showShimmerAdapter()
 
