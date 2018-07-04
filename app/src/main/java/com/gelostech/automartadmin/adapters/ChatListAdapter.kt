@@ -9,8 +9,9 @@ import com.gelostech.automartadmin.utils.TimeFormatter
 import com.gelostech.automartadmin.utils.inflate
 import com.gelostech.automartadmin.utils.loadUrl
 import kotlinx.android.synthetic.main.item_chat_list.view.*
+import java.lang.ref.WeakReference
 
-class ChatListAdapter : RecyclerView.Adapter<ChatListAdapter.ChatListHolder>() {
+class ChatListAdapter(private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<ChatListAdapter.ChatListHolder>() {
     private var chats = mutableListOf<ChatItem>()
 
     fun addChat(chat: ChatItem) {
@@ -19,7 +20,7 @@ class ChatListAdapter : RecyclerView.Adapter<ChatListAdapter.ChatListHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatListHolder {
-        return ChatListHolder(parent.inflate(R.layout.item_chat_list))
+        return ChatListHolder(parent.inflate(R.layout.item_chat_list), onItemClickListener)
     }
 
     override fun getItemCount(): Int = chats.size
@@ -28,13 +29,27 @@ class ChatListAdapter : RecyclerView.Adapter<ChatListAdapter.ChatListHolder>() {
         holder.bindViews(chats[position])
     }
 
-    class ChatListHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    interface OnItemClickListener {
+        fun onItemClickListener(chat: ChatItem)
+    }
+
+    class ChatListHolder(itemView: View, onItemClickListener: OnItemClickListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        private val root = itemView.root
         private val chatIcon = itemView.avatar
         private val chatUser = itemView.username
         private val chatTime = itemView.time
         private val chatMessage = itemView.message
+        private val weakReference = WeakReference<OnItemClickListener>(onItemClickListener)
+
+        private lateinit var chat: ChatItem
+
+        init {
+            root.setOnClickListener(this)
+        }
 
         fun bindViews(chat: ChatItem) {
+            this.chat = chat
+
             with(chat) {
                 chatIcon.loadUrl(avatar!!)
                 chatUser.text = username
@@ -43,6 +58,11 @@ class ChatListAdapter : RecyclerView.Adapter<ChatListAdapter.ChatListHolder>() {
             }
         }
 
+        override fun onClick(v: View?) {
+            when(v?.id) {
+                root.id -> weakReference.get()!!.onItemClickListener(chat)
+            }
+        }
     }
 
 }

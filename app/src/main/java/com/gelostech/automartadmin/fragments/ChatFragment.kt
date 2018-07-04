@@ -1,6 +1,7 @@
 package com.gelostech.automartadmin.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.DefaultItemAnimator
@@ -10,13 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.gelostech.automartadmin.R
+import com.gelostech.automartadmin.activities.ChatActivity
 import com.gelostech.automartadmin.adapters.ChatListAdapter
+import com.gelostech.automartadmin.commoners.AppUtils
 import com.gelostech.automartadmin.commoners.BaseFragment
+import com.gelostech.automartadmin.commoners.K
 import com.gelostech.automartadmin.models.ChatItem
 import kotlinx.android.synthetic.main.fragment_chat.view.*
 
 
-class ChatFragment : BaseFragment() {
+class ChatFragment : BaseFragment(), ChatListAdapter.OnItemClickListener {
     private lateinit var chatListAdapter: ChatListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +39,7 @@ class ChatFragment : BaseFragment() {
         v.rv.layoutManager = LinearLayoutManager(activity!!)
         v.rv.itemAnimator = DefaultItemAnimator()
 
-        chatListAdapter = ChatListAdapter()
+        chatListAdapter = ChatListAdapter(this)
         v.rv.adapter = chatListAdapter
         v.rv.showShimmerAdapter()
 
@@ -82,4 +86,11 @@ class ChatFragment : BaseFragment() {
         chatListAdapter.addChat(chat1)
     }
 
+    override fun onItemClickListener(chat: ChatItem) {
+        val i = Intent(activity, ChatActivity::class.java)
+        i.putExtra(K.CHAT_ID, chat.id)
+        i.putExtra(K.CHAT_NAME, chat.username)
+        activity!!.startActivity(i)
+        AppUtils.animateFadein(activity!!)
+    }
 }

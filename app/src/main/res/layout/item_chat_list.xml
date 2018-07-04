@@ -6,7 +6,8 @@
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
     android:layout_marginBottom="5dp"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:id="@+id/root">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatar"
