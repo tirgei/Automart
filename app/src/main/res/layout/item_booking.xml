@@ -39,6 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/image_layout"
         android:layout_below="@id/name"
+        android:layout_marginTop="3dp"
+        android:drawablePadding="5dp"
+        android:textColor="@color/secondaryText"
         tools:text="John Makena"/>
 
     <TextView
@@ -47,6 +50,9 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/image_layout"
         android:layout_below="@id/user"
+        android:layout_marginTop="3dp"
+        android:drawablePadding="5dp"
+        android:textColor="@color/secondaryText"
         tools:text="Thursday 28, 9:00am"/>
 
 </RelativeLayout>
