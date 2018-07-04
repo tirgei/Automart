@@ -1,5 +1,6 @@
 package com.gelostech.automartadmin.activities
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -17,6 +18,12 @@ import com.gelostech.automartadmin.fragments.OrdersFragment
 import com.gelostech.automartadmin.utils.PagerAdapter
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
 import com.mikepenz.ionicons_typeface_library.Ionicons
+import com.mikepenz.materialdrawer.AccountHeaderBuilder
+import com.mikepenz.materialdrawer.Drawer
+import com.mikepenz.materialdrawer.DrawerBuilder
+import com.mikepenz.materialdrawer.model.DividerDrawerItem
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 
@@ -25,6 +32,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
 
     private var doubleBackToExit = false
 
+    private lateinit var drawer: Drawer
     private lateinit var homeFragment: HomeFragment
     private lateinit var ordersFragment: OrdersFragment
     private lateinit var notificationsFragment: NotificationsFragment
@@ -57,6 +65,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
 
         setupBottomNav()
         setupViewPager()
+        setupDrawer()
     }
 
     //Setup the bottom navigation bar
@@ -92,6 +101,56 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(this)
         viewPager.offscreenPageLimit = 3
+    }
+
+    private fun setupDrawer() {
+        val accountHeader = AccountHeaderBuilder().withActivity(this)
+                .withSelectionListEnabled(false)
+                .withHeaderBackground(R.drawable.fozzy)
+                .addProfiles(ProfileDrawerItem()
+                        .withName("Tirgei")
+                        .withEmail("+254726002063")
+                        .withIcon(R.drawable.person))
+                .build()
+
+        val default = SecondaryDrawerItem().withIdentifier(0).withName("Home").withIcon(Ionicons.Icon.ion_ios_home)
+        val discover = SecondaryDrawerItem().withIdentifier(1).withName("Discover").withIcon(Ionicons.Icon.ion_ios_search_strong)
+        val bookmarks = SecondaryDrawerItem().withIdentifier(2).withName("Bookmarks").withIcon(Ionicons.Icon.ion_bookmark)
+        val calender = SecondaryDrawerItem().withIdentifier(4).withName("Calendar").withIcon(Ionicons.Icon.ion_calendar)
+        val clinics = SecondaryDrawerItem().withIdentifier(5).withName("Clinics").withIcon(FontAwesome.Icon.faw_hospital)
+        val profile = SecondaryDrawerItem().withIdentifier(6).withName("Profile").withIcon(Ionicons.Icon.ion_person)
+        val subscriptions = SecondaryDrawerItem().withIdentifier(7).withName("Subscriptions").withIcon(Ionicons.Icon.ion_cash)
+        val settings = SecondaryDrawerItem().withIdentifier(8).withName("Settings").withIcon(Ionicons.Icon.ion_ios_gear)
+        val support = SecondaryDrawerItem().withIdentifier(9).withName("Help & Support").withIcon(Ionicons.Icon.ion_ios_help)
+
+        drawer = DrawerBuilder().withActivity(this)
+                .withToolbar(toolbar)
+                .withAccountHeader(accountHeader)
+                .addDrawerItems(default, discover, bookmarks, calender, clinics, profile, subscriptions, DividerDrawerItem(), settings, support)
+                .withOnDrawerItemClickListener { _, _, drawerItem ->
+                    when(drawerItem) {
+                        /*discover -> launchActivity(DiscoverActivity::class.java)
+                        bookmarks -> launchActivity(BookmarksActivity::class.java)
+                        settings -> launchActivity(SettingsActivity::class.java)
+                        calender -> launchActivity(CalendarActivity::class.java)
+                        clinics -> launchActivity(ClinicsActivity::class.java)
+                        profile -> launchActivity(MyProfileActivity::class.java)*/
+                    }
+                    true
+                }
+                .build()
+    }
+
+    private fun launchActivity(intentClass: Class<*>) {
+        val intent = Intent(this, intentClass)
+        startActivity(intent)
+        overridePendingTransition(R.anim.enter_b, R.anim.exit_a)
+
+        Handler().postDelayed({
+            drawer.closeDrawer()
+            drawer.setSelection(0)
+        }, 300)
+
     }
 
     override fun onTabSelected(position: Int, wasSelected: Boolean): Boolean {
