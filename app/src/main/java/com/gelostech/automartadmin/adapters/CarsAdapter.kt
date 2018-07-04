@@ -15,6 +15,7 @@ import com.gelostech.automartadmin.utils.loadUrl
 import com.gelostech.automartadmin.utils.setDrawable
 import com.mikepenz.ionicons_typeface_library.Ionicons
 import kotlinx.android.synthetic.main.item_car.view.*
+import java.lang.ref.WeakReference
 
 class CarsAdapter(private val context: Context, private val onItemClick: OnItemClick) : RecyclerView.Adapter<CarsAdapter.CarHolder>(){
     private val cars = mutableListOf<Car>()
@@ -41,7 +42,7 @@ class CarsAdapter(private val context: Context, private val onItemClick: OnItemC
         holder.bind(cars[position])
     }
 
-    class CarHolder(view: View, private val onItemClick: OnItemClick, private var context: Context) : RecyclerView.ViewHolder(view) {
+    class CarHolder(view: View, private val onItemClick: OnItemClick, private var context: Context) : RecyclerView.ViewHolder(view), View.OnClickListener {
         private val postAvatar = view.avatar
         private val postUsername = view.username
         private val postTime = view.time
@@ -50,14 +51,21 @@ class CarsAdapter(private val context: Context, private val onItemClick: OnItemC
         private val postPrice = view.price
         private var postLocation = view.location
         private val postFeatures = view.features
+        private val moreOptions = view.moreOptions
+        private val root = view.root
+
+        private val weakReference = WeakReference<OnItemClick>(onItemClick)
         private val bullet = "\u2022"
+        private lateinit var car: Car
 
         init {
-            view.moreOptions.setImageDrawable(setDrawable(context, Ionicons.Icon.ion_android_more_vertical, R.color.secondaryText, 14))
-            view.location.setDrawable(setDrawable(context, Ionicons.Icon.ion_location, R.color.secondaryText, 12))
+            moreOptions.setImageDrawable(setDrawable(context, Ionicons.Icon.ion_android_more_vertical, R.color.secondaryText, 14))
+            postLocation.setDrawable(setDrawable(context, Ionicons.Icon.ion_location, R.color.secondaryText, 12))
+            root.setOnClickListener(this)
         }
 
         fun bind(car: Car) {
+            this.car = car
 
             with(car) {
                 postAvatar.loadUrl(holderAvatar!!)
@@ -72,6 +80,13 @@ class CarsAdapter(private val context: Context, private val onItemClick: OnItemC
 
         }
 
+        override fun onClick(v: View?) {
+            when(v?.id) {
+                root.id -> {
+                    weakReference.get()!!.onItemClick(car)
+                }
+            }
+        }
     }
 
     interface OnItemClick{
