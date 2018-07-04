@@ -1,6 +1,7 @@
 package com.gelostech.automartadmin.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
@@ -11,8 +12,11 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.gelostech.automartadmin.R
+import com.gelostech.automartadmin.activities.CarActivity
 import com.gelostech.automartadmin.adapters.CarsAdapter
+import com.gelostech.automartadmin.commoners.AppUtils
 import com.gelostech.automartadmin.commoners.BaseFragment
+import com.gelostech.automartadmin.commoners.K
 import com.gelostech.automartadmin.models.Car
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
@@ -187,6 +191,9 @@ class HomeFragment : BaseFragment(), CarsAdapter.OnItemClick {
     }
 
     override fun onItemClick(car: Car) {
-
+        val i = Intent(activity, CarActivity::class.java)
+        i.putExtra(K.CAR, car)
+        startActivity(i)
+        AppUtils.animateFadein(activity!!)
     }
 }

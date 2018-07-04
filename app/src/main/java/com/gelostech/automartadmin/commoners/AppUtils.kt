@@ -18,6 +18,10 @@ object AppUtils {
         activity.overridePendingTransition(R.anim.enter_a, R.anim.exit_b)
     }
 
+    fun animateFadein(activity: Activity) {
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    }
+
     /**
      * This function returns a FontAwesome drawable
      *

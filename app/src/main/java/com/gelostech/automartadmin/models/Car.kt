@@ -1,5 +1,7 @@
 package com.gelostech.automartadmin.models
 
+import java.io.Serializable
+
 data class Car(
         var id: String? = null,
         var sellerName: String? = null,
@@ -20,5 +22,5 @@ data class Car(
         var price: Int? = null,
         var holderImage: Int? = null,
         var holderAvatar: Int? = null
-) {
+) : Serializable {
 }
