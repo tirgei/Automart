@@ -21,7 +21,9 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast
+import kotlin.math.log
 
 class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         AHBottomNavigation.OnNavigationPositionListener, ViewPager.OnPageChangeListener {
@@ -132,6 +134,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
                     when(drawerItem) {
                         watchlist -> launchActivity(WatchlistActivity::class.java)
                         settings -> launchActivity(SettingsActivity::class.java)
+                        exit -> logOut()
                     }
                     true
                 }
@@ -148,6 +151,17 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
             drawer.setSelection(0)
         }, 300)
 
+    }
+
+    private fun logOut() {
+        drawer.closeDrawer()
+        drawer.setSelection(0)
+
+        alert("Are you sure you want to log out?") {
+            title = "Log out"
+            positiveButton("LOG OUT") { finish() }
+            negativeButton("CANCEL") {}
+        }.show()
     }
 
     override fun onTabSelected(position: Int, wasSelected: Boolean): Boolean {
