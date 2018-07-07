@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import com.gelostech.automart.R
 import com.gelostech.automart.activities.ChatActivity
 import com.gelostech.automart.adapters.ChatListAdapter
+import com.gelostech.automart.callbacks.ChatListCallback
 import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.BaseFragment
 import com.gelostech.automart.commoners.K
@@ -20,7 +21,7 @@ import com.gelostech.automart.models.ChatItem
 import kotlinx.android.synthetic.main.fragment_chat.view.*
 
 
-class ChatFragment : BaseFragment(), ChatListAdapter.OnItemClickListener {
+class ChatFragment : BaseFragment(), ChatListCallback {
     private lateinit var chatListAdapter: ChatListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -86,7 +87,7 @@ class ChatFragment : BaseFragment(), ChatListAdapter.OnItemClickListener {
         chatListAdapter.addChat(chat1)
     }
 
-    override fun onItemClickListener(chat: ChatItem) {
+    override fun onClick(chat: ChatItem) {
         val i = Intent(activity, ChatActivity::class.java)
         i.putExtra(K.CHAT_ID, chat.id)
         i.putExtra(K.CHAT_NAME, chat.username)

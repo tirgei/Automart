@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:padding="10dp"
-    android:paddingEnd="15dp"
-    android:paddingStart="60dp"
-    android:clipToPadding="false">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
+    <data>
+
+        <variable
+            name="chat"
+            type="com.gelostech.automart.models.Chat"/>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@drawable/chat_me"
-        android:layout_alignParentEnd="true"
-        android:textSize="14sp"
-        android:textColor="@color/white"
-        tools:text="Some random message from me?"/>
+        android:paddingEnd="15dp"
+        android:paddingStart="60dp"
+        android:clipToPadding="false">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/chat_me"
+            android:layout_alignParentEnd="true"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:text="@{chat.message}"
+            tools:text="Some random message from me?"/>
+
+    </RelativeLayout>
+
+</layout>
+

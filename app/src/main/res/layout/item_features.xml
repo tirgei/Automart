@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/feature"
-        android:layout_width="wrap_content"
+    <data>
+
+        <variable
+            name="feature"
+            type="String"/>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawablePadding="10dp"
-        android:textSize="15sp"
-        android:textColor="@color/secondaryText"
-        tools:text="Stock suspension"/>
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/secondaryText"
+            android:text="@{feature}"
+            tools:text="Stock suspension"/>
+
+    </RelativeLayout>
+
+</layout>

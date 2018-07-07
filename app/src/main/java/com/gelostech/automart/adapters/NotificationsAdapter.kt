@@ -1,9 +1,12 @@
 package com.gelostech.automart.adapters
 
+import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gelostech.automart.R
+import com.gelostech.automart.databinding.ItemNotifBinding
 import com.gelostech.automart.models.Notification
 import com.gelostech.automart.utils.TimeFormatter
 import com.gelostech.automart.utils.inflate
@@ -19,6 +22,7 @@ class NotificationsAdapter : RecyclerView.Adapter<NotificationsAdapter.Notificat
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationHolder {
+        val binding: ItemNotifBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_notif, parent, false)
         return NotificationHolder(parent.inflate(R.layout.item_notif))
     }
 
@@ -28,21 +32,11 @@ class NotificationsAdapter : RecyclerView.Adapter<NotificationsAdapter.Notificat
         holder.bind(notifs[position])
     }
 
-    class NotificationHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val notifAvatar = view.avatar
-        private val notifAction = view.action
-        private val notifText = view.summary
-        private var notifTime = view.time
+    class NotificationHolder(private val binding: ItemNotifBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(notification: Notification) {
-
-            with(notification) {
-                notifAvatar.loadUrl(avatar!!)
-                notifAction.text = actionType
-                notifText.text = summary
-                notifTime.text = TimeFormatter().getChatTimeStamp(time!!)
-            }
-
+            binding.notif = notification
+            binding.time = TimeFormatter().getTimeStamp(notification.time!!)
         }
 
     }

@@ -1,56 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/mentionNotifRoot"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="@dimen/notif_padding_v"
-    android:paddingBottom="@dimen/notif_padding_v"
-    android:paddingLeft="@dimen/notif_padding_h"
-    android:paddingRight="@dimen/notif_padding_h"
-    android:layout_marginBottom="2dp"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/avatar"
-        android:layout_width="@dimen/avatar"
-        android:layout_height="@dimen/avatar"
-        android:layout_alignParentStart="true"
-        tools:src="@drawable/person"/>
+    <data>
 
-    <LinearLayout
+        <variable
+            name="notif"
+            type="com.gelostech.automart.models.Notification"/>
+
+        <variable
+            name="time"
+            type="String"/>
+
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_toEndOf="@id/avatar">
+        android:paddingTop="@dimen/notif_padding_v"
+        android:paddingBottom="@dimen/notif_padding_v"
+        android:paddingLeft="@dimen/notif_padding_h"
+        android:paddingRight="@dimen/notif_padding_h"
+        android:layout_marginBottom="2dp"
+        android:background="@android:color/white">
 
-        <TextView
-            android:id="@+id/action"
-            android:layout_width="wrap_content"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/avatar"
+            android:layout_height="@dimen/avatar"
+            android:layout_alignParentStart="true"
+            app:imageUrl="@{notif.avatar}"
+            tools:src="@drawable/person"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/secondaryText"
-            tools:text="Test drive"/>
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/avatar">
 
-        <TextView
-            android:id="@+id/summary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/notif_summary"
-            android:ellipsize="end"
-            tools:text="Brenda Nasipei requested a test drive for Subaru Legacy KAN 048W"/>
+            <TextView
+                android:id="@+id/action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/secondaryText"
+                android:text="@{notif.actionType}"
+                tools:text="Test drive"/>
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="@dimen/time"
-            android:textColor="@color/timeColor"
-            tools:text="Tue 17:43"/>
+            <TextView
+                android:id="@+id/summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/notif_summary"
+                android:ellipsize="end"
+                android:text="@{notif.summary}"
+                tools:text="Brenda Nasipei requested a test drive for Subaru Legacy KAN 048W"/>
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/time"
+                android:textColor="@color/timeColor"
+                android:text="@{time}"
+                tools:text="Tue 17:43"/>
 
-</RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>
+

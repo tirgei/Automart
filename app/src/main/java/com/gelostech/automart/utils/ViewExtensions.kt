@@ -1,6 +1,8 @@
 package com.gelostech.automart.utils
 
 import android.content.Context
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.support.annotation.LayoutRes
@@ -22,8 +24,8 @@ import com.bumptech.glide.Glide
 import com.makeramen.roundedimageview.RoundedImageView
 import de.hdodenhof.circleimageview.CircleImageView
 
-fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
-    return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
+inline fun <reified T : ViewDataBinding> ViewGroup.inflate(@LayoutRes layoutRes: Int): T {
+    return DataBindingUtil.inflate(LayoutInflater.from(context), layoutRes, this, false)
 }
 
 fun ImageView.loadUrl(url: Int) {

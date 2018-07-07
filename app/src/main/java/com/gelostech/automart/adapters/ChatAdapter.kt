@@ -1,14 +1,13 @@
 package com.gelostech.automart.adapters
 
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.view.ViewGroup
 import com.gelostech.automart.R
 import com.gelostech.automart.commoners.K
+import com.gelostech.automart.databinding.ItemChatBinding
+import com.gelostech.automart.databinding.ItemChatMeBinding
 import com.gelostech.automart.models.Chat
 import com.gelostech.automart.utils.inflate
-import kotlinx.android.synthetic.main.item_chat_me.view.*
-import kotlinx.android.synthetic.main.item_chat.view.*
 
 class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var chats = mutableListOf<Chat>()
@@ -47,20 +46,18 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     }
 
-    class ChatMeHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val chatMessage = view.message
+    class ChatMeHolder(private val binding: ItemChatMeBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(chat: Chat) {
-            chatMessage.text = chat.message
+            binding.chat = chat
         }
 
     }
 
-    class ChatHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val chatMessage = view.chat_message
+    class ChatHolder(private val binding: ItemChatBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(chat: Chat) {
-            chatMessage.text = chat.message
+            binding.chat = chat
         }
 
     }

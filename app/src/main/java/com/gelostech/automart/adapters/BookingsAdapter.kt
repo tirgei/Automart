@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.gelostech.automart.R
 import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.AppUtils.setDrawable
+import com.gelostech.automart.databinding.ItemBookingBinding
 import com.gelostech.automart.models.Booking
 import com.gelostech.automart.utils.TimeFormatter
 import com.gelostech.automart.utils.inflate
@@ -33,25 +34,17 @@ class BookingsAdapter(val context: Context) : RecyclerView.Adapter<BookingsAdapt
         holder.bind(bookings[position])
     }
 
-    class BookingsHolder(view: View, val context: Context) : RecyclerView.ViewHolder(view) {
-        private val bookingImage = view.image
-        private val bookingName = view.name
-        private val bookingUser = view.user
-        private val bookingDate = view.date
+    class BookingsHolder(private val binding: ItemBookingBinding, val context: Context) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            bookingUser.setDrawable(setDrawable(context, Ionicons.Icon.ion_person, R.color.secondaryText, 14))
-            bookingDate.setDrawable(setDrawable(context, Ionicons.Icon.ion_calendar, R.color.secondaryText, 14))
+            binding.user.setDrawable(setDrawable(context, Ionicons.Icon.ion_person, R.color.secondaryText, 14))
+            binding.date.setDrawable(setDrawable(context, Ionicons.Icon.ion_calendar, R.color.secondaryText, 14))
         }
 
         fun bind(booking: Booking) {
 
-            with(booking) {
-                bookingImage.loadUrl(holderImage!!)
-                bookingName.text = name
-                bookingUser.text = bookerName
-                bookingDate.text = TimeFormatter().getDetailDate(date!!)
-            }
+            binding.data = booking
+            binding.time = TimeFormatter().getDetailDate(booking.date!!)
 
         }
 

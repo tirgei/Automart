@@ -4,6 +4,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.gelostech.automart.R
+import com.gelostech.automart.callbacks.ChatListCallback
+import com.gelostech.automart.databinding.ItemChatListBinding
 import com.gelostech.automart.models.ChatItem
 import com.gelostech.automart.utils.TimeFormatter
 import com.gelostech.automart.utils.inflate
@@ -11,7 +13,7 @@ import com.gelostech.automart.utils.loadUrl
 import kotlinx.android.synthetic.main.item_chat_list.view.*
 import java.lang.ref.WeakReference
 
-class ChatListAdapter(private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<ChatListAdapter.ChatListHolder>() {
+class ChatListAdapter(private val callback: ChatListCallback) : RecyclerView.Adapter<ChatListAdapter.ChatListHolder>() {
     private var chats = mutableListOf<ChatItem>()
 
     fun addChat(chat: ChatItem) {
@@ -20,7 +22,7 @@ class ChatListAdapter(private val onItemClickListener: OnItemClickListener) : Re
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatListHolder {
-        return ChatListHolder(parent.inflate(R.layout.item_chat_list), onItemClickListener)
+        return ChatListHolder(parent.inflate(R.layout.item_chat_list), callback)
     }
 
     override fun getItemCount(): Int = chats.size
@@ -33,36 +35,17 @@ class ChatListAdapter(private val onItemClickListener: OnItemClickListener) : Re
         fun onItemClickListener(chat: ChatItem)
     }
 
-    class ChatListHolder(itemView: View, onItemClickListener: OnItemClickListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        private val root = itemView.root
-        private val chatIcon = itemView.avatar
-        private val chatUser = itemView.username
-        private val chatTime = itemView.time
-        private val chatMessage = itemView.message
-        private val weakReference = WeakReference<OnItemClickListener>(onItemClickListener)
-
-        private lateinit var chat: ChatItem
+    class ChatListHolder(private val binding: ItemChatListBinding, callback: ChatListCallback) : RecyclerView.ViewHolder(binding.root){
 
         init {
-            root.setOnClickListener(this)
+            binding.callback = callback
         }
 
         fun bindViews(chat: ChatItem) {
-            this.chat = chat
-
-            with(chat) {
-                chatIcon.loadUrl(avatar!!)
-                chatUser.text = username
-                chatTime.text = TimeFormatter().getChatTimeStamp(time!!)
-                chatMessage.text = message
-            }
+            binding.data = chat
+            binding.time = TimeFormatter().getChatTimeStamp(chat.time!!)
         }
 
-        override fun onClick(v: View?) {
-            when(v?.id) {
-                root.id -> weakReference.get()!!.onItemClickListener(chat)
-            }
-        }
     }
 
 }

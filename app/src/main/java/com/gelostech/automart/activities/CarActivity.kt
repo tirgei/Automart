@@ -16,6 +16,7 @@ import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.AppUtils.setDrawable
 import com.gelostech.automart.commoners.BaseActivity
 import com.gelostech.automart.commoners.K
+import com.gelostech.automart.databinding.ItemFeaturesBinding
 import com.gelostech.automart.models.Car
 import com.gelostech.automart.utils.inflate
 import com.gelostech.automart.utils.setDrawable
@@ -128,12 +129,15 @@ class CarActivity : BaseActivity(), ImageListener {
             holder.bind(features[position])
         }
 
-        class FeaturesHolder(v: View, val context: Context) : RecyclerView.ViewHolder(v) {
-            val tv = v.feature
+        class FeaturesHolder(private val binding: ItemFeaturesBinding, val context: Context) : RecyclerView.ViewHolder(binding.root) {
+
+            init {
+                binding.tv.setDrawable(setDrawable(context, Ionicons.Icon.ion_android_checkmark_circle, R.color.colorAccent, 18))
+            }
 
             fun bind(feature: String) {
-                tv.setDrawable(setDrawable(context, Ionicons.Icon.ion_android_checkmark_circle, R.color.colorAccent, 18))
-                tv.text = feature
+
+                binding.feature = feature
             }
 
         }
