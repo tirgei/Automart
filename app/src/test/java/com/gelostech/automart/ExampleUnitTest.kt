@@ -1,4 +1,4 @@
-package com.gelostech.automartadmin
+package com.gelostech.automart
 
 import org.junit.Test
 
