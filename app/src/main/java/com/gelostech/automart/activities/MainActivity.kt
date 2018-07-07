@@ -129,12 +129,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
                 .addDrawerItems(default, DividerDrawerItem(), orders, myOrders, myProducts, watchlist, sales, DividerDrawerItem(), settings, support)
                 .withOnDrawerItemClickListener { _, _, drawerItem ->
                     when(drawerItem) {
-                        /*discover -> launchActivity(DiscoverActivity::class.java)
-                        bookmarks -> launchActivity(BookmarksActivity::class.java)
-                        settings -> launchActivity(SettingsActivity::class.java)
-                        calender -> launchActivity(CalendarActivity::class.java)
-                        clinics -> launchActivity(ClinicsActivity::class.java)
-                        profile -> launchActivity(MyProfileActivity::class.java)*/
+                        watchlist -> launchActivity(WatchlistActivity::class.java)
                     }
                     true
                 }
