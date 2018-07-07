@@ -37,9 +37,7 @@ class CarsAdapter(private val context: Context, private val callback: CarCallbac
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarHolder {
-        val binding: ItemCarBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_car, parent, false)
-
-        return CarHolder(binding, callback, context)
+        return CarHolder(parent.inflate(R.layout.item_car), callback, context)
     }
 
     override fun getItemCount(): Int = cars.size

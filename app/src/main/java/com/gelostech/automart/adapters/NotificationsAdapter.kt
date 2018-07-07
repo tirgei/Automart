@@ -22,7 +22,6 @@ class NotificationsAdapter : RecyclerView.Adapter<NotificationsAdapter.Notificat
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationHolder {
-        val binding: ItemNotifBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_notif, parent, false)
         return NotificationHolder(parent.inflate(R.layout.item_notif))
     }
 

@@ -26,8 +26,7 @@ class PartsAdapter(private val callback: PartCallback) : RecyclerView.Adapter<Pa
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartHolder {
-        val binding: ItemPartBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_part, parent, false)
-        return PartHolder(binding, callback)
+        return PartHolder(parent.inflate(R.layout.item_part), callback)
     }
 
     override fun getItemCount(): Int = parts.size
