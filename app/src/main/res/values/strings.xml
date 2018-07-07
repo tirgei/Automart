@@ -4,6 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="dot">\u2022</string>
     <string name="sample_features">2004 \u2022 48000km \u2022 Manual</string>
     <string name="sample_description">
         This car is in tip-top shape and has been serviced and maintained by general motors

@@ -14,13 +14,14 @@ import android.view.ViewGroup
 import com.gelostech.automart.R
 import com.gelostech.automart.activities.CarActivity
 import com.gelostech.automart.adapters.CarsAdapter
+import com.gelostech.automart.callbacks.CarCallback
 import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.BaseFragment
 import com.gelostech.automart.commoners.K
 import com.gelostech.automart.models.Car
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
-class HomeFragment : BaseFragment(), CarsAdapter.OnItemClick {
+class HomeFragment : BaseFragment(), CarCallback {
     private lateinit var carsAdapter: CarsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -158,7 +159,7 @@ class HomeFragment : BaseFragment(), CarsAdapter.OnItemClick {
         car8.transmission = "Manual"
         car8.mileage = 123000
         car8.location = "Mombasa rd"
-        car8
+        car8.sellerName = "Skyline Motors"
         car8.time = System.currentTimeMillis()
         carsAdapter.addCar(car8)
 
@@ -172,6 +173,7 @@ class HomeFragment : BaseFragment(), CarsAdapter.OnItemClick {
         car9.transmission = "Manual"
         car9.mileage = 123000
         car9.location = "Mombasa rd"
+        car9.sellerName = "Skyline Motors"
         car9.time = System.currentTimeMillis()
         carsAdapter.addCar(car9)
 
@@ -185,12 +187,17 @@ class HomeFragment : BaseFragment(), CarsAdapter.OnItemClick {
         car10.transmission = "Manual"
         car10.mileage = 123000
         car10.location = "Mombasa rd"
+        car10.sellerName = "Skyline Motors"
         car10.time = System.currentTimeMillis()
         carsAdapter.addCar(car10)
 
     }
 
-    override fun onItemClick(car: Car) {
+    override fun onClick(v: View) {
+
+    }
+
+    override fun onClick(v: View, car: Car) {
         val i = Intent(activity, CarActivity::class.java)
         i.putExtra(K.CAR, car)
         startActivity(i)

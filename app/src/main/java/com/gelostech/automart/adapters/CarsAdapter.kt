@@ -1,13 +1,17 @@
 package com.gelostech.automart.adapters
 
 import android.content.Context
+import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.text.format.Time
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gelostech.automart.R
+import com.gelostech.automart.callbacks.CarCallback
 import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.AppUtils.setDrawable
+import com.gelostech.automart.databinding.ItemCarBinding
 import com.gelostech.automart.models.Car
 import com.gelostech.automart.utils.TimeFormatter
 import com.gelostech.automart.utils.inflate
@@ -17,7 +21,7 @@ import com.mikepenz.ionicons_typeface_library.Ionicons
 import kotlinx.android.synthetic.main.item_car.view.*
 import java.lang.ref.WeakReference
 
-class CarsAdapter(private val context: Context, private val onItemClick: OnItemClick) : RecyclerView.Adapter<CarsAdapter.CarHolder>(){
+class CarsAdapter(private val context: Context, private val callback: CarCallback) : RecyclerView.Adapter<CarsAdapter.CarHolder>(){
     private val cars = mutableListOf<Car>()
 
     fun addCar(car: Car) {
@@ -33,7 +37,9 @@ class CarsAdapter(private val context: Context, private val onItemClick: OnItemC
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarHolder {
-        return CarHolder(parent.inflate(R.layout.item_car), onItemClick, context)
+        val binding: ItemCarBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_car, parent, false)
+
+        return CarHolder(binding, callback, context)
     }
 
     override fun getItemCount(): Int = cars.size
@@ -42,55 +48,21 @@ class CarsAdapter(private val context: Context, private val onItemClick: OnItemC
         holder.bind(cars[position])
     }
 
-    class CarHolder(view: View, private val onItemClick: OnItemClick, private var context: Context) : RecyclerView.ViewHolder(view), View.OnClickListener {
-        private val postAvatar = view.avatar
-        private val postUsername = view.username
-        private val postTime = view.time
-        private val postImage = view.image
-        private val postName = view.carName
-        private val postPrice = view.price
-        private var postLocation = view.location
-        private val postFeatures = view.features
-        private val moreOptions = view.moreOptions
-        private val root = view.root
-
-        private val weakReference = WeakReference<OnItemClick>(onItemClick)
-        private val bullet = "\u2022"
-        private lateinit var car: Car
+    class CarHolder(private val binding:ItemCarBinding, callback: CarCallback, context: Context) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            moreOptions.setImageDrawable(setDrawable(context, Ionicons.Icon.ion_android_more_vertical, R.color.secondaryText, 14))
-            postLocation.setDrawable(setDrawable(context, Ionicons.Icon.ion_location, R.color.secondaryText, 12))
-            root.setOnClickListener(this)
+            binding.moreOptions.setImageDrawable(setDrawable(context, Ionicons.Icon.ion_android_more_vertical, R.color.secondaryText, 14))
+            binding.location.setDrawable(setDrawable(context, Ionicons.Icon.ion_location, R.color.secondaryText, 12))
+            binding.callback = callback
+            binding.bullet = " \u2022 "
         }
 
         fun bind(car: Car) {
-            this.car = car
-
-            with(car) {
-                postAvatar.loadUrl(holderAvatar!!)
-                postUsername.text = sellerName
-                postTime.text = TimeFormatter().getTimeStamp(time!!)
-                postImage.loadUrl(holderImage!!)
-                postName.text = "$make $model"
-                postPrice.text = "KES $price"
-                postLocation.text = location
-                postFeatures.text = "$year $bullet ${mileage}km $bullet $transmission"
-            }
-
+            binding.data = car
+            binding.time = TimeFormatter().getTimeStamp(car.time!!)
+            binding.isMine = false
         }
 
-        override fun onClick(v: View?) {
-            when(v?.id) {
-                root.id -> {
-                    weakReference.get()!!.onItemClick(car)
-                }
-            }
-        }
-    }
-
-    interface OnItemClick{
-        fun onItemClick(car: Car)
     }
 
 }
