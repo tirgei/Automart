@@ -9,20 +9,23 @@
         <variable
             name="part"
             type="com.gelostech.automart.models.Part"/>
+
+        <variable
+            name="callback"
+            type="com.gelostech.automart.callbacks.PartCallback"/>
         
     </data>
-
 
     <com.github.captain_miao.optroundcardview.OptRoundCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:optRoundCardBackgroundColor="@android:color/white"
-        app:optRoundCardCornerRadius="3dp"
-        app:optRoundCardUseCompatPadding="true">
+        app:optRoundCardCornerRadius="3dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:onClick="@{(v) -> callback.onClick(v, part)}">
 
             <com.gelostech.automart.utils.SquareLayout
                 android:id="@+id/image_holder"

@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gelostech.automart.R
+import com.gelostech.automart.callbacks.PartCallback
 import com.gelostech.automart.databinding.ItemPartBinding
 import com.gelostech.automart.models.Part
 import com.gelostech.automart.utils.inflate
 import kotlinx.android.synthetic.main.item_part.view.*
 
-class PartsAdapter : RecyclerView.Adapter<PartsAdapter.PartHolder>() {
+class PartsAdapter(private val callback: PartCallback) : RecyclerView.Adapter<PartsAdapter.PartHolder>() {
     private val parts = mutableListOf<Part>()
 
     fun addParts(part: Part) {
@@ -26,7 +27,7 @@ class PartsAdapter : RecyclerView.Adapter<PartsAdapter.PartHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartHolder {
         val binding: ItemPartBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_part, parent, false)
-        return PartHolder(binding)
+        return PartHolder(binding, callback)
     }
 
     override fun getItemCount(): Int = parts.size
@@ -35,7 +36,11 @@ class PartsAdapter : RecyclerView.Adapter<PartsAdapter.PartHolder>() {
         holder.bind(parts[position])
     }
 
-    class PartHolder(val binding: ItemPartBinding) : RecyclerView.ViewHolder(binding.root) {
+    class PartHolder(private val binding: ItemPartBinding, callback: PartCallback) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.callback = callback
+        }
 
         fun bind(part: Part) {
             binding.part = part
