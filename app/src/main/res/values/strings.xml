@@ -1,8 +1,13 @@
 <resources>
-    <string name="app_name">Automart Business</string>
+    <string name="app_name">Automart</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="sample_features">2004 \u2022 48000km \u2022 Manual</string>
+    <string name="sample_description">
+        This car is in tip-top shape and has been serviced and maintained by general motors
+        since purchase. It is mechanically sound with a still impeccable paint job that
+        makes it look as good as new. Feel free to make any inquiry
+    </string>
 </resources>

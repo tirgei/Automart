@@ -57,7 +57,7 @@
             android:layout_toStartOf="@id/send_layout"
             android:inputType="text|textAutoComplete|textNoSuggestions|textAutoCorrect|textLongMessage|textMultiLine|textShortMessage"/>
 
-        <com.gelostech.automartadmin.utils.SquareLayout
+        <com.gelostech.automart.utils.SquareLayout
             android:id="@+id/send_layout"
             android:layout_width="50dp"
             android:layout_height="match_parent"
@@ -70,7 +70,7 @@
                 android:background="@color/white"
                 android:onClick="onClick"/>
 
-        </com.gelostech.automartadmin.utils.SquareLayout>
+        </com.gelostech.automart.utils.SquareLayout>
 
     </RelativeLayout>
 

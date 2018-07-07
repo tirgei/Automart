@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        
+        <variable
+            name="part"
+            type="com.gelostech.automart.models.Part"/>
+        
+    </data>
+
+
+    <com.github.captain_miao.optroundcardview.OptRoundCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optRoundCardBackgroundColor="@android:color/white"
+        app:optRoundCardCornerRadius="3dp"
+        app:optRoundCardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.gelostech.automart.utils.SquareLayout
+                android:id="@+id/image_holder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@color/light_background"
+                    app:imageUrl="@{part.holderImage}"
+                    tools:src="@drawable/fozzy"/>
+
+            </com.gelostech.automart.utils.SquareLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_below="@id/image_holder"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:text="@{part.name}"
+                    tools:text="Brembo brakes"/>
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondaryText"
+                    android:maxLines="1"
+                    android:text="@{`KES ` + part.price}"
+                    tools:text="KES 53000"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </com.github.captain_miao.optroundcardview.OptRoundCardView>
+
+</layout>

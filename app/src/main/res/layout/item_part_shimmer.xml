@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.captain_miao.optroundcardview.OptRoundCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:optRoundCardBackgroundColor="@android:color/white"
+    app:optRoundCardCornerRadius="3dp"
+    app:optRoundCardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.gelostech.automart.utils.SquareLayout
+            android:id="@+id/image_holder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/light_background"/>
+
+        </com.gelostech.automart.utils.SquareLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_below="@id/image_holder"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/name"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:background="@color/light_background"/>
+
+            <View
+                android:id="@+id/price"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:background="@color/light_background"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</com.github.captain_miao.optroundcardview.OptRoundCardView>

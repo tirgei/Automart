@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CarActivity">
+    tools:context=".activities.CarActivity"
+    android:background="@android:color/white">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
@@ -41,5 +42,169 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:padding="10dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="2014 Toyota Vitz"/>
+
+            <TextView
+                android:id="@+id/description_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/primaryText"
+                android:textStyle="bold"
+                android:layout_below="@id/title"
+                android:layout_marginTop="10dp"
+                android:text="Description"/>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description_title"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/secondaryText"
+                android:textSize="15sp"
+                android:text="@string/sample_description"/>
+
+            <TextView
+                android:id="@+id/details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/primaryText"
+                android:textStyle="bold"
+                android:layout_below="@id/description"
+                android:layout_marginTop="15dp"
+                android:text="Car details"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/details_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/details_title"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:overScrollMode="never"
+                tools:listitem="@layout/item_details" />
+
+            <TextView
+                android:id="@+id/features_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/primaryText"
+                android:textStyle="bold"
+                android:layout_below="@id/details_rv"
+                android:layout_marginTop="15dp"
+                android:text="Features"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/featuresRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/features_title"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:overScrollMode="never"
+                tools:listitem="@layout/item_features" />
+
+            <TextView
+                android:id="@+id/seller_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/primaryText"
+                android:textStyle="bold"
+                android:layout_below="@id/featuresRv"
+                android:layout_marginTop="15dp"
+                android:text="Seller details"/>
+
+            <TextView
+                android:id="@+id/seller_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:textColor="@color/secondaryText"
+                android:drawablePadding="10dp"
+                android:layout_below="@id/seller_title"
+                android:text="Samtonic Motors"/>
+
+            <TextView
+                android:id="@+id/seller_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:textColor="@color/secondaryText"
+                android:drawablePadding="10dp"
+                android:layout_below="@id/seller_name"
+                android:text="0726002063"/>
+
+            <TextView
+                android:id="@+id/seller_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:textColor="@color/secondaryText"
+                android:drawablePadding="10dp"
+                android:layout_below="@id/seller_phone"
+                android:text="Gigiri, Nairobi, Kenya"/>
+
+            <TextView
+                android:id="@+id/seller_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:textColor="@color/secondaryText"
+                android:drawablePadding="10dp"
+                android:layout_below="@id/seller_location"
+                android:text="info@samtonic.co.ke"/>
+
+            <Button
+                android:id="@+id/testDrive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/seller_email"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_button"
+                android:textColor="@color/white"
+                android:text="Book Test Drive"/>
+
+            <Button
+                android:id="@+id/contactSeller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/testDrive"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/wire_button"
+                android:textColor="@color/colorPrimary"
+                android:text="Contact seller"/>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

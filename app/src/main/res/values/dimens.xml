@@ -13,6 +13,7 @@
     <dimen name="avatar">35dp</dimen>
     <dimen name="notif_padding_v">10dp</dimen>
     <dimen name="notif_padding_h">10dp</dimen>
+    <dimen name="small_padding">5dp</dimen>
 
 
 </resources>

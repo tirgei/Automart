@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.PartsFragment">
+
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shimmer_demo_layout_manager_type="grid"
+        app:shimmer_demo_grid_child_count="2"
+        app:shimmer_demo_layout="@layout/item_part_shimmer"
+        app:shimmer_demo_angle="20"
+        tools:listitem="@layout/item_part"/>
+
+</RelativeLayout>
