@@ -3,9 +3,9 @@
     android:shape="rectangle">
 
     <size
-        android:width="20dp"
-        android:height="20dp" />
+        android:width="2dp"
+        android:height="2dp" />
 
-    <solid android:color="@color/rvDivider" />
+    <solid android:color="@color/light_background" />
 
 </shape>
