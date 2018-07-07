@@ -23,7 +23,6 @@
         android:paddingBottom="@dimen/notif_padding_v"
         android:paddingLeft="@dimen/notif_padding_h"
         android:paddingRight="@dimen/notif_padding_h"
-        android:layout_marginBottom="2dp"
         android:background="@android:color/white">
 
         <de.hdodenhof.circleimageview.CircleImageView
