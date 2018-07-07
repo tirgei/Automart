@@ -19,6 +19,7 @@ import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.BaseFragment
 import com.gelostech.automart.commoners.K
 import com.gelostech.automart.models.Car
+import com.gelostech.automart.utils.RecyclerFormatter
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : BaseFragment(), CarCallback {
@@ -39,6 +40,7 @@ class HomeFragment : BaseFragment(), CarCallback {
         v.rv.setHasFixedSize(true)
         v.rv.layoutManager = LinearLayoutManager(activity)
         v.rv.itemAnimator = DefaultItemAnimator()
+        v.rv.addItemDecoration(RecyclerFormatter.DoubleDividerItemDecoration(activity!!))
 
         carsAdapter = CarsAdapter(activity!!, this)
         v.rv.adapter = carsAdapter

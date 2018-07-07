@@ -14,6 +14,7 @@ import com.gelostech.automart.R
 import com.gelostech.automart.adapters.NotificationsAdapter
 import com.gelostech.automart.commoners.BaseFragment
 import com.gelostech.automart.models.Notification
+import com.gelostech.automart.utils.RecyclerFormatter
 import kotlinx.android.synthetic.main.fragment_notifications.view.*
 
 
@@ -35,6 +36,7 @@ class NotificationsFragment : BaseFragment() {
         v.rv.setHasFixedSize(true)
         v.rv.layoutManager = LinearLayoutManager(activity!!)
         v.rv.itemAnimator = DefaultItemAnimator()
+        v.rv.addItemDecoration(RecyclerFormatter.SimpleDividerItemDecoration(activity!!))
 
         notificationsAdapter = NotificationsAdapter()
         v.rv.adapter = notificationsAdapter
