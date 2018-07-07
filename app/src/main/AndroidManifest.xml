@@ -34,7 +34,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".activities.CarActivity" />
         <activity android:name=".activities.WatchlistActivity" />
-        <activity android:name=".activities.SettingsActivity"></activity>
+        <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".activities.MyUploadsActivity"></activity>
     </application>
 
 </manifest>
