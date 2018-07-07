@@ -55,14 +55,22 @@ class RecyclerFormatter {
         }
     }
 
-    class GridItemDecoration(private val space: Int) : RecyclerView.ItemDecoration() {
-
-        constructor(context: Context, space: Int) : this(context.resources.getDimensionPixelSize(space)) {}
+    class GridItemDecoration(private val context: Context, private val spanCount: Int, private val space: Int) : RecyclerView.ItemDecoration() {
 
         override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State?) {
-            super.getItemOffsets(outRect, view, parent, state)
+            //super.getItemOffsets(outRect, view, parent, state)
+            val pos = parent.getChildAdapterPosition(view)
+            val space = Math.round(space * context.resources.displayMetrics.density)
+            val column = pos % spanCount
 
-            outRect.set(space, space, space, space)
+            outRect.left = space - column * space / spanCount
+            outRect.right = (column + 1) * space / spanCount
+
+            if (pos < spanCount) {
+                outRect.top = space
+            }
+
+            outRect.bottom = space
         }
     }
 }

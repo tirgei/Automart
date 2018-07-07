@@ -11,13 +11,14 @@ import android.view.ViewGroup
 
 import com.gelostech.automart.R
 import com.gelostech.automart.adapters.PartsAdapter
+import com.gelostech.automart.callbacks.PartCallback
 import com.gelostech.automart.commoners.BaseFragment
 import com.gelostech.automart.models.Part
 import com.gelostech.automart.utils.RecyclerFormatter
 import kotlinx.android.synthetic.main.fragment_parts.view.*
 
 
-class PartsFragment : BaseFragment() {
+class PartsFragment : BaseFragment(), PartCallback {
     private lateinit var partsAdapter: PartsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -35,10 +36,10 @@ class PartsFragment : BaseFragment() {
     private fun initViews(v:View) {
         v.rv.setHasFixedSize(true)
         v.rv.layoutManager = GridLayoutManager(activity, 2)
-        v.rv.addItemDecoration(RecyclerFormatter.GridItemDecoration(activity!!, R.dimen.small_padding))
+        v.rv.addItemDecoration(RecyclerFormatter.GridItemDecoration(activity!!, 2, 10))
         v.rv.itemAnimator = DefaultItemAnimator()
 
-        partsAdapter = PartsAdapter()
+        partsAdapter = PartsAdapter(this)
         v.rv.adapter = partsAdapter
 
         loadSample()
@@ -66,4 +67,7 @@ class PartsFragment : BaseFragment() {
         partsAdapter.addParts(part5)
     }
 
+    override fun onClick(v: View, part: Part) {
+
+    }
 }
