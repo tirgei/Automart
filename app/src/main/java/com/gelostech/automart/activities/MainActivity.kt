@@ -131,6 +131,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
                 .withOnDrawerItemClickListener { _, _, drawerItem ->
                     when(drawerItem) {
                         watchlist -> launchActivity(WatchlistActivity::class.java)
+                        settings -> launchActivity(SettingsActivity::class.java)
                     }
                     true
                 }

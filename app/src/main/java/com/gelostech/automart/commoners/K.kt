@@ -8,6 +8,11 @@ object K {
     const val CHAT_ID = "chat_id"
     const val CHAT_NAME = "chat_name"
 
+    // car
     const val CAR = "car"
+
+    // notifications
+    const val NOTIFICATIONS = "notifications"
+    const val NEWS = "news"
 
 }

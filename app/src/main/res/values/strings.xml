@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Automart</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="dot">\u2022</string>
     <string name="sample_features">2004 \u2022 48000km \u2022 Manual</string>
     <string name="sample_description">
@@ -11,4 +8,14 @@
         since purchase. It is mechanically sound with a still impeccable paint job that
         makes it look as good as new. Feel free to make any inquiry
     </string>
+
+    <string name="play_store_link">https://play.google.com/store/apps/details?id=</string>
+    <string name="notifications">Notifications</string>
+    <string name="news_and_updates">News &amp; updates</string>
+    <string name="general">General</string>
+    <string name="about">About</string>
+    <string name="terms_of_use">Terms of use</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="rate_app">Rate app</string>
+    <string name="send_feedback">Send Feedback</string>
 </resources>

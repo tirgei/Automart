@@ -25,5 +25,12 @@
         <item name="android:fontFamily">@font/exo_bold</item>
     </style>
 
+    <style name="SettingsTile">
+        <item name="android:padding">@dimen/settings_padding</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:layout_marginTop">1dp</item>
+    </style>
+
 
 </resources>
