@@ -7,6 +7,7 @@ data class Booking (
         var bookerName: String? = null,
         var date: Long? = null,
         var sellerId: String? = null,
+        var sellerName: String? = null,
         var image: String? = null,
         var holderImage: Int? = null
 ){
