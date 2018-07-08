@@ -50,6 +50,7 @@ class PartOrdersAdapter(private val context: Context) : RecyclerView.Adapter<Par
 
         fun bind(part: PartOrder) {
             binding.data = part
+            binding.isMine = true
         }
 
     }

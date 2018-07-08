@@ -3,7 +3,6 @@ package com.gelostech.automart.fragments
 
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -11,18 +10,20 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.gelostech.automart.R
-import com.gelostech.automart.adapters.PartOrdersAdapter
-import com.gelostech.automart.models.PartOrder
+import com.gelostech.automart.adapters.BookingsAdapter
+import com.gelostech.automart.commoners.BaseFragment
+import com.gelostech.automart.models.Booking
 import com.gelostech.automart.utils.RecyclerFormatter
-import kotlinx.android.synthetic.main.fragment_parts_orders.view.*
+import com.kizitonwose.time.days
+import kotlinx.android.synthetic.main.fragment_my_bookings.view.*
 
-class PartsOrdersFragment : Fragment() {
-    private lateinit var partOrdersAdapter: PartOrdersAdapter
+class MyBookingsFragment : BaseFragment() {
+    private lateinit var bookingsAdapter: BookingsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_parts_orders, container, false)
+        return inflater.inflate(R.layout.fragment_my_bookings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,8 +37,8 @@ class PartsOrdersFragment : Fragment() {
         v.rv.itemAnimator = DefaultItemAnimator()
         v.rv.addItemDecoration(RecyclerFormatter.SimpleDividerItemDecoration(activity!!))
 
-        partOrdersAdapter = PartOrdersAdapter(activity!!)
-        v.rv.adapter = partOrdersAdapter
+        bookingsAdapter = BookingsAdapter(activity!!)
+        v.rv.adapter = bookingsAdapter
         v.rv.showShimmerAdapter()
 
         Handler().postDelayed({
@@ -47,17 +48,15 @@ class PartsOrdersFragment : Fragment() {
     }
 
     private fun loadSample() {
-       for (i in 0..5) {
-            val order1 = PartOrder()
-            order1.holderImage = R.drawable.fozzy
-            order1.buyerName = "James Mackenzie"
-            order1.sellerName = "Ngigi Parts"
-            order1.name = "Brembo brakes"
-            order1.description = "2 Brembo brakes"
-            partOrdersAdapter.addPartOrder(order1)
+        for (i in 0..5) {
+            val booking1 = Booking()
+            booking1.holderImage = R.drawable.fozzy
+            booking1.bookerName = "Vincent Tirgei"
+            booking1.sellerName = "Jomic Autos"
+            booking1.date = System.currentTimeMillis() - 10.days.inMilliseconds.longValue
+            booking1.name = "Subaru Forester"
+            bookingsAdapter.addBooking(booking1)
         }
-
     }
-
 
 }

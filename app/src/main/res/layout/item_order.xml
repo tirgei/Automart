@@ -9,6 +9,10 @@
             name="data"
             type="com.gelostech.automart.models.PartOrder"/>
 
+        <variable
+            name="isMine"
+            type="Boolean"/>
+
     </data>
 
     <RelativeLayout
@@ -55,7 +59,7 @@
             android:layout_marginTop="3dp"
             android:drawablePadding="5dp"
             android:textColor="@color/secondaryText"
-            android:text="@{data.buyerName}"
+            android:text="@{isMine ? data.sellerName : data.buyerName}"
             tools:text="John Makena"/>
 
         <TextView

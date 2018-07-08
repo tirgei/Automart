@@ -36,7 +36,8 @@
         <activity android:name=".activities.WatchlistActivity" />
         <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.MyUploadsActivity" />
-        <activity android:name=".activities.OrdersActivity"></activity>
+        <activity android:name=".activities.OrdersActivity" />
+        <activity android:name=".activities.MyOrdersActivity"></activity>
     </application>
 
 </manifest>

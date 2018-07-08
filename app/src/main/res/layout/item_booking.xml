@@ -13,6 +13,10 @@
             name="time"
             type="String"/>
 
+        <variable
+            name="isMine"
+            type="Boolean"/>
+
     </data>
 
     <RelativeLayout
@@ -59,7 +63,7 @@
             android:layout_marginTop="3dp"
             android:drawablePadding="5dp"
             android:textColor="@color/secondaryText"
-            android:text="@{data.bookerName}"
+            android:text="@{isMine ? data.sellerName : data.bookerName}"
             tools:text="John Makena"/>
 
         <TextView

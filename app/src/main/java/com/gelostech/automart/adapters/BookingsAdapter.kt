@@ -45,6 +45,7 @@ class BookingsAdapter(val context: Context) : RecyclerView.Adapter<BookingsAdapt
 
             binding.data = booking
             binding.time = TimeFormatter().getDetailDate(booking.date!!)
+            binding.isMine = true
 
         }
 

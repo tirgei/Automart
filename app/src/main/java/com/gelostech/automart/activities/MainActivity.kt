@@ -133,6 +133,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
                 .withOnDrawerItemClickListener { _, _, drawerItem ->
                     when(drawerItem) {
                         orders -> launchActivity(OrdersActivity::class.java)
+                        myOrders -> launchActivity(MyOrdersActivity::class.java)
                         myProducts -> launchActivity(MyUploadsActivity::class.java)
                         watchlist -> launchActivity(WatchlistActivity::class.java)
                         settings -> launchActivity(SettingsActivity::class.java)
