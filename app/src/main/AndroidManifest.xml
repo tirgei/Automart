@@ -35,7 +35,8 @@
         <activity android:name=".activities.CarActivity" />
         <activity android:name=".activities.WatchlistActivity" />
         <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.MyUploadsActivity"></activity>
+        <activity android:name=".activities.MyUploadsActivity" />
+        <activity android:name=".activities.OrdersActivity"></activity>
     </application>
 
 </manifest>

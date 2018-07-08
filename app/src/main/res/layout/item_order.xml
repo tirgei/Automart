@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.gelostech.automart.models.PartOrder"/>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginBottom="2dp"
+        android:background="@android:color/white">
+
+        <com.gelostech.automart.utils.SquareLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/image_layout">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{data.holderImage}"
+                tools:src="@drawable/fozzy"/>
+
+        </com.gelostech.automart.utils.SquareLayout>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/username"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@id/image_layout"
+            android:text="@{data.name}"
+            tools:text="Brembo brakes"/>
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/image_layout"
+            android:layout_below="@id/name"
+            android:layout_marginTop="3dp"
+            android:drawablePadding="5dp"
+            android:textColor="@color/secondaryText"
+            android:text="@{data.buyerName}"
+            tools:text="John Makena"/>
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/image_layout"
+            android:layout_below="@id/user"
+            android:layout_marginTop="3dp"
+            android:drawablePadding="5dp"
+            android:textColor="@color/secondaryText"
+            android:text="@{data.description}"
+            tools:text="2 Brembo brakes"/>
+
+    </RelativeLayout>
+
+</layout>
