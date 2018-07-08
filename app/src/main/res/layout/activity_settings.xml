@@ -103,6 +103,14 @@
                 android:onClick="onClick"
                 style="@style/SettingsTile"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/logout"
+                android:id="@+id/exit"
+                android:onClick="onClick"
+                style="@style/SettingsTile"/>
+
         </LinearLayout>
 
 

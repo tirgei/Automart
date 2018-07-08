@@ -15,6 +15,7 @@ import com.gelostech.automart.commoners.K
 import com.gelostech.automart.utils.PreferenceHelper
 import com.gelostech.automart.utils.PreferenceHelper.set
 import kotlinx.android.synthetic.main.activity_settings.*
+import org.jetbrains.anko.alert
 
 class SettingsActivity : BaseActivity(), View.OnClickListener {
     private lateinit var prefs:SharedPreferences
@@ -44,6 +45,7 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
             R.id.privacy -> privacy()
             R.id.rate ->  rate()
             R.id.feedback -> feedback()
+            R.id.exit -> logOut()
         }
     }
 
@@ -88,6 +90,14 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
         emailIntent.data = Uri.parse("mailto: tirgeic@gmail.com")
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Automart")
         startActivity(Intent.createChooser(emailIntent, "Send feedback"))
+    }
+
+    private fun logOut() {
+        alert("Are you sure you want to log out?") {
+            title = "Log out"
+            positiveButton("LOG OUT") { finishAffinity() }
+            negativeButton("CANCEL") {}
+        }.show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
