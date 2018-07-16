@@ -1,34 +1,33 @@
 package com.gelostech.automart.activities
 
-import android.content.Context
+import android.content.Intent
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import com.gelostech.automart.R
+import com.gelostech.automart.adapters.DetailsAdapter
+import com.gelostech.automart.adapters.FeaturesAdapter
 import com.gelostech.automart.commoners.AppUtils
-import com.gelostech.automart.commoners.AppUtils.setDrawable
 import com.gelostech.automart.commoners.BaseActivity
 import com.gelostech.automart.commoners.K
-import com.gelostech.automart.databinding.ItemFeaturesBinding
 import com.gelostech.automart.models.Car
-import com.gelostech.automart.utils.inflate
+import com.gelostech.automart.utils.RecyclerFormatter
 import com.gelostech.automart.utils.setDrawable
+import com.mikepenz.fontawesome_typeface_library.FontAwesome
 import com.mikepenz.ionicons_typeface_library.Ionicons
 import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.activity_car.*
-import kotlinx.android.synthetic.main.item_features.view.*
+import timber.log.Timber
 
-class CarActivity : BaseActivity(), ImageListener {
+class CarActivity : BaseActivity(), ImageListener, View.OnClickListener {
     val images = arrayOf(R.drawable.two, R.drawable.three, R.drawable.four, R.drawable.five, R.drawable.six)
     private lateinit var car: Car
     private lateinit var featuresAdapter: FeaturesAdapter
+    private lateinit var detailsAdapter: DetailsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +50,12 @@ class CarActivity : BaseActivity(), ImageListener {
 
         carousel.pageCount = images.size
         carousel.setImageListener(this)
+        contactSeller.setOnClickListener(this)
 
+        sellerName.setDrawable(AppUtils.setDrawable(this, FontAwesome.Icon.faw_user2, R.color.secondaryText, 15))
+        sellerPhone.setDrawable(AppUtils.setDrawable(this, Ionicons.Icon.ion_android_call, R.color.secondaryText, 15))
+        sellerLocation.setDrawable(AppUtils.setDrawable(this, Ionicons.Icon.ion_location, R.color.secondaryText, 15))
+        sellerEmail.setDrawable(AppUtils.setDrawable(this, Ionicons.Icon.ion_email, R.color.secondaryText, 15))
     }
 
     private fun toolbarTitle() {
@@ -79,7 +83,23 @@ class CarActivity : BaseActivity(), ImageListener {
     }
 
     private fun setupDetails() {
+        detailsRv.setHasFixedSize(true)
+        detailsRv.layoutManager = LinearLayoutManager(this)
+        detailsRv.addItemDecoration(RecyclerFormatter.SimpleDividerItemDecoration(this))
 
+        detailsAdapter = DetailsAdapter(this)
+        detailsRv.adapter = detailsAdapter
+
+        var details = mutableMapOf<String, String>()
+        details["Body Type"] = "Hatchback"
+        details["CC"] = "2000cc"
+        details["Transmission"] = "Manual"
+        details["Fuel Type"] = "Petrol"
+        details["Drive"] = "RWD"
+        details["Mileage"] = "123000KM"
+
+
+        detailsAdapter.addDetails(details)
     }
 
     private fun setupFeatures() {
@@ -91,6 +111,7 @@ class CarActivity : BaseActivity(), ImageListener {
 
         val features = mutableListOf("Sunroof", "Turbo charged", "Leather interior", "Alloy rims", "Electric Mirrors")
         featuresAdapter.addFeatures(features)
+
     }
 
     override fun setImageForPosition(position: Int, imageView: ImageView?) {
@@ -106,42 +127,23 @@ class CarActivity : BaseActivity(), ImageListener {
         return true
     }
 
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.contactSeller -> {
+                val i = Intent(this, ChatActivity::class.java)
+                i.putExtra(K.CHAT_ID, car.sellerId)
+                i.putExtra(K.CHAT_NAME, car.sellerName)
+                startActivity(i)
+                AppUtils.animateFadein(this)
+            }
+        }
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         AppUtils.animateEnterLeft(this)
     }
 
-    class FeaturesAdapter(val context: Context) : RecyclerView.Adapter<FeaturesAdapter.FeaturesHolder>() {
-        val features = mutableListOf<String>()
 
-        fun addFeatures(features: MutableList<String>) {
-            features.addAll(features)
-            notifyDataSetChanged()
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeaturesHolder {
-            return FeaturesHolder(parent.inflate(R.layout.item_features), context)
-        }
-
-        override fun getItemCount(): Int = features.size
-
-        override fun onBindViewHolder(holder: FeaturesHolder, position: Int) {
-            holder.bind(features[position])
-        }
-
-        class FeaturesHolder(private val binding: ItemFeaturesBinding, val context: Context) : RecyclerView.ViewHolder(binding.root) {
-
-            init {
-                binding.tv.setDrawable(setDrawable(context, Ionicons.Icon.ion_android_checkmark_circle, R.color.colorAccent, 18))
-            }
-
-            fun bind(feature: String) {
-
-                binding.feature = feature
-            }
-
-        }
-
-    }
 
 }
