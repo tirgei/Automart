@@ -29,6 +29,7 @@
     </data>
 
     <RelativeLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
@@ -161,7 +162,7 @@
             android:weightSum="4">
 
             <Button
-                android:id="@+id/sold"
+                android:id="@+id/action"
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_weight="2.7"
@@ -171,9 +172,11 @@
                 android:text="@{isMine ? `Mark as sold` : `More details`}"
                 android:textAllCaps="false"
                 tools:text="Mark as sold"
-                tools:background="@drawable/rounded_button"/>
+                tools:background="@drawable/rounded_button"
+                android:onClick="@{(v) -> callback.onClick(v, data)}"/>
 
             <Button
+                android:id="@+id/contact"
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_weight="1.3"
@@ -183,7 +186,8 @@
                 android:textColor="@android:color/white"
                 android:text="@{isMine ? `Edit` : `Contact`}"
                 tools:background="@drawable/rounded_button"
-                tools:text="Edit"/>
+                tools:text="Edit"
+                android:onClick="@{(v) -> callback.onClick(v, data)}"/>
 
         </LinearLayout>
 
