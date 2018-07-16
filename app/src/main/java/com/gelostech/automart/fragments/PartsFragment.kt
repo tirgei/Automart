@@ -46,24 +46,24 @@ class PartsFragment : BaseFragment(), PartCallback {
     }
 
     private fun loadSample() {
-        val part1 = Part(null, null, "sf", "Wakamau", 53000, null, R.drawable.four)
-        part1.name = "Brembo brakes"
+        val part1 = Part(null, null, "sf", "Wakamau", 53000, null, R.drawable.brake)
+        part1.name = "Land Rover brakes"
         partsAdapter.addParts(part1)
 
-        val part2 = Part(null, null, "sf", "Wakamau", 53000, null, R.drawable.four)
-        part2.name = "Brembo brakes"
+        val part2 = Part(null, null, "sf", "Wakamau", 7500, null, R.drawable.hl)
+        part2.name = "Headlights"
         partsAdapter.addParts(part2)
 
-        val part3 = Part(null, null, "sf", "Wakamau", 53000, null, R.drawable.four)
-        part3.name = "Brembo brakes"
+        val part3 = Part(null, null, "sf", "Wakamau", 12000, null, R.drawable.bl)
+        part3.name = "Brake Lights"
         partsAdapter.addParts(part3)
 
-        val part4 = Part(null, null, "sf", "Wakamau", 53000, null, R.drawable.four)
-        part4.name = "Brembo brakes"
+        val part4 = Part(null, null, "sf", "Wakamau", 32000, null, R.drawable.windscreen)
+        part4.name = "Windscreen"
         partsAdapter.addParts(part4)
 
-        val part5 = Part(null, null, "sf", "Wakamau", 53000, null, R.drawable.four)
-        part5.name = "Brembo brakes"
+        val part5 = Part(null, null, "sf", "Wakamau", 27000, null, R.drawable.door)
+        part5.name = "Rear door"
         partsAdapter.addParts(part5)
     }
 

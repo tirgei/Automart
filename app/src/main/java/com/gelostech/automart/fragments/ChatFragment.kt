@@ -60,30 +60,30 @@ class ChatFragment : BaseFragment(), ChatListCallback {
 
         val chat2 = ChatItem()
         chat2.avatar = R.drawable.person
-        chat2.message = "Is the Legacy still available?"
+        chat2.message = "I'm looking for Toyota NZE 2007. Can I get it?"
         chat2.time = System.currentTimeMillis()
-        chat2.username = "Steve Rodgers"
+        chat2.username = "Mike Njuguna"
         chatListAdapter.addChat(chat2)
 
         val chat3 = ChatItem()
         chat3.avatar = R.drawable.person
-        chat3.message = "Is the Legacy still available?"
+        chat3.message = "Naweza pata gari ya 300K?"
         chat3.time = System.currentTimeMillis()
-        chat3.username = "Steve Rodgers"
+        chat3.username = "Juma Allan"
         chatListAdapter.addChat(chat3)
 
         val chat4 = ChatItem()
         chat4.avatar = R.drawable.person
-        chat4.message = "Is the Legacy still available?"
+        chat4.message = "How much is the Honda Airwave?"
         chat4.time = System.currentTimeMillis()
-        chat4.username = "Steve Rodgers"
+        chat4.username = "Peter Kiprotich"
         chatListAdapter.addChat(chat4)
 
         val chat5 = ChatItem()
         chat5.avatar = R.drawable.person
-        chat1.message = "Is the Legacy still available?"
+        chat1.message = "No.. I was looking for 2011 at least"
         chat1.time = System.currentTimeMillis()
-        chat1.username = "Steve Rodgers"
+        chat1.username = "George Omondi"
         chatListAdapter.addChat(chat1)
     }
 
