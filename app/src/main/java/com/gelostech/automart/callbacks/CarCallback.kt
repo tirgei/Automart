@@ -5,8 +5,6 @@ import com.gelostech.automart.models.Car
 
 interface CarCallback {
 
-    fun onClick(v: View)
-
     fun onClick(v: View, car: Car)
 
 }
