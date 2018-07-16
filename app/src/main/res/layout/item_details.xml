@@ -1,30 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:weightSum="2">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/detail_key"
-        android:layout_width="0dp"
+    <data>
+
+        <variable
+            name="key"
+            type="String"/>
+
+        <variable
+            name="detail"
+            type="String"/>
+
+    </data>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawablePadding="10dp"
-        android:textSize="15sp"
-        android:textColor="@color/secondaryText"
-        tools:text="Body Type"/>
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="2">
 
-    <TextView
-        android:id="@+id/detail_value"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="15sp"
-        android:textColor="@color/primaryText"
-        tools:text="Hatchback"/>
+        <TextView
+            android:id="@+id/detail_key"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/secondaryText"
+            android:text="@{key}"
+            tools:text="Body Type"/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/detail_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="@color/primaryText"
+            android:text="@{detail}"
+            tools:text="Hatchback"/>
+
+    </LinearLayout>
+
+</layout>
