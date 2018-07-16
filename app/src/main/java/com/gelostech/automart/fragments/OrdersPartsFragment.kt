@@ -16,7 +16,7 @@ import com.gelostech.automart.models.PartOrder
 import com.gelostech.automart.utils.RecyclerFormatter
 import kotlinx.android.synthetic.main.fragment_parts_orders.view.*
 
-class PartsOrdersFragment : Fragment() {
+class OrdersPartsFragment : Fragment() {
     private lateinit var partOrdersAdapter: PartOrdersAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -47,15 +47,13 @@ class PartsOrdersFragment : Fragment() {
     }
 
     private fun loadSample() {
-       for (i in 0..5) {
-            val order1 = PartOrder()
-            order1.holderImage = R.drawable.fozzy
-            order1.buyerName = "James Mackenzie"
-            order1.sellerName = "Ngigi Parts"
-            order1.name = "Brembo brakes"
-            order1.description = "2 Brembo brakes"
-            partOrdersAdapter.addPartOrder(order1)
-        }
+        val order1 = PartOrder()
+        order1.holderImage = R.drawable.brake
+        order1.buyerName = "James Mackenzie"
+        order1.sellerName = "Ngigi Parts"
+        order1.name = "Brembo brakes"
+        order1.description = "2 Brembo brakes"
+        partOrdersAdapter.addPartOrder(order1)
 
     }
 

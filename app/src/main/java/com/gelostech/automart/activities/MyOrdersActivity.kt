@@ -1,14 +1,13 @@
 package com.gelostech.automart.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.view.MenuItem
 import com.gelostech.automart.R
 import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.BaseActivity
-import com.gelostech.automart.fragments.MyBookingsFragment
-import com.gelostech.automart.fragments.MyPartsOrdersFragment
+import com.gelostech.automart.fragments.MyOrdersCarsFragment
+import com.gelostech.automart.fragments.MyOrdersPartsFragment
 import com.gelostech.automart.utils.PagerAdapter
 import kotlinx.android.synthetic.main.activity_my_orders.*
 
@@ -38,8 +37,8 @@ class MyOrdersActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
 
     private fun setupViewPager() {
         val adapter = PagerAdapter(supportFragmentManager, this)
-        val bookings = MyBookingsFragment()
-        val parts = MyPartsOrdersFragment()
+        val bookings = MyOrdersCarsFragment()
+        val parts = MyOrdersPartsFragment()
 
         adapter.addAllFrags(bookings, parts)
         adapter.addAllTitles(BOOKINGS, PARTS)

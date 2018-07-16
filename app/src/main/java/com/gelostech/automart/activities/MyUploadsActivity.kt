@@ -1,14 +1,13 @@
 package com.gelostech.automart.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.view.MenuItem
 import com.gelostech.automart.R
 import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.BaseActivity
-import com.gelostech.automart.fragments.MyCarsFragment
-import com.gelostech.automart.fragments.MyPartsFragment
+import com.gelostech.automart.fragments.MyUploadsCarsFragment
+import com.gelostech.automart.fragments.MyUploadsPartsFragment
 import com.gelostech.automart.utils.PagerAdapter
 import kotlinx.android.synthetic.main.activity_my_uploads.*
 
@@ -38,8 +37,8 @@ class MyUploadsActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
 
     private fun setupViewPager() {
         val adapter = PagerAdapter(supportFragmentManager, this)
-        val cars = MyCarsFragment()
-        val parts = MyPartsFragment()
+        val cars = MyUploadsCarsFragment()
+        val parts = MyUploadsPartsFragment()
 
         adapter.addAllFrags(cars, parts)
         adapter.addAllTitles(CARS, PARTS)

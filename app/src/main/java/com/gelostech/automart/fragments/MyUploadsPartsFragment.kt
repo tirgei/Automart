@@ -4,26 +4,26 @@ package com.gelostech.automart.fragments
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.gelostech.automart.R
-import com.gelostech.automart.adapters.BookingsAdapter
+import com.gelostech.automart.adapters.PartsAdapter
+import com.gelostech.automart.callbacks.PartCallback
 import com.gelostech.automart.commoners.BaseFragment
-import com.gelostech.automart.models.Booking
+import com.gelostech.automart.models.Part
 import com.gelostech.automart.utils.RecyclerFormatter
-import com.kizitonwose.time.days
-import kotlinx.android.synthetic.main.fragment_bookings.view.*
+import kotlinx.android.synthetic.main.fragment_my_parts.view.*
 
-class BookingsFragment : BaseFragment() {
-    private lateinit var bookingsAdapter: BookingsAdapter
+class MyUploadsPartsFragment : BaseFragment(), PartCallback {
+    private lateinit var partsAdapter: PartsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bookings, container, false)
+        return inflater.inflate(R.layout.fragment_my_parts, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,12 +33,12 @@ class BookingsFragment : BaseFragment() {
 
     private fun initViews(v: View) {
         v.rv.setHasFixedSize(true)
-        v.rv.layoutManager = LinearLayoutManager(activity)
+        v.rv.layoutManager = GridLayoutManager(activity!!, 2)
         v.rv.itemAnimator = DefaultItemAnimator()
-        v.rv.addItemDecoration(RecyclerFormatter.SimpleDividerItemDecoration(activity!!))
+        v.rv.addItemDecoration(RecyclerFormatter.GridItemDecoration(activity!!, 2, 10))
 
-        bookingsAdapter = BookingsAdapter(activity!!)
-        v.rv.adapter = bookingsAdapter
+        partsAdapter = PartsAdapter(this)
+        v.rv.adapter = partsAdapter
         v.rv.showShimmerAdapter()
 
         Handler().postDelayed({
@@ -48,16 +48,17 @@ class BookingsFragment : BaseFragment() {
     }
 
     private fun loadSample() {
-        val booking1 = Booking()
-        booking1.holderImage = R.drawable.fozzy
-        booking1.bookerName = "Vincent Tirgei"
-        booking1.sellerName = "Jomic Autos"
-        booking1.date = System.currentTimeMillis() - 10.days.inMilliseconds.longValue
-        booking1.name = "Subaru Forester"
-        bookingsAdapter.addBooking(booking1)
+        val part2 = Part(null, null, "sf", "Wakamau", 7500, null, R.drawable.hl)
+        part2.name = "Headlights"
+        partsAdapter.addParts(part2)
 
+        val part3 = Part(null, null, "sf", "Wakamau", 12000, null, R.drawable.bl)
+        part3.name = "Brake Lights"
+        partsAdapter.addParts(part3)
 
     }
 
+    override fun onClick(v: View, part: Part) {
 
+    }
 }
