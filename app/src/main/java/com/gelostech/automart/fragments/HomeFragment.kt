@@ -13,6 +13,7 @@ import android.view.ViewGroup
 
 import com.gelostech.automart.R
 import com.gelostech.automart.activities.CarActivity
+import com.gelostech.automart.activities.ChatActivity
 import com.gelostech.automart.adapters.CarsAdapter
 import com.gelostech.automart.callbacks.CarCallback
 import com.gelostech.automart.commoners.AppUtils
@@ -56,10 +57,10 @@ class HomeFragment : BaseFragment(), CarCallback {
         val car1 = Car()
         car1.make = "Subaru"
         car1.model = "Forester"
-        car1.price = 700000
+        car1.price = 2400000
         car1.holderAvatar = R.drawable.person
-        car1.holderImage = R.drawable.fozzy
-        car1.year = 2004
+        car1.holderImage = R.drawable.forester
+        car1.year = 2010
         car1.transmission = "Manual"
         car1.mileage = 123000
         car1.location = "Mombasa rd"
@@ -68,141 +69,107 @@ class HomeFragment : BaseFragment(), CarCallback {
         carsAdapter.addCar(car1)
 
         val car2 = Car()
-        car2.make = "Subaru"
-        car2.model = "Forester"
-        car2.price = 700000
+        car2.make = "Toyota"
+        car2.model = "NZE"
+        car2.price = 350000
         car2.holderAvatar = R.drawable.person
-        car2.holderImage = R.drawable.fozzy
+        car2.holderImage = R.drawable.nze
         car2.year = 2004
-        car2.transmission = "Manual"
-        car2.mileage = 123000
+        car2.transmission = "Automatic"
+        car2.mileage = 215000
         car2.location = "Mombasa rd"
         car2.sellerName = "Skyline Motors"
         car2.time = System.currentTimeMillis()
         carsAdapter.addCar(car2)
 
         val car3 = Car()
-        car3.make = "Subaru"
-        car3.model = "Forester"
-        car3.price = 700000
+        car3.make = "Toyota"
+        car3.model = "Hilux Surf"
+        car3.price = 11250000
         car3.holderAvatar = R.drawable.person
-        car3.holderImage = R.drawable.fozzy
-        car3.year = 2004
+        car3.holderImage = R.drawable.hilux
+        car3.year = 1997
         car3.transmission = "Manual"
-        car3.mileage = 123000
+        car3.mileage = 189000
         car3.location = "Mombasa rd"
         car3.sellerName = "Skyline Motors"
         car3.time = System.currentTimeMillis()
         carsAdapter.addCar(car3)
 
         val car4 = Car()
-        car4.make = "Subaru"
-        car4.model = "Forester"
-        car4.price = 700000
+        car4.make = "Honda"
+        car4.model = "Fit"
+        car4.price = 68000
         car4.holderAvatar = R.drawable.person
-        car4.holderImage = R.drawable.fozzy
-        car4.year = 2004
-        car4.transmission = "Manual"
-        car4.mileage = 123000
-        car4.location = "Mombasa rd"
+        car4.holderImage = R.drawable.fit
+        car4.year = 2011
+        car4.transmission = "Automatic"
+        car4.mileage = 75000
+        car4.location = "Outering road"
         car4.sellerName = "Skyline Motors"
         car4.time = System.currentTimeMillis()
         carsAdapter.addCar(car4)
 
         val car5 = Car()
-        car5.make = "Subaru"
-        car5.model = "Forester"
-        car5.price = 700000
+        car5.make = "Toyota"
+        car5.model = "Bb"
+        car5.price = 875000
         car5.holderAvatar = R.drawable.person
-        car5.holderImage = R.drawable.fozzy
-        car5.year = 2004
-        car5.transmission = "Manual"
-        car5.mileage = 123000
-        car5.location = "Mombasa rd"
-        car5.sellerName = "Skyline Motors"
+        car5.holderImage = R.drawable.bb
+        car5.year = 2009
+        car5.transmission = "Automatic"
+        car5.mileage = 68000
+        car5.location = "Ngong road"
+        car5.sellerName = "Agba Auto"
         car5.time = System.currentTimeMillis()
         carsAdapter.addCar(car5)
 
         val car6 = Car()
-        car6.make = "Subaru"
-        car6.model = "Forester"
-        car6.price = 700000
+        car6.make = "Toyota"
+        car6.model = "Premio"
+        car6.price = 45000
         car6.holderAvatar = R.drawable.person
-        car6.holderImage = R.drawable.fozzy
-        car6.year = 2004
-        car6.transmission = "Manual"
-        car6.mileage = 123000
-        car6.location = "Mombasa rd"
-        car6.sellerName = "Skyline Motors"
+        car6.holderImage = R.drawable.premio
+        car6.year = 1995
+        car6.transmission = "Automatic"
+        car6.mileage = 320000
+        car6.location = "Kariobangi"
+        car6.sellerName = "Martin Kamau"
         car6.time = System.currentTimeMillis()
         carsAdapter.addCar(car6)
 
         val car7 = Car()
-        car7.make = "Subaru"
-        car7.model = "Forester"
-        car7.price = 700000
+        car7.make = "Mercedes Benz"
+        car7.model = "E250"
+        car7.price = 3200000
         car7.holderAvatar = R.drawable.person
-        car7.holderImage = R.drawable.fozzy
-        car7.year = 2004
-        car7.transmission = "Manual"
-        car7.mileage = 123000
-        car7.location = "Mombasa rd"
-        car7.sellerName = "Skyline Motors"
+        car7.holderImage = R.drawable.benz
+        car7.year = 2012
+        car7.transmission = "Automatic"
+        car7.mileage = 43000
+        car7.location = "Industrial Area"
+        car7.sellerName = "DT Dobie"
         car7.time = System.currentTimeMillis()
         carsAdapter.addCar(car7)
-
-        val car8 = Car()
-        car8.make = "Subaru"
-        car8.model = "Forester"
-        car8.price = 700000
-        car8.holderAvatar = R.drawable.person
-        car8.holderImage = R.drawable.fozzy
-        car8.year = 2004
-        car8.transmission = "Manual"
-        car8.mileage = 123000
-        car8.location = "Mombasa rd"
-        car8.sellerName = "Skyline Motors"
-        car8.time = System.currentTimeMillis()
-        carsAdapter.addCar(car8)
-
-        val car9 = Car()
-        car9.make = "Subaru"
-        car9.model = "Forester"
-        car9.price = 700000
-        car9.holderAvatar = R.drawable.person
-        car9.holderImage = R.drawable.fozzy
-        car9.year = 2004
-        car9.transmission = "Manual"
-        car9.mileage = 123000
-        car9.location = "Mombasa rd"
-        car9.sellerName = "Skyline Motors"
-        car9.time = System.currentTimeMillis()
-        carsAdapter.addCar(car9)
-
-        val car10 = Car()
-        car10.make = "Subaru"
-        car10.model = "Forester"
-        car10.price = 700000
-        car10.holderAvatar = R.drawable.person
-        car10.holderImage = R.drawable.fozzy
-        car10.year = 2004
-        car10.transmission = "Manual"
-        car10.mileage = 123000
-        car10.location = "Mombasa rd"
-        car10.sellerName = "Skyline Motors"
-        car10.time = System.currentTimeMillis()
-        carsAdapter.addCar(car10)
-
-    }
-
-    override fun onClick(v: View) {
 
     }
 
     override fun onClick(v: View, car: Car) {
-        val i = Intent(activity, CarActivity::class.java)
-        i.putExtra(K.CAR, car)
-        startActivity(i)
-        AppUtils.animateFadein(activity!!)
+        when(v.id) {
+            R.id.action, R.id.root -> {
+                val i = Intent(activity, CarActivity::class.java)
+                i.putExtra(K.CAR, car)
+                startActivity(i)
+                AppUtils.animateFadein(activity!!)
+            }
+
+            R.id.contact -> {
+                val i = Intent(activity, ChatActivity::class.java)
+                i.putExtra(K.CHAT_ID, car.sellerId)
+                i.putExtra(K.CHAT_NAME, car.sellerName)
+                activity!!.startActivity(i)
+                AppUtils.animateFadein(activity!!)
+            }
+        }
     }
 }
