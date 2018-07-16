@@ -20,8 +20,8 @@ data class Car(
         var driveType: String? = null,
         var condition: String? = null,
         var price: Int? = null,
-        var features: MutableMap<String, String> = mutableMapOf<String, String>(),
-        var details: MutableMap<String, Boolean> = mutableMapOf<String, Boolean>(),
+        var features: MutableMap<String, Boolean> = mutableMapOf(),
+        var details: MutableMap<String, String> = mutableMapOf(),
         var holderImage: Int? = null,
         var holderAvatar: Int? = null
 ) : Serializable {
