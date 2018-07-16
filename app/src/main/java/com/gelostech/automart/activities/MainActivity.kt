@@ -79,7 +79,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
 
         bottomNav.addItem(AHBottomNavigationItem(HOME, homeIcon))
         bottomNav.addItem(AHBottomNavigationItem(PARTS, partsIcon))
-        bottomNav.addItem(AHBottomNavigationItem(SEARCH, searchIcon))
+        //bottomNav.addItem(AHBottomNavigationItem(SEARCH, searchIcon))
         bottomNav.addItem(AHBottomNavigationItem(NOTIFICATIONS, notificationIcon))
         bottomNav.addItem(AHBottomNavigationItem(CHATS, chatIcon))
 
@@ -98,8 +98,8 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
     private fun setupViewPager() {
         val adapter = PagerAdapter(supportFragmentManager, this)
 
-        adapter.addAllFrags(homeFragment, partsFragment, searchFragment, notificationsFragment, chatFragment)
-        adapter.addAllTitles(HOME, PARTS, SEARCH, NOTIFICATIONS, CHATS)
+        adapter.addAllFrags(homeFragment, partsFragment, notificationsFragment, chatFragment)
+        adapter.addAllTitles(HOME, PARTS, NOTIFICATIONS, CHATS)
 
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(this)
@@ -129,7 +129,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         drawer = DrawerBuilder().withActivity(this)
                 .withToolbar(toolbar)
                 .withAccountHeader(accountHeader)
-                .addDrawerItems(default, DividerDrawerItem(), orders, myOrders, myProducts, watchlist, sales, DividerDrawerItem(), settings, support, exit)
+                .addDrawerItems(default, DividerDrawerItem(), orders, myOrders, myProducts, watchlist, DividerDrawerItem(), settings, support, exit)
                 .withOnDrawerItemClickListener { _, _, drawerItem ->
                     when(drawerItem) {
                         orders -> launchActivity(OrdersActivity::class.java)
@@ -173,9 +173,9 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         when(position) {
             0 -> supportActionBar?.title = HOME
             1 -> supportActionBar?.title = PARTS
-            2 -> supportActionBar?.title = SEARCH
-            3 -> supportActionBar?.title = NOTIFICATIONS
-            4 -> supportActionBar?.title = CHATS
+            //2 -> supportActionBar?.title = SEARCH
+            2 -> supportActionBar?.title = NOTIFICATIONS
+            3 -> supportActionBar?.title = CHATS
         }
 
         return true
