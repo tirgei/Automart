@@ -49,6 +49,7 @@
         android:fillViewport="true"
         android:overScrollMode="never"
         android:padding="10dp"
+        android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
@@ -97,7 +98,7 @@
                 android:text="Car details"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/details_rv"
+                android:id="@+id/detailsRv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/details_title"
@@ -113,7 +114,7 @@
                 android:textSize="17sp"
                 android:textColor="@color/primaryText"
                 android:textStyle="bold"
-                android:layout_below="@id/details_rv"
+                android:layout_below="@id/detailsRv"
                 android:layout_marginTop="15dp"
                 android:text="Features"/>
 
@@ -139,7 +140,7 @@
                 android:text="Seller details"/>
 
             <TextView
-                android:id="@+id/seller_name"
+                android:id="@+id/sellerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -150,43 +151,43 @@
                 android:text="Samtonic Motors"/>
 
             <TextView
-                android:id="@+id/seller_phone"
+                android:id="@+id/sellerPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="15sp"
                 android:textColor="@color/secondaryText"
                 android:drawablePadding="10dp"
-                android:layout_below="@id/seller_name"
+                android:layout_below="@id/sellerName"
                 android:text="0726002063"/>
 
             <TextView
-                android:id="@+id/seller_location"
+                android:id="@+id/sellerLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="15sp"
                 android:textColor="@color/secondaryText"
                 android:drawablePadding="10dp"
-                android:layout_below="@id/seller_phone"
+                android:layout_below="@id/sellerPhone"
                 android:text="Gigiri, Nairobi, Kenya"/>
 
             <TextView
-                android:id="@+id/seller_email"
+                android:id="@+id/sellerEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="15sp"
                 android:textColor="@color/secondaryText"
                 android:drawablePadding="10dp"
-                android:layout_below="@id/seller_location"
+                android:layout_below="@id/sellerLocation"
                 android:text="info@samtonic.co.ke"/>
 
             <Button
                 android:id="@+id/testDrive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/seller_email"
+                android:layout_below="@id/sellerEmail"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/rounded_button"
