@@ -17,20 +17,5 @@ public class BindingAdapter {
                 .into(view);
     }
 
-    @android.databinding.BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(CircleImageView view, int url) {
-        Glide.with(view.getContext())
-                .load(url)
-                .thumbnail(0.05f)
-                .into(view);
-    }
-
-    @android.databinding.BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(RoundedImageView view, int url) {
-        Glide.with(view.getContext())
-                .load(url)
-                .thumbnail(0.05f)
-                .into(view);
-    }
 
 }
