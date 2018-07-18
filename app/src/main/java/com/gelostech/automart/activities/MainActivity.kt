@@ -9,10 +9,14 @@ import android.support.v4.view.ViewPager
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.gelostech.automart.R
+import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.AppUtils.setDrawable
 import com.gelostech.automart.commoners.BaseActivity
+import com.gelostech.automart.commoners.K
 import com.gelostech.automart.fragments.*
 import com.gelostech.automart.utils.PagerAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 import com.mikepenz.ionicons_typeface_library.Ionicons
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -157,14 +161,21 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
     }
 
     private fun logOut() {
-        drawer.closeDrawer()
-        drawer.setSelection(0)
+        Handler().postDelayed({
+            alert("Are you sure you want to log out?") {
+                title = "Log out"
+                positiveButton("LOG OUT") {
+                    val firebaseAuth = FirebaseAuth.getInstance()
+                    firebaseAuth.signOut()
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(K.TOPIC_GLOBAL)
 
-        alert("Are you sure you want to log out?") {
-            title = "Log out"
-            positiveButton("LOG OUT") { finish() }
-            negativeButton("CANCEL") {}
-        }.show()
+                    startActivity(Intent(this@MainActivity, AuthActivity::class.java))
+                    AppUtils.animateEnterLeft(this@MainActivity)
+                    finish()
+                }
+                negativeButton("CANCEL") {}
+            }.show()
+        }, 300)
     }
 
     override fun onTabSelected(position: Int, wasSelected: Boolean): Boolean {

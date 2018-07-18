@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.MenuItem
 import android.view.View
 import com.gelostech.automart.R
@@ -14,6 +15,8 @@ import com.gelostech.automart.commoners.BaseActivity
 import com.gelostech.automart.commoners.K
 import com.gelostech.automart.utils.PreferenceHelper
 import com.gelostech.automart.utils.PreferenceHelper.set
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.jetbrains.anko.alert
 
@@ -93,11 +96,21 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun logOut() {
-        alert("Are you sure you want to log out?") {
-            title = "Log out"
-            positiveButton("LOG OUT") { finishAffinity() }
-            negativeButton("CANCEL") {}
-        }.show()
+        Handler().postDelayed({
+            alert("Are you sure you want to log out?") {
+                title = "Log out"
+                positiveButton("LOG OUT") {
+                    val firebaseAuth = FirebaseAuth.getInstance()
+                    firebaseAuth.signOut()
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(K.TOPIC_GLOBAL)
+
+                    startActivity(Intent(this@SettingsActivity, AuthActivity::class.java))
+                    AppUtils.animateEnterLeft(this@SettingsActivity)
+                    finish()
+                }
+                negativeButton("CANCEL") {}
+            }.show()
+        }, 300)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
