@@ -11,6 +11,10 @@ object K {
     // car
     const val CAR = "car"
 
+    // part
+    const val PART = "part"
+    const val PART_IMAGE = "image"
+
     // notifications
     const val NOTIFICATIONS = "notifications"
     const val NEWS = "news"
