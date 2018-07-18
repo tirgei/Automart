@@ -2,20 +2,24 @@ package com.gelostech.automart.commoners
 
 object K {
 
-    // chats
+    // Firebase
+    const val TOPIC_GLOBAL = "automart"
+    const val USERS = "users"
+
+    // Chats
     const val ME = 0
     const val OTHER = 1
     const val CHAT_ID = "chat_id"
     const val CHAT_NAME = "chat_name"
 
-    // car
+    // Car
     const val CAR = "car"
 
-    // part
+    // Part
     const val PART = "part"
     const val PART_IMAGE = "image"
 
-    // notifications
+    // Notifications
     const val NOTIFICATIONS = "notifications"
     const val NEWS = "news"
 
