@@ -54,6 +54,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation 'com.android.support:support-v4:27.1.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
     // Iconics libs
@@ -66,8 +67,8 @@ dependencies {
     // Firebase
     implementation 'com.google.firebase:firebase-storage:16.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.2'
-    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.google.firebase:firebase-database:16.0.1'
+    implementation 'com.google.firebase:firebase-firestore:17.0.3'
     implementation 'com.google.firebase:firebase-messaging:17.1.0'
     implementation 'com.google.firebase:firebase-invites:16.0.1'
     implementation 'com.google.firebase:firebase-crash:16.0.1'
@@ -88,6 +89,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.karumi:dexter:4.2.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
 
     // Constraining layout
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
@@ -111,3 +113,5 @@ dependencies {
 kapt {
     generateStubs = true
 }
+
+apply plugin: 'com.google.gms.google-services'
