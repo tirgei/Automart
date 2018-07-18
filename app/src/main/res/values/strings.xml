@@ -19,6 +19,21 @@
     <string name="rate_app">Rate app</string>
     <string name="send_feedback">Send Feedback</string>
 
+    <string name="image">image</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email_address">Email address</string>
+    <string name="phone">Phone</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="terms">Terms and Conditions</string>
+    <string name="agree_to_terms">I accept the</string>
+    <string name="not_a_member_yet">Not a member yet?</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="username">Full name</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logout">Log out</string>
