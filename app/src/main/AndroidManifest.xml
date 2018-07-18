@@ -37,7 +37,8 @@
         <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.MyUploadsActivity" />
         <activity android:name=".activities.OrdersActivity" />
-        <activity android:name=".activities.MyOrdersActivity"></activity>
+        <activity android:name=".activities.MyOrdersActivity" />
+        <activity android:name=".activities.PartActivity"></activity>
     </application>
 
 </manifest>
