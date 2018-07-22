@@ -44,6 +44,7 @@
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logout">Log out</string>
     <string name="basic_information">Basic information</string>
