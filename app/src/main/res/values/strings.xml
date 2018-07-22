@@ -34,7 +34,59 @@
     <string name="sign_up">SIGN UP</string>
     <string name="username">Full name</string>
 
+    <string-array name="makes">
+        <item name="toyota">Toyota</item>
+        <item name="mazda">Mazda</item>
+        <item name="subaru">Subaru</item>
+        <item name="honda">Honda</item>
+        <item name="benz">Mercedes Benz</item>
+        <item name="bmw">BMW</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logout">Log out</string>
+    <string name="basic_information">Basic information</string>
+    <string name="condition">Condition</string>
+    <string name="year">Year</string>
+    <string name="model">Model</string>
+    <string name="make">Make</string>
+    <string name="body_type">Body Type</string>
+    <string name="fuel_type">Fuel Type</string>
+    <string name="car_details">Car details</string>
+    <string name="transmission">Transmission</string>
+    <string name="drive_type">Drive Type</string>
+    <string name="cc">Engine capacity</string>
+    <string name="engine_capacity">Engine Capacity</string>
+    <string name="mileage">Mileage</string>
+    <string name="car_features">Car features</string>
+    <string name="engine">Engine</string>
+    <string name="naturally_aspirated">Naturally aspirated</string>
+    <string name="turbo_charged">Turbo charged</string>
+    <string name="supercharged">Supercharged</string>
+    <string name="safety">Safety</string>
+    <string name="airbags">Airbags</string>
+    <string name="abs">Anti-lock brakes</string>
+    <string name="fog_lamps">Fog lamps</string>
+    <string name="reverse_camera">Reverse camera</string>
+    <string name="interior">Interior</string>
+    <string name="leather_upholstery">Leather upholstery</string>
+    <string name="electric_windows">Electric windows</string>
+    <string name="cups">Cup holders</string>
+    <string name="air_conditioning">Air conditioning</string>
+    <string name="tinted">Tinted windows</string>
+    <string name="extras">Extras</string>
+    <string name="sunroof">Sunroof</string>
+    <string name="keyless_entry">Keyless entry</string>
+    <string name="alloys">Alloy wheels</string>
+    <string name="power">Power steering</string>
+    <string name="upload_photos">Upload photos</string>
+    <string name="add_atleast_5_photos">(Add atleast 5 photos)</string>
+    <string name="choose_photos">Choose photos</string>
+    <string name="info">Information</string>
+    <string name="desc">Description</string>
+    <string name="add_desc">Add a description about the car...</string>
+    <string name="asking_price">Asking price</string>
+    <string name="location">Location</string>
+    <string name="post_car">Post car</string>
 </resources>
