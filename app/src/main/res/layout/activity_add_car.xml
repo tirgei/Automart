@@ -788,7 +788,7 @@
                     android:text="@string/add_atleast_5_photos" />
 
                     <ImageView
-                        android:id="@+id/main_image"
+                        android:id="@+id/mainImage"
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
                         app:layout_constraintTop_toBottomOf="@id/photos_title"
@@ -799,13 +799,13 @@
                         tools:src="@drawable/one"/>
 
                     <android.support.v7.widget.RecyclerView
-                        android:id="@+id/photos_rv"
+                        android:id="@+id/photosRv"
                         android:layout_width="wrap_content"
                         android:layout_height="100dp"
                         android:layout_marginTop="10dp"
                         android:overScrollMode="never"
                         android:visibility="gone"
-                        app:layout_constraintTop_toBottomOf="@id/main_image"
+                        app:layout_constraintTop_toBottomOf="@id/mainImage"
                         tools:listitem="@layout/item_image"/>
 
                 <TextView
@@ -816,7 +816,7 @@
                     android:gravity="center_vertical"
                     android:drawablePadding="10dp"
                     android:padding="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/photos_rv"
+                    app:layout_constraintTop_toBottomOf="@id/photosRv"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:background="@drawable/wire_button"
