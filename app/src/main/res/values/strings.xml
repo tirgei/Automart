@@ -48,7 +48,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logout">Log out</string>
     <string name="basic_information">Basic information</string>
-    <string name="condition">Condition</string>
     <string name="year">Year</string>
     <string name="model">Model</string>
     <string name="make">Make</string>
@@ -83,11 +82,22 @@
     <string name="power">Power steering</string>
     <string name="upload_photos">Upload photos</string>
     <string name="add_atleast_5_photos">(Add atleast 5 photos)</string>
+    <string name="add_atleast_2_photos">(Add atleast 2 photos)</string>
     <string name="choose_photos">Choose photos</string>
     <string name="info">Information</string>
     <string name="desc">Description</string>
     <string name="add_desc">Add a description about the car...</string>
+    <string name="add_part_desc">Add a description about the part...</string>
     <string name="asking_price">Asking price</string>
     <string name="location">Location</string>
     <string name="post_car">Post car</string>
+    <string name="title">Title</string>
+    <string name="part_info">Part information</string>
+    <string name="part_details">Part details</string>
+    <string name="condition">Condition</string>
+    <string name="category">Category</string>
+    <string name="part_number">Part number</string>
+    <string name="post_part">Post part</string>
+    <string name="vehicle_make">Vehicle make</string>
+    <string name="vehicle_model">Vehicle model</string>
 </resources>
