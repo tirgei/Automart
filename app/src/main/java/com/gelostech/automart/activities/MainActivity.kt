@@ -27,7 +27,6 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast
-import kotlin.math.log
 
 class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         AHBottomNavigation.OnNavigationPositionListener, ViewPager.OnPageChangeListener {
@@ -43,8 +42,10 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
 
     companion object {
         private const val HOME = "Automart"
-        private const val PARTS = "Spare Parts"
+        private const val SPARE_PARTS = "Spare Parts"
         private const val SEARCH = "Search"
+        private const val CARS = "Cars"
+        private const val PARTS = "Parts"
         private const val NOTIFICATIONS = "Notifications"
         private const val CHATS = "Chats"
     }
@@ -81,7 +82,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         val notificationIcon = setDrawable(this, Ionicons.Icon.ion_ios_bell, R.color.secondaryText, 18)
         val chatIcon = setDrawable(this, Ionicons.Icon.ion_chatbubbles, R.color.secondaryText, 18)
 
-        bottomNav.addItem(AHBottomNavigationItem(HOME, homeIcon))
+        bottomNav.addItem(AHBottomNavigationItem(CARS, homeIcon))
         bottomNav.addItem(AHBottomNavigationItem(PARTS, partsIcon))
         //bottomNav.addItem(AHBottomNavigationItem(SEARCH, searchIcon))
         bottomNav.addItem(AHBottomNavigationItem(NOTIFICATIONS, notificationIcon))
@@ -91,7 +92,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         bottomNav.inactiveColor = ContextCompat.getColor(this, R.color.inactiveColor)
         bottomNav.accentColor = ContextCompat.getColor(this, R.color.colorPrimary)
         bottomNav.isBehaviorTranslationEnabled = false
-        bottomNav.titleState = AHBottomNavigation.TitleState.ALWAYS_HIDE
+        bottomNav.titleState = AHBottomNavigation.TitleState.ALWAYS_SHOW
         bottomNav.setUseElevation(true, 5f)
 
         bottomNav.setOnTabSelectedListener(this)
@@ -103,7 +104,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         val adapter = PagerAdapter(supportFragmentManager, this)
 
         adapter.addAllFrags(homeFragment, partsFragment, notificationsFragment, chatFragment)
-        adapter.addAllTitles(HOME, PARTS, NOTIFICATIONS, CHATS)
+        adapter.addAllTitles(HOME, SPARE_PARTS, NOTIFICATIONS, CHATS)
 
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(this)
@@ -183,7 +184,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
 
         when(position) {
             0 -> supportActionBar?.title = HOME
-            1 -> supportActionBar?.title = PARTS
+            1 -> supportActionBar?.title = SPARE_PARTS
             //2 -> supportActionBar?.title = SEARCH
             2 -> supportActionBar?.title = NOTIFICATIONS
             3 -> supportActionBar?.title = CHATS
