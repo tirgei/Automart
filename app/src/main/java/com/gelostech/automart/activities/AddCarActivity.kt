@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.MenuItem
 import com.gelostech.automart.R
 import com.gelostech.automart.adapters.ImagesAdapter
 import com.gelostech.automart.commoners.AppUtils
@@ -98,6 +99,14 @@ class AddCarActivity : BaseActivity() {
 
             setImages()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            android.R.id.home -> onBackPressed()
+        }
+
+        return true
     }
 
     override fun onBackPressed() {
