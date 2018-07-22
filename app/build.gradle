@@ -65,6 +65,7 @@ dependencies {
     implementation 'com.mikepenz:actionitembadge:3.3.2@aar'
 
     // Firebase
+    implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-storage:16.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.2'
     implementation 'com.google.firebase:firebase-database:16.0.1'
@@ -82,14 +83,16 @@ dependencies {
     implementation 'br.com.simplepass:loading-button-android:1.14.0'
     implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
     implementation 'com.synnapps:carouselview:0.1.4'
+    implementation 'com.github.clans:fab:1.6.4'
 
     // Other libs
     implementation 'com.github.kizitonwose.time:time-android:1.0.1'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.karumi:dexter:4.2.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.zhihu.android:matisse:0.5.1-beta1'
 
     // Constraining layout
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
