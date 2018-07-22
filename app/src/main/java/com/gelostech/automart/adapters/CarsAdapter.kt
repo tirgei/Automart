@@ -58,7 +58,7 @@ class CarsAdapter(private val context: Context, private val callback: CarCallbac
         fun bind(car: Car) {
             binding.data = car
             binding.time = TimeFormatter().getTimeStamp(car.time!!)
-            binding.isMine = false
+            binding.isMine = true
         }
 
     }
