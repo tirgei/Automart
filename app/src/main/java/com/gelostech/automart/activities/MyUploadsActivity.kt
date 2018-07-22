@@ -1,7 +1,10 @@
 package com.gelostech.automart.activities
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v4.content.ContextCompat
 import android.view.MenuItem
 import com.gelostech.automart.R
 import com.gelostech.automart.commoners.AppUtils
@@ -9,6 +12,9 @@ import com.gelostech.automart.commoners.BaseActivity
 import com.gelostech.automart.fragments.MyUploadsCarsFragment
 import com.gelostech.automart.fragments.MyUploadsPartsFragment
 import com.gelostech.automart.utils.PagerAdapter
+import com.mikepenz.fontawesome_typeface_library.FontAwesome
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.ionicons_typeface_library.Ionicons
 import kotlinx.android.synthetic.main.activity_my_uploads.*
 
 class MyUploadsActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
@@ -33,6 +39,8 @@ class MyUploadsActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
 
         setupViewPager()
         setupTabs()
+        initFab()
+
     }
 
     private fun setupViewPager() {
@@ -52,6 +60,30 @@ class MyUploadsActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
     private fun setupTabs() {
         tabs.setupWithViewPager(viewpager)
         tabs.addOnTabSelectedListener(this)
+    }
+
+    private fun initFab() {
+        fabCar.colorNormal = ContextCompat.getColor(this, R.color.colorPrimary)
+        fabCar.colorPressed = ContextCompat.getColor(this, R.color.colorPrimaryDark)
+        fabCar.colorRipple = ContextCompat.getColor(this, R.color.colorPrimaryDark)
+        fabCar.setImageDrawable(IconicsDrawable(this).icon(Ionicons.Icon.ion_plus).color(Color.WHITE).sizeDp(17))
+
+        fabPart.colorNormal = ContextCompat.getColor(this, R.color.colorPrimary)
+        fabPart.colorPressed = ContextCompat.getColor(this, R.color.colorPrimaryDark)
+        fabPart.colorRipple = ContextCompat.getColor(this, R.color.colorPrimaryDark)
+        fabPart.setImageDrawable(IconicsDrawable(this).icon(Ionicons.Icon.ion_plus).color(Color.WHITE).sizeDp(17))
+
+        fabCar.setOnClickListener {
+            fam.close(true)
+            startActivity(Intent(this, AddCarActivity::class.java))
+            AppUtils.animateEnterRight(this)
+        }
+
+        fabPart.setOnClickListener {
+            fam.close(true)
+            startActivity(Intent(this, AddPartActivity::class.java))
+            AppUtils.animateEnterRight(this)
+        }
     }
 
     override fun onTabReselected(tab: TabLayout.Tab?) {

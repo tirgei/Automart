@@ -40,6 +40,39 @@
         android:layout_below="@id/appBar"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:menu_fab_size="normal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:menu_colorNormal="@color/colorPrimary"
+        app:menu_colorPressed="@color/colorPrimaryDark"
+        app:menu_colorRipple="@color/colorPrimaryDark"
+        android:layout_margin="16dp">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabCar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_size="mini"
+            app:fab_label="Post new car"
+            app:menu_colorNormal="@color/colorPrimary"
+            app:menu_colorPressed="@color/colorPrimaryDark"
+            app:menu_colorRipple="@color/colorPrimaryDark"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabPart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_size="mini"
+            app:fab_label="Post new part"
+            app:menu_colorNormal="@color/colorPrimary"
+            app:menu_colorPressed="@color/colorPrimaryDark"
+            app:menu_colorRipple="@color/colorPrimaryDark"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
 
 
 </RelativeLayout>
