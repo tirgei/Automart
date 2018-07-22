@@ -98,7 +98,7 @@
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:layout_below="@id/topLayout"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
