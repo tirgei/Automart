@@ -16,15 +16,16 @@ import com.gelostech.automart.commoners.BaseActivity
 import com.gelostech.automart.commoners.K
 import com.gelostech.automart.models.Car
 import com.gelostech.automart.utils.RecyclerFormatter
+import com.gelostech.automart.utils.loadUrl
 import com.gelostech.automart.utils.setDrawable
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
 import com.mikepenz.ionicons_typeface_library.Ionicons
 import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.activity_car.*
+import org.jetbrains.anko.alert
 import timber.log.Timber
 
 class CarActivity : BaseActivity(), ImageListener, View.OnClickListener {
-    val images = arrayOf(R.drawable.two, R.drawable.three, R.drawable.four, R.drawable.five, R.drawable.six)
     private lateinit var car: Car
     private lateinit var featuresAdapter: FeaturesAdapter
     private lateinit var detailsAdapter: DetailsAdapter
@@ -36,6 +37,7 @@ class CarActivity : BaseActivity(), ImageListener, View.OnClickListener {
         car = intent.getSerializableExtra(K.CAR) as Car
 
         initViews()
+        loadCarInfo()
     }
 
     private fun initViews() {
@@ -48,9 +50,10 @@ class CarActivity : BaseActivity(), ImageListener, View.OnClickListener {
         setupFeatures()
         setupDetails()
 
-        carousel.pageCount = images.size
+        carousel.pageCount = car.images.size
         carousel.setImageListener(this)
         contactSeller.setOnClickListener(this)
+        testDrive.setOnClickListener(this)
 
         sellerName.setDrawable(AppUtils.setDrawable(this, FontAwesome.Icon.faw_user2, R.color.secondaryText, 15))
         sellerPhone.setDrawable(AppUtils.setDrawable(this, Ionicons.Icon.ion_android_call, R.color.secondaryText, 15))
@@ -86,37 +89,32 @@ class CarActivity : BaseActivity(), ImageListener, View.OnClickListener {
         detailsRv.setHasFixedSize(true)
         detailsRv.layoutManager = LinearLayoutManager(this)
         detailsRv.addItemDecoration(RecyclerFormatter.SimpleDividerItemDecoration(this))
-
         detailsAdapter = DetailsAdapter(this)
         detailsRv.adapter = detailsAdapter
-
-        var details = mutableMapOf<String, String>()
-        details["Body Type"] = "Hatchback"
-        details["CC"] = "2000cc"
-        details["Transmission"] = "Manual"
-        details["Fuel Type"] = "Petrol"
-        details["Drive"] = "RWD"
-        details["Mileage"] = "123000KM"
-
-
-        detailsAdapter.addDetails(details)
     }
 
     private fun setupFeatures() {
         featuresRv.setHasFixedSize(true)
         featuresRv.layoutManager = LinearLayoutManager(this)
-
         featuresAdapter = FeaturesAdapter(this)
         featuresRv.adapter = featuresAdapter
+    }
 
-        val features = mutableListOf("Sunroof", "Turbo charged", "Leather interior", "Alloy rims", "Electric Mirrors")
-        featuresAdapter.addFeatures(features)
-
+    private fun loadCarInfo() {
+        description.text = car.description
+        detailsAdapter.addDetails(car.details)
+        featuresAdapter.addFeatures(car.features)
+        sellerName.text = car.sellerName
+        sellerPhone.text = car.phone
+        sellerLocation.text = car.location
+        sellerEmail.text = car.email
     }
 
     override fun setImageForPosition(position: Int, imageView: ImageView?) {
+        val keys = car.images.keys.toList()
+
         imageView!!.scaleType =ImageView.ScaleType.CENTER_CROP
-        imageView.setImageResource(images[position])
+        imageView.loadUrl(car.images[keys[position]]!!)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -135,6 +133,13 @@ class CarActivity : BaseActivity(), ImageListener, View.OnClickListener {
                 i.putExtra(K.CHAT_NAME, car.sellerName)
                 startActivity(i)
                 AppUtils.animateFadein(this)
+            }
+
+            R.id.testDrive -> {
+                alert("Book test drive?") {
+                    positiveButton("BOOK") {}
+                    negativeButton("CANCEL") {}
+                }.show()
             }
         }
     }
