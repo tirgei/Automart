@@ -10,10 +10,10 @@ class Automart : MultiDexApplication() {
         super.onCreate()
 
         Timber.plant(Timber.DebugTree())
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return
-        }
-
-        LeakCanary.install(this)
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            return
+//        }
+//
+//        LeakCanary.install(this)
     }
 }
