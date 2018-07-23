@@ -47,7 +47,7 @@
                 android:layout_height="@dimen/avatar"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
-                app:imageUrl="@{data.holderAvatar}"
+                android:src="@drawable/person"
                 tools:src="@drawable/person"/>
 
             <LinearLayout
@@ -103,7 +103,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             app:riv_corner_radius="2dp"
-            app:imageUrl="@{data.holderImage}"
+            app:imageUrl="@{data.image}"
             tools:src="@drawable/fozzy"
             android:scaleType="centerCrop"/>
 
