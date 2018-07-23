@@ -6,6 +6,7 @@ object K {
     const val TOPIC_GLOBAL = "automart"
     const val USERS = "users"
     const val CARS = "cars"
+    const val TIMESTAMP = "time"
 
     // Chats
     const val ME = 0
