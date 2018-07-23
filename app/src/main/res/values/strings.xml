@@ -34,15 +34,6 @@
     <string name="sign_up">SIGN UP</string>
     <string name="username">Full name</string>
 
-    <string-array name="makes">
-        <item name="toyota">Toyota</item>
-        <item name="mazda">Mazda</item>
-        <item name="subaru">Subaru</item>
-        <item name="honda">Honda</item>
-        <item name="benz">Mercedes Benz</item>
-        <item name="bmw">BMW</item>
-    </string-array>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -100,4 +91,144 @@
     <string name="post_part">Post part</string>
     <string name="vehicle_make">Vehicle make</string>
     <string name="vehicle_model">Vehicle model</string>
+
+    <string-array name="holder">
+        <item name="category">Please select</item>
+    </string-array>
+
+    <string-array name="makes">
+        <item name="toyota">Toyota</item>
+        <item name="mazda">Mazda</item>
+        <item name="subaru">Subaru</item>
+        <item name="honda">Honda</item>
+        <item name="benz">Mercedes Benz</item>
+        <item name="bmw">BMW</item>
+    </string-array>
+
+    <string-array name="mazda">
+        <item name="premacy">Premacy</item>
+        <item name="demio">Demio</item>
+        <item name="axela">Axela</item>
+        <item name="cx5">CX-5</item>
+        <item name="atenza">Atenza</item>
+        <item name="verisa">Verisa</item>
+    </string-array>
+
+    <string-array name="subaru">
+        <item name="legacy">Legacy</item>
+        <item name="outback">Outback</item>
+        <item name="forester">Forester</item>
+        <item name="imprezza">Imprezza</item>
+        <item name="xv">XV</item>
+        <item name="exiga">Exiga</item>
+    </string-array>
+
+    <string-array name="honda">
+        <item name="fit">Fit</item>
+        <item name="airwave">Airwave</item>
+        <item name="civic">Civic</item>
+        <item name="crv">CR-V</item>
+        <item name="crossroad">Crossroad</item>
+        <item name="accord">Accord</item>
+    </string-array>
+
+    <string-array name="benz">
+        <item name="c200">C200</item>
+        <item name="e250">E250</item>
+        <item name="a180">A180</item>
+        <item name="ml350">ML350</item>
+        <item name="c250">C250 Coupe</item>
+        <item name="gl300">GL300</item>
+    </string-array>
+
+    <string-array name="bmw">
+        <item name="318">318i</item>
+        <item name="325">325i</item>
+        <item name="525">535i</item>
+        <item name="x5">X5</item>
+        <item name="x6">X6</item>
+        <item name="m5">M5</item>
+    </string-array>
+
+    <string-array name="toyota">
+        <item name="corolla">Corolla</item>
+        <item name="premio">Premio</item>
+        <item name="fielder">Fielder</item>
+        <item name="prado">Landcruiser Prado</item>
+        <item name="harrier">Harrier</item>
+        <item name="hilux">Hilux</item>
+        <item name="prado">Landcruiser Prado</item>
+        <item name="nze">NZE</item>
+        <item name="axio">Axio</item>
+    </string-array>
+
+    <string-array name="condition">
+        <item name="new">Brand New</item>
+        <item name="used">Used</item>
+    </string-array>
+
+    <string-array name="category">
+        <item name="accessories">Accessories</item>
+        <item name="body">Body &amp; Trim</item>
+        <item name="braking">Braking</item>
+        <item name="cooling">Cooling</item>
+        <item name="engine">Engine</item>
+        <item name="fluids">Fluids</item>
+        <item name="suspension">Suspension</item>
+        <item name="transmission">Transmission</item>
+        <item name="wheels">Wheels &amp; Tyres</item>
+    </string-array>
+
+    <string-array name="year">
+        <item name="98">1998</item>
+        <item name="99">1999</item>
+        <item name="00">2000</item>
+        <item name="01">2001</item>
+        <item name="02">2002</item>
+        <item name="03">2003</item>
+        <item name="04">2004</item>
+        <item name="05">2005</item>
+        <item name="06">2006</item>
+        <item name="07">2007</item>
+        <item name="08">2008</item>
+        <item name="09">2009</item>
+        <item name="10">2010</item>
+        <item name="11">2011</item>
+        <item name="12">2012</item>
+        <item name="13">2013</item>
+        <item name="14">2014</item>
+        <item name="15">2015</item>
+        <item name="16">2016</item>
+        <item name="17">2017</item>
+        <item name="18">2018</item>
+    </string-array>
+
+    <string-array name="body">
+        <item name="hatchback">Hatchback</item>
+        <item name="sedan">Sedan</item>
+        <item name="convertible">Convertible</item>
+        <item name="suv">SUV/Crossover</item>
+        <item name="wagon">Wagon</item>
+        <item name="pickup">Pickup</item>
+    </string-array>
+
+    <string-array name="fuel">
+        <item name="petrol">Petrol</item>
+        <item name="diesel">Diesel</item>
+        <item name="electric">Electric</item>
+        <item name="hybrid">Hybrid</item>
+    </string-array>
+
+    <string-array name="transmission">
+        <item name="auto">Automatic</item>
+        <item name="manual">Manual</item>
+        <item name="cvt">CVT</item>
+    </string-array>
+
+    <string-array name="drive">
+        <item name="2wd">2WD</item>
+        <item name="4wd">4WD</item>
+        <item name="awd">AWD</item>
+    </string-array>
+
 </resources>
