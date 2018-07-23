@@ -5,6 +5,7 @@ object K {
     // Firebase
     const val TOPIC_GLOBAL = "automart"
     const val USERS = "users"
+    const val CARS = "cars"
 
     // Chats
     const val ME = 0
@@ -22,5 +23,10 @@ object K {
     // Notifications
     const val NOTIFICATIONS = "notifications"
     const val NEWS = "news"
+
+    // User
+    const val NAME = "username"
+    const val EMAIL = "email"
+    const val PHONE = "phone"
 
 }
