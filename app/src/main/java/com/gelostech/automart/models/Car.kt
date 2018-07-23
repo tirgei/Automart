@@ -10,6 +10,8 @@ data class Car(
         var make: String? = null,
         var model: String? = null,
         var location: String? = null,
+        var email: String? = null,
+        var phone: String? = null,
         var description: String? = null,
         var mileage: String? = null,
         var transmission: String? = null,
