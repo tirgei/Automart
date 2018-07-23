@@ -18,9 +18,10 @@
         tools:listitem="@layout/item_part"/>
 
     <TextView
+        android:id="@+id/empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No parts posted yet"
+        android:text="@string/no_parts_posted_yet"
         android:layout_centerInParent="true"
         android:visibility="gone"/>
 

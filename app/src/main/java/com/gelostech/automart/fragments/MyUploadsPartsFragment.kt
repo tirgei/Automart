@@ -13,9 +13,16 @@ import com.gelostech.automart.R
 import com.gelostech.automart.adapters.PartsAdapter
 import com.gelostech.automart.callbacks.PartCallback
 import com.gelostech.automart.commoners.BaseFragment
+import com.gelostech.automart.commoners.K
 import com.gelostech.automart.models.Part
 import com.gelostech.automart.utils.RecyclerFormatter
+import com.gelostech.automart.utils.hideView
+import com.gelostech.automart.utils.showView
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.fragment_my_parts.*
 import kotlinx.android.synthetic.main.fragment_my_parts.view.*
+import timber.log.Timber
 
 class MyUploadsPartsFragment : BaseFragment(), PartCallback {
     private lateinit var partsAdapter: PartsAdapter
@@ -29,21 +36,74 @@ class MyUploadsPartsFragment : BaseFragment(), PartCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
+
+        loadParts()
+    }
+
+    private fun loadParts() {
+        getFirestore().collection(K.PARTS)
+                //.orderBy(K.TIMESTAMP, Query.Direction.DESCENDING)
+                .whereEqualTo("sellerId", getUid())
+                .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                    if (firebaseFirestoreException != null) {
+                        Timber.e("Error fetching parts $firebaseFirestoreException")
+                        noParts()
+                    }
+
+                    if (querySnapshot == null || querySnapshot.isEmpty) {
+                        noParts()
+                    } else {
+                        hasParts()
+
+                        for (docChange in querySnapshot.documentChanges) {
+
+                            when(docChange.type) {
+                                DocumentChange.Type.ADDED -> {
+                                    val part = docChange.document.toObject(Part::class.java)
+                                    partsAdapter.addPart(part)
+                                }
+
+                                DocumentChange.Type.MODIFIED -> {
+
+                                }
+
+                                DocumentChange.Type.REMOVED -> {
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+                }
     }
 
     private fun initViews(v: View) {
-        v.rv.setHasFixedSize(true)
-        v.rv.layoutManager = GridLayoutManager(activity!!, 2)
-        v.rv.itemAnimator = DefaultItemAnimator()
-        v.rv.addItemDecoration(RecyclerFormatter.GridItemDecoration(activity!!, 2, 10))
+        rv.setHasFixedSize(true)
+        rv.layoutManager = GridLayoutManager(activity!!, 2)
+        rv.itemAnimator = DefaultItemAnimator()
+        rv.addItemDecoration(RecyclerFormatter.GridItemDecoration(activity!!, 2, 10))
 
         partsAdapter = PartsAdapter(this)
-        v.rv.adapter = partsAdapter
-        v.rv.showShimmerAdapter()
+        rv.adapter = partsAdapter
+        rv.showShimmerAdapter()
 
         Handler().postDelayed({
             v.rv.hideShimmerAdapter()
         }, 2500)
+    }
+
+    private fun hasParts() {
+        rv.hideShimmerAdapter()
+        empty.hideView()
+        rv.showView()
+    }
+
+    private fun noParts() {
+        rv.hideShimmerAdapter()
+        rv.hideView()
+        empty.showView()
     }
 
     override fun onClick(v: View, part: Part) {
