@@ -3,7 +3,6 @@ package com.gelostech.automart.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
@@ -19,8 +18,12 @@ import com.gelostech.automart.commoners.BaseFragment
 import com.gelostech.automart.commoners.K
 import com.gelostech.automart.models.Part
 import com.gelostech.automart.utils.RecyclerFormatter
+import com.gelostech.automart.utils.hideView
+import com.gelostech.automart.utils.showView
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_parts.*
-import kotlinx.android.synthetic.main.fragment_parts.view.*
+import timber.log.Timber
 
 
 class PartsFragment : BaseFragment(), PartCallback {
@@ -34,8 +37,9 @@ class PartsFragment : BaseFragment(), PartCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initViews(view)
+
+        loadParts()
     }
 
     private fun initViews(v:View) {
@@ -47,6 +51,56 @@ class PartsFragment : BaseFragment(), PartCallback {
         partsAdapter = PartsAdapter(this)
         rv.adapter = partsAdapter
 
+    }
+
+    private fun loadParts() {
+        getFirestore().collection(K.PARTS)
+                .orderBy(K.TIMESTAMP, Query.Direction.DESCENDING)
+                .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                    if (firebaseFirestoreException != null) {
+                        Timber.e("Error fetching parts $firebaseFirestoreException")
+                        noParts()
+                    }
+
+                    if (querySnapshot == null || querySnapshot.isEmpty) {
+                        noParts()
+                    } else {
+                        hasParts()
+
+                        for (docChange in querySnapshot.documentChanges) {
+
+                            when(docChange.type) {
+                                DocumentChange.Type.ADDED -> {
+                                    val part = docChange.document.toObject(Part::class.java)
+                                    partsAdapter.addPart(part)
+                                }
+
+                                DocumentChange.Type.MODIFIED -> {
+
+                                }
+
+                                DocumentChange.Type.REMOVED -> {
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+                }
+    }
+
+    private fun hasParts() {
+        rv.hideShimmerAdapter()
+        empty.hideView()
+        rv.showView()
+    }
+
+    private fun noParts() {
+        rv.hideShimmerAdapter()
+        rv.hideView()
+        empty.showView()
     }
 
     override fun onClick(v: View, part: Part) {

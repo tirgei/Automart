@@ -228,6 +228,7 @@ class AddPartActivity : BaseActivity() {
         showLoading("Uploading part details...")
 
         part.id = KEY
+        part.name = partTitle.text.toString().trim()
         part.sellerId = getUid()
         part.sellerName = prefs[K.NAME]
         part.time = System.currentTimeMillis()

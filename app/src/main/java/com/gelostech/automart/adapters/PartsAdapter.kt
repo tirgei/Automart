@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.item_part.view.*
 class PartsAdapter(private val callback: PartCallback) : RecyclerView.Adapter<PartsAdapter.PartHolder>() {
     private val parts = mutableListOf<Part>()
 
-    fun addParts(part: Part) {
+    fun addPart(part: Part) {
         parts.add(part)
         notifyItemInserted(parts.size - 1)
     }
