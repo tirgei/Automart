@@ -53,7 +53,8 @@ class MyUploadsCarsFragment : BaseFragment(), CarCallback {
 
     private fun loadCars() {
         getFirestore().collection(K.CARS)
-                .orderBy(K.TIMESTAMP, Query.Direction.DESCENDING)
+                .whereEqualTo("sellerId", getUid())
+                //.orderBy(K.TIMESTAMP, Query.Direction.DESCENDING)
                 .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                     if (firebaseFirestoreException != null) {
                         Timber.e("Error fetching cars $firebaseFirestoreException")
@@ -70,9 +71,7 @@ class MyUploadsCarsFragment : BaseFragment(), CarCallback {
                             when(docChange.type) {
                                 DocumentChange.Type.ADDED -> {
                                     val car = docChange.document.toObject(Car::class.java)
-                                    if (car.sellerId == getUid()) {
-                                        carsAdapter.addCar(car)
-                                    }
+                                    carsAdapter.addCar(car)
                                 }
 
                                 DocumentChange.Type.MODIFIED -> {
