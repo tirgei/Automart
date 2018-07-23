@@ -373,6 +373,8 @@ class AddCarActivity : BaseActivity(), CompoundButton.OnCheckedChangeListener {
         car.id = KEY
         car.sellerId = getUid()
         car.sellerName = prefs[K.NAME]
+        car.phone = prefs[K.PHONE]
+        car.email = prefs[K.EMAIL]
         car.time = System.currentTimeMillis()
         car.make = make.selectedItem.toString()
         car.model = model.selectedItem.toString()

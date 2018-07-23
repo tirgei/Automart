@@ -142,8 +142,8 @@ class RegisterFragment : BaseFragment() {
                         val user = task.result.user
                         updateUI(user)
 
-                        prefs["username"] = name
-                        prefs["email"] = email
+                        prefs[K.NAME] = name
+                        prefs[K.EMAIL] = email
                         prefs[K.PHONE] = registerPhone.text.toString().trim()
 
                     } else {
