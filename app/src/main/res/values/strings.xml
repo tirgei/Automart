@@ -91,6 +91,7 @@
     <string name="post_part">Post part</string>
     <string name="vehicle_make">Vehicle make</string>
     <string name="vehicle_model">Vehicle model</string>
+    <string name="no_cars_uploaded_yet">No cars uploaded yet</string>
 
     <string-array name="holder">
         <item name="category">Please select</item>
