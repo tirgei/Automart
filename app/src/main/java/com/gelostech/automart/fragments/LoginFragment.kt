@@ -150,8 +150,9 @@ class LoginFragment : BaseFragment() {
             if (it.isSuccessful) {
                 val userObject = it.result.toObject(User::class.java)
 
-                prefs["username"] = userObject!!.name
-                prefs["email"] = userObject.email
+                prefs[K.NAME] = userObject!!.name
+                prefs[K.EMAIL] = userObject.email
+                prefs[K.PHONE] = userObject.phone
 
                 Handler().postDelayed({
                     activity!!.toast("Welcome back ${userObject.name}")
