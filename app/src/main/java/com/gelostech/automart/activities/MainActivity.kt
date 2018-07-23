@@ -1,6 +1,7 @@
 package com.gelostech.automart.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -15,6 +16,7 @@ import com.gelostech.automart.commoners.BaseActivity
 import com.gelostech.automart.commoners.K
 import com.gelostech.automart.fragments.*
 import com.gelostech.automart.utils.PagerAdapter
+import com.gelostech.automart.utils.PreferenceHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import com.mikepenz.ionicons_typeface_library.Ionicons
@@ -27,6 +29,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast
+import com.gelostech.automart.utils.PreferenceHelper.get
 
 class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         AHBottomNavigation.OnNavigationPositionListener, ViewPager.OnPageChangeListener {
@@ -39,6 +42,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
     private lateinit var searchFragment: SearchFragment
     private lateinit var notificationsFragment: NotificationsFragment
     private lateinit var chatFragment: ChatFragment
+    private lateinit var prefs: SharedPreferences
 
     companion object {
         private const val HOME = "Automart"
@@ -53,6 +57,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        prefs = PreferenceHelper.defaultPrefs(this)
 
         homeFragment = HomeFragment()
         partsFragment = PartsFragment()
@@ -116,8 +121,8 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
                 .withSelectionListEnabled(false)
                 .withHeaderBackground(R.drawable.fozzy)
                 .addProfiles(ProfileDrawerItem()
-                        .withName("Tirgei")
-                        .withEmail("+254726002063")
+                        .withName(prefs[K.NAME, ""])
+                        .withEmail(prefs[K.PHONE, ""])
                         .withIcon(R.drawable.person))
                 .build()
 
