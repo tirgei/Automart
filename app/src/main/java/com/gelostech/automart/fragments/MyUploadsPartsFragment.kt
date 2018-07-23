@@ -43,19 +43,7 @@ class MyUploadsPartsFragment : BaseFragment(), PartCallback {
 
         Handler().postDelayed({
             v.rv.hideShimmerAdapter()
-            loadSample()
         }, 2500)
-    }
-
-    private fun loadSample() {
-        val part2 = Part(null, null, "sf", "Wakamau", 7500, null, R.drawable.hl)
-        part2.name = "Headlights"
-        partsAdapter.addParts(part2)
-
-        val part3 = Part(null, null, "sf", "Wakamau", 12000, null, R.drawable.bl)
-        part3.name = "Brake Lights"
-        partsAdapter.addParts(part3)
-
     }
 
     override fun onClick(v: View, part: Part) {
