@@ -192,7 +192,7 @@
                             android:layout_weight="1"
                             android:textSize="15sp"
                             android:textColor="@color/primaryText"
-                            android:entries="@array/makes"/>
+                            android:entries="@array/condition"/>
 
                     </LinearLayout>
 
@@ -221,7 +221,7 @@
                             android:layout_weight="1"
                             android:textSize="15sp"
                             android:textColor="@color/primaryText"
-                            android:entries="@array/makes"/>
+                            android:entries="@array/category"/>
 
                     </LinearLayout>
 
@@ -279,7 +279,7 @@
                             android:layout_weight="1"
                             android:textSize="15sp"
                             android:textColor="@color/primaryText"
-                            android:entries="@array/makes"/>
+                            android:entries="@array/holder"/>
 
                     </LinearLayout>
 

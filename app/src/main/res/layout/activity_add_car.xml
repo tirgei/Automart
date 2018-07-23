@@ -86,7 +86,7 @@
                         android:layout_marginTop="5dp"
                         style="@style/spinner_style"
                         android:spinnerMode="dialog"
-                        android:entries="@array/makes"
+                        android:entries="@array/holder"
                         app:layout_constraintTop_toBottomOf="@id/model_title"/>
 
                     <TextView
@@ -105,7 +105,7 @@
                         android:layout_marginTop="5dp"
                         style="@style/spinner_style"
                         android:spinnerMode="dialog"
-                        android:entries="@array/makes"
+                        android:entries="@array/year"
                         app:layout_constraintTop_toBottomOf="@id/year_title"/>
 
                     <TextView
@@ -124,7 +124,7 @@
                         android:layout_marginTop="5dp"
                         style="@style/spinner_style"
                         android:spinnerMode="dialog"
-                        android:entries="@array/makes"
+                        android:entries="@array/condition"
                         app:layout_constraintTop_toBottomOf="@id/condition_title"/>
 
                 </android.support.constraint.ConstraintLayout>
@@ -181,7 +181,7 @@
                             android:layout_weight="1"
                             android:textSize="15sp"
                             android:textColor="@color/primaryText"
-                            android:entries="@array/makes"/>
+                            android:entries="@array/body"/>
 
                     </LinearLayout>
 
@@ -210,7 +210,7 @@
                             android:layout_weight="1"
                             android:textSize="15sp"
                             android:textColor="@color/primaryText"
-                            android:entries="@array/makes"/>
+                            android:entries="@array/fuel"/>
 
                     </LinearLayout>
 
@@ -239,7 +239,7 @@
                             android:layout_weight="1"
                             android:textSize="15sp"
                             android:textColor="@color/primaryText"
-                            android:entries="@array/makes"/>
+                            android:entries="@array/transmission"/>
 
                     </LinearLayout>
 
@@ -268,7 +268,7 @@
                             android:layout_weight="1"
                             android:textSize="15sp"
                             android:textColor="@color/primaryText"
-                            android:entries="@array/makes"/>
+                            android:entries="@array/drive"/>
 
                     </LinearLayout>
 

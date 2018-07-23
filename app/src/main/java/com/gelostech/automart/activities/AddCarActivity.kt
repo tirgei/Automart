@@ -9,6 +9,9 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import com.gelostech.automart.R
 import com.gelostech.automart.adapters.ImagesAdapter
 import com.gelostech.automart.commoners.AppUtils
@@ -29,8 +32,23 @@ class AddCarActivity : BaseActivity() {
     private var pickedImages = mutableListOf<Uri>()
     private lateinit var imagesAdapter: ImagesAdapter
 
+    private lateinit var makes: Array<String>
+    private lateinit var toyota: Array<String>
+    private lateinit var mazda: Array<String>
+    private lateinit var honda: Array<String>
+    private lateinit var bmw: Array<String>
+    private lateinit var subaru: Array<String>
+    private lateinit var benz: Array<String>
+
     companion object {
         private const val IMAGE_PICKER = 401
+        private const val TOYOTA = "Toyota"
+        private const val MAZDA = "Mazda"
+        private const val HONDA = "Honda"
+        private const val BMW = "BMW"
+        private const val BENZ = "Mercedes Benz"
+        private const val SUBARU = "Subaru"
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +58,7 @@ class AddCarActivity : BaseActivity() {
         initViews()
     }
 
+    // Initial views
     private fun initViews() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -53,8 +72,54 @@ class AddCarActivity : BaseActivity() {
 
         addPhoto.setDrawable(setDrawable(this, Ionicons.Icon.ion_android_camera, R.color.colorPrimary, 15))
         addPhoto.setOnClickListener { pickPhotos() }
+
+        initArrays()
     }
 
+    // Initial arrays for spinners
+    private fun initArrays() {
+        makes = resources.getStringArray(R.array.makes)
+        toyota = resources.getStringArray(R.array.toyota)
+        mazda = resources.getStringArray(R.array.mazda)
+        honda = resources.getStringArray(R.array.honda)
+        benz = resources.getStringArray(R.array.benz)
+        bmw = resources.getStringArray(R.array.bmw)
+        subaru = resources.getStringArray(R.array.subaru)
+
+        make.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedItem = parent?.getItemAtPosition(position).toString()
+
+                setModels(selectedItem)
+            }
+        }
+    }
+
+    // Get selected vehicle make and choose models of selected make
+    private fun setModels(make: String) {
+        when(make) {
+            TOYOTA -> setModelSpinner(toyota)
+            MAZDA -> setModelSpinner(mazda)
+            HONDA -> setModelSpinner(honda)
+            BENZ -> setModelSpinner(benz)
+            BMW -> setModelSpinner(bmw)
+            SUBARU -> setModelSpinner(subaru)
+        }
+    }
+
+    // Set selected make models
+    private fun setModelSpinner(models: Array<String>) {
+        val spinnerArrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, models)
+        spinnerArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item )
+
+        model.adapter = spinnerArrayAdapter
+    }
+
+    // Pick photos from gallery
     private fun pickPhotos() {
         if (!storagePermissionGranted()) {
             requestStoragePermission()
@@ -73,6 +138,8 @@ class AddCarActivity : BaseActivity() {
                 .forResult(IMAGE_PICKER)
 
     }
+
+
 
     private fun setImages() {
         if (pickedImages.size < 1) return
