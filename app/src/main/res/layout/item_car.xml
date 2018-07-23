@@ -105,7 +105,8 @@
             app:riv_corner_radius="2dp"
             app:imageUrl="@{data.image}"
             tools:src="@drawable/fozzy"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:onClick="@{(v) -> callback.onClick(v, data)}"/>
 
         <TextView
             android:id="@+id/carName"
