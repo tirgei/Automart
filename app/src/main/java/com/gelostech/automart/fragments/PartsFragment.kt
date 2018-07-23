@@ -98,7 +98,9 @@ class PartsFragment : BaseFragment(), PartCallback {
     }
 
     private fun noParts() {
-        rv.hideShimmerAdapter()
+        if (rv != null) {
+            rv.hideShimmerAdapter()
+        }
         rv.hideView()
         empty.showView()
     }

@@ -105,7 +105,9 @@ class HomeFragment : BaseFragment(), CarCallback {
     }
 
     private fun noCars() {
-        rv.hideShimmerAdapter()
+        if (rv != null) {
+            rv.hideShimmerAdapter()
+        }
         rv.hideView()
         empty.showView()
     }
