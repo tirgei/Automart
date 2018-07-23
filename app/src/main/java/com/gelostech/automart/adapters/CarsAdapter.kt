@@ -17,6 +17,7 @@ import com.gelostech.automart.utils.TimeFormatter
 import com.gelostech.automart.utils.inflate
 import com.gelostech.automart.utils.loadUrl
 import com.gelostech.automart.utils.setDrawable
+import com.google.firebase.auth.FirebaseAuth
 import com.mikepenz.ionicons_typeface_library.Ionicons
 import kotlinx.android.synthetic.main.item_car.view.*
 import java.lang.ref.WeakReference
@@ -58,7 +59,7 @@ class CarsAdapter(private val context: Context, private val callback: CarCallbac
         fun bind(car: Car) {
             binding.data = car
             binding.time = TimeFormatter().getTimeStamp(car.time!!)
-            binding.isMine = true
+            binding.isMine = (car.sellerId == FirebaseAuth.getInstance().currentUser?.uid)
         }
 
     }
