@@ -10,6 +10,7 @@ data class Part(
         var description: String? = null,
         var sellerId: String? = null,
         var sellerName: String? = null,
+        var location: String? = null,
         var price: String? = null,
         var time: Long? = null,
         var make: String? = null,

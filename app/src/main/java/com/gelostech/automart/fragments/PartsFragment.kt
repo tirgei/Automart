@@ -106,7 +106,6 @@ class PartsFragment : BaseFragment(), PartCallback {
     override fun onClick(v: View, part: Part) {
         val i = Intent(activity, PartActivity::class.java)
         i.putExtra(K.PART, part)
-        i.putExtra(K.PART_IMAGE, part.holderImage)
         startActivity(i)
         AppUtils.animateFadein(activity!!)
 
