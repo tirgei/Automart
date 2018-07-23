@@ -12,16 +12,12 @@ import com.mikepenz.ionicons_typeface_library.Ionicons
 import timber.log.Timber
 
 class FeaturesAdapter(val context: Context) : RecyclerView.Adapter<FeaturesAdapter.FeaturesHolder>() {
-        val features = mutableListOf<String>()
+        val features = mutableMapOf<String, Boolean>()
 
-        fun addFeatures(features: MutableList<String>) {
-            this.features.addAll(features)
+        fun addFeatures(features: MutableMap<String, Boolean>) {
+            this.features.putAll(features)
             notifyDataSetChanged()
             Timber.e("Added details")
-        }
-
-        fun features(): List<String> {
-            return features
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeaturesHolder {
@@ -31,7 +27,9 @@ class FeaturesAdapter(val context: Context) : RecyclerView.Adapter<FeaturesAdapt
         override fun getItemCount(): Int = features.size
 
         override fun onBindViewHolder(holder: FeaturesHolder, position: Int) {
-            holder.bind(features[position])
+
+
+            holder.bind(features.keys.toList()[position])
         }
 
         class FeaturesHolder(private val binding: ItemFeaturesBinding, val context: Context) : RecyclerView.ViewHolder(binding.root) {
