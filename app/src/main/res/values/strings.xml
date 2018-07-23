@@ -166,6 +166,7 @@
         <item name="prado">Landcruiser Prado</item>
         <item name="nze">NZE</item>
         <item name="axio">Axio</item>
+        <item name="vitz">Vitz</item>
     </string-array>
 
     <string-array name="condition">
