@@ -144,6 +144,7 @@ class RegisterFragment : BaseFragment() {
 
                         prefs["username"] = name
                         prefs["email"] = email
+                        prefs[K.PHONE] = registerPhone.text.toString().trim()
 
                     } else {
                         try {
