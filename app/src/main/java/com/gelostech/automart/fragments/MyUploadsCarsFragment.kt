@@ -1,6 +1,7 @@
 package com.gelostech.automart.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.DefaultItemAnimator
@@ -10,8 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.gelostech.automart.R
+import com.gelostech.automart.activities.AddCarActivity
+import com.gelostech.automart.activities.CarActivity
+import com.gelostech.automart.activities.ChatActivity
 import com.gelostech.automart.adapters.CarsAdapter
 import com.gelostech.automart.callbacks.CarCallback
+import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.BaseFragment
 import com.gelostech.automart.commoners.K
 import com.gelostech.automart.models.Car
@@ -22,6 +27,7 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_my_cars.*
 import kotlinx.android.synthetic.main.fragment_my_cars.view.*
+import org.jetbrains.anko.alert
 import timber.log.Timber
 
 class MyUploadsCarsFragment : BaseFragment(), CarCallback {
@@ -103,6 +109,42 @@ class MyUploadsCarsFragment : BaseFragment(), CarCallback {
     }
 
     override fun onClick(v: View, car: Car) {
+        when(v.id) {
+            R.id.action -> {
+                if (car.sellerId == getUid()) {
+                    activity?.alert("Mark ${car.make} ${car.model} as sold?") {
+                        positiveButton("YES") {}
+                        negativeButton("CANCEL") {}
+                    }!!.show()
 
+                } else {
+                    val i = Intent(activity, CarActivity::class.java)
+                    i.putExtra(K.CAR, car)
+                    startActivity(i)
+                    AppUtils.animateFadein(activity!!)
+                }
+            }
+
+            R.id.image -> {
+                val i = Intent(activity, CarActivity::class.java)
+                i.putExtra(K.CAR, car)
+                startActivity(i)
+                AppUtils.animateFadein(activity!!)
+            }
+
+            R.id.contact -> {
+                if (car.sellerId == getUid()) {
+                    val i = Intent(activity, AddCarActivity::class.java)
+                    activity!!.startActivity(i)
+                    AppUtils.animateEnterLeft(activity!!)
+                } else {
+                    val i = Intent(activity, ChatActivity::class.java)
+                    i.putExtra(K.CHAT_ID, car.sellerId)
+                    i.putExtra(K.CHAT_NAME, car.sellerName)
+                    activity!!.startActivity(i)
+                    AppUtils.animateFadein(activity!!)
+                }
+            }
+        }
     }
 }

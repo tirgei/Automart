@@ -51,8 +51,9 @@ class MyOrdersPartsFragment : BaseFragment() {
         val order1 = PartOrder()
         order1.holderImage = R.drawable.windscreen
         order1.buyerName = "James Mackenzie"
+        order1.sellerId = "Dfdfhdfbdsv"
         order1.sellerName = "Jumic Spare Parts"
-        order1.name = "Brembo brakes"
+        order1.name = "Windscreen"
         order1.description = "1 Windscreen"
         partOrdersAdapter.addPartOrder(order1)
 

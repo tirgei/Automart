@@ -12,11 +12,12 @@ import android.view.ViewGroup
 
 import com.gelostech.automart.R
 import com.gelostech.automart.adapters.PartOrdersAdapter
+import com.gelostech.automart.commoners.BaseFragment
 import com.gelostech.automart.models.PartOrder
 import com.gelostech.automart.utils.RecyclerFormatter
 import kotlinx.android.synthetic.main.fragment_parts_orders.view.*
 
-class OrdersPartsFragment : Fragment() {
+class OrdersPartsFragment : BaseFragment() {
     private lateinit var partOrdersAdapter: PartOrdersAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -49,8 +50,10 @@ class OrdersPartsFragment : Fragment() {
     private fun loadSample() {
         val order1 = PartOrder()
         order1.holderImage = R.drawable.brake
-        order1.buyerName = "James Mackenzie"
+        order1.buyerName = "Michael Omondi"
         order1.sellerName = "Ngigi Parts"
+        order1.sellerId = getUid()
+        order1.buyerId = "sfsfsfs"
         order1.name = "Brembo brakes"
         order1.description = "2 Brembo brakes"
         partOrdersAdapter.addPartOrder(order1)

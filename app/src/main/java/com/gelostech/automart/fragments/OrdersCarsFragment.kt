@@ -50,7 +50,8 @@ class OrdersCarsFragment : BaseFragment() {
     private fun loadSample() {
         val booking1 = Booking()
         booking1.holderImage = R.drawable.forester
-        booking1.bookerName = "Vincent Tirgei"
+        booking1.bookerName = "James Wangige"
+        booking1.sellerId = getUid()
         booking1.sellerName = "Jomic Autos"
         booking1.date = System.currentTimeMillis() - 10.days.inMilliseconds.longValue
         booking1.name = "Subaru Forester"
