@@ -10,6 +10,7 @@ import com.gelostech.automart.models.PartOrder
 import com.gelostech.automart.utils.TimeFormatter
 import com.gelostech.automart.utils.inflate
 import com.gelostech.automart.utils.setDrawable
+import com.google.firebase.auth.FirebaseAuth
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
 import com.mikepenz.ionicons_typeface_library.Ionicons
 
@@ -50,7 +51,7 @@ class PartOrdersAdapter(private val context: Context) : RecyclerView.Adapter<Par
 
         fun bind(part: PartOrder) {
             binding.data = part
-            binding.isMine = true
+            binding.isMine = (part.sellerId == FirebaseAuth.getInstance().currentUser?.uid)
         }
 
     }

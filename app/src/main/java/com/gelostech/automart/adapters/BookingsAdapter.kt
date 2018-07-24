@@ -13,6 +13,7 @@ import com.gelostech.automart.utils.TimeFormatter
 import com.gelostech.automart.utils.inflate
 import com.gelostech.automart.utils.loadUrl
 import com.gelostech.automart.utils.setDrawable
+import com.google.firebase.auth.FirebaseAuth
 import com.mikepenz.ionicons_typeface_library.Ionicons
 import kotlinx.android.synthetic.main.item_booking.view.*
 
@@ -45,7 +46,7 @@ class BookingsAdapter(val context: Context) : RecyclerView.Adapter<BookingsAdapt
 
             binding.data = booking
             binding.time = TimeFormatter().getDetailDate(booking.date!!)
-            binding.isMine = true
+            binding.isMine = (booking.sellerId == FirebaseAuth.getInstance().currentUser?.uid)
 
         }
 
