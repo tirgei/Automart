@@ -91,6 +91,7 @@
                 android:layout_alignParentEnd="true"
                 android:background="@android:color/transparent"
                 android:layout_centerVertical="true"
+                android:onClick="@{(v) -> callback.onClick(v, data)}"
                 tools:ignore="ContentDescription" />
 
         </RelativeLayout>
