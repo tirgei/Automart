@@ -13,6 +13,7 @@ import com.gelostech.automart.callbacks.CarCallback
 import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.models.Car
 import com.gelostech.automart.utils.RecyclerFormatter
+import com.gelostech.automart.utils.showView
 import kotlinx.android.synthetic.main.activity_watchlist.*
 
 class WatchlistActivity : AppCompatActivity(), CarCallback {
@@ -42,53 +43,8 @@ class WatchlistActivity : AppCompatActivity(), CarCallback {
 
         Handler().postDelayed({
             rv.hideShimmerAdapter()
-            loadSample()
+            empty.showView()
         }, 2500)
-    }
-
-    private fun loadSample() {
-        val car5 = Car()
-        car5.make = "Toyota"
-        car5.model = "Bb"
-        car5.price = 875000.toString()
-        car5.holderAvatar = R.drawable.person
-        car5.holderImage = R.drawable.bb
-        car5.year = 2009.toString()
-        car5.transmission = "Automatic"
-        car5.mileage = 68000.toString()
-        car5.location = "Ngong road"
-        car5.sellerName = "Agba Auto"
-        car5.time = System.currentTimeMillis()
-        carsAdapter.addCar(car5)
-
-        val car6 = Car()
-        car6.make = "Toyota"
-        car6.model = "Premio"
-        car6.price = 45000.toString()
-        car6.holderAvatar = R.drawable.person
-        car6.holderImage = R.drawable.premio
-        car6.year = 1995.toString()
-        car6.transmission = "Automatic"
-        car6.mileage = 320000.toString()
-        car6.location = "Kariobangi"
-        car6.sellerName = "Martin Kamau"
-        car6.time = System.currentTimeMillis()
-        carsAdapter.addCar(car6)
-
-        val car7 = Car()
-        car7.make = "Mercedes Benz"
-        car7.model = "E250"
-        car7.price = 3200000.toString()
-        car7.holderAvatar = R.drawable.person
-        car7.holderImage = R.drawable.benz
-        car7.year = 2012.toString()
-        car7.transmission = "Automatic"
-        car7.mileage = 43000.toString()
-        car7.location = "Industrial Area"
-        car7.sellerName = "DT Dobie"
-        car7.time = System.currentTimeMillis()
-        carsAdapter.addCar(car7)
-
     }
 
     override fun onClick(v: View, car: Car) {
