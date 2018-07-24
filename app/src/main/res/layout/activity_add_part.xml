@@ -128,7 +128,7 @@
                         android:textSize="15sp"
                         android:background="@drawable/et_background_plain"
                         android:textColor="@color/primaryText"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:hint="@string/quantity_available"/>
 
                     <TextView
