@@ -184,6 +184,18 @@
                 android:text="info@samtonic.co.ke"/>
 
             <Button
+                android:id="@+id/delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sellerEmail"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_orange_button"
+                android:textColor="@color/white"
+                android:text="Delete car"
+                android:visibility="gone"/>
+
+            <Button
                 android:id="@+id/testDrive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -192,7 +204,8 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/rounded_button"
                 android:textColor="@color/white"
-                android:text="Book Test Drive"/>
+                android:text="Book Test Drive"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/contactSeller"
@@ -202,7 +215,8 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/wire_button"
                 android:textColor="@color/colorPrimary"
-                android:text="Contact seller"/>
+                android:text="Contact seller"
+                android:visibility="gone"/>
 
         </RelativeLayout>
 

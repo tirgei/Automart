@@ -170,17 +170,30 @@
 
         </LinearLayout>
 
-        <TextView
+        <Button
             android:id="@+id/order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/green"
             android:gravity="center"
-            android:padding="13dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/white"
             android:text="PLACE ORDER"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
-            android:textColor="@android:color/white" />
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/white"
+            android:text="DELETE PART"
+            android:visibility="gone"/>
+
 
     </LinearLayout>
 

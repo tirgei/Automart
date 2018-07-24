@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -129,6 +130,14 @@ class HomeFragment : BaseFragment(), CarCallback {
                 }
             }
 
+            R.id.moreOptions -> {
+                if (car.sellerId == getUid()) {
+                    sellerOptions()
+                } else {
+                    buyerOptions()
+                }
+            }
+
             R.id.image -> {
                 val i = Intent(activity, CarActivity::class.java)
                 i.putExtra(K.CAR, car)
@@ -150,5 +159,27 @@ class HomeFragment : BaseFragment(), CarCallback {
                 }
             }
         }
+    }
+
+    private fun sellerOptions() {
+        val items = arrayOf<CharSequence>("Delete")
+
+        val builder = AlertDialog.Builder(activity!!)
+        builder.setItems(items) { _, item ->
+
+        }
+        val alert = builder.create()
+        alert.show()
+    }
+
+    private fun buyerOptions() {
+        val items = arrayOf<CharSequence>("Add to watchlist")
+
+        val builder = AlertDialog.Builder(activity!!)
+        builder.setItems(items) { _, item ->
+
+        }
+        val alert = builder.create()
+        alert.show()
     }
 }

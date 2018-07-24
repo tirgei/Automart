@@ -15,9 +15,7 @@ import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.BaseActivity
 import com.gelostech.automart.commoners.K
 import com.gelostech.automart.models.Car
-import com.gelostech.automart.utils.RecyclerFormatter
-import com.gelostech.automart.utils.loadUrl
-import com.gelostech.automart.utils.setDrawable
+import com.gelostech.automart.utils.*
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
 import com.mikepenz.ionicons_typeface_library.Ionicons
 import com.synnapps.carouselview.ImageListener
@@ -52,8 +50,12 @@ class CarActivity : BaseActivity(), ImageListener, View.OnClickListener {
 
         carousel.pageCount = car.images.size
         carousel.setImageListener(this)
+
+        if (car.sellerId == getUid()) isMyCar() else notMyCar()
+
         contactSeller.setOnClickListener(this)
         testDrive.setOnClickListener(this)
+        delete.setOnClickListener(this)
 
         sellerName.setDrawable(AppUtils.setDrawable(this, FontAwesome.Icon.faw_user2, R.color.secondaryText, 15))
         sellerPhone.setDrawable(AppUtils.setDrawable(this, Ionicons.Icon.ion_android_call, R.color.secondaryText, 15))
@@ -115,6 +117,20 @@ class CarActivity : BaseActivity(), ImageListener, View.OnClickListener {
 
         imageView!!.scaleType =ImageView.ScaleType.CENTER_CROP
         imageView.loadUrl(car.images[keys[position]]!!)
+    }
+
+    // Show delete button & hide other options
+    private fun isMyCar() {
+        testDrive.hideView()
+        contactSeller.hideView()
+        delete.showView()
+    }
+
+    // Hide delete button and show other options
+    private fun notMyCar() {
+        delete.hideView()
+        testDrive.showView()
+        contactSeller.showView()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
