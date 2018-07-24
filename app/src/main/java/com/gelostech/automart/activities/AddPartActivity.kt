@@ -201,7 +201,7 @@ class AddPartActivity : BaseActivity() {
                 ref.downloadUrl
             }.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    if (i == 1) {
+                    if (i == 0) {
                         part.image = task.result.toString()
                         Timber.e("Uploaded image $i url is ${task.result}")
                     } else {
@@ -236,6 +236,7 @@ class AddPartActivity : BaseActivity() {
         part.quantity = quantity.text.toString().trim()
         part.make = make.selectedItem.toString()
         part.model = model.selectedItem.toString()
+        part.location = location.text.toString().trim()
         part.number = number.text.toString().trim()
         part.category = category.selectedItem.toString()
         part.description = desc.text.toString().trim()

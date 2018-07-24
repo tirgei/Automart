@@ -344,7 +344,7 @@ class AddCarActivity : BaseActivity(), CompoundButton.OnCheckedChangeListener {
                 ref.downloadUrl
             }.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    if (i == 1) {
+                    if (i == 0) {
                         car.image = task.result.toString()
                         Timber.e("Uploaded image $i url is ${task.result}")
                     } else {
