@@ -59,7 +59,7 @@
             android:layout_marginTop="3dp"
             android:drawablePadding="5dp"
             android:textColor="@color/secondaryText"
-            android:text="@{isMine ? data.sellerName : data.buyerName}"
+            android:text="@{isMine ? data.buyerName : data.sellerName}"
             tools:text="John Makena"/>
 
         <TextView
