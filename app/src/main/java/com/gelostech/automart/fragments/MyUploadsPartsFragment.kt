@@ -67,11 +67,13 @@ class MyUploadsPartsFragment : BaseFragment(), PartCallback {
                                 }
 
                                 DocumentChange.Type.MODIFIED -> {
-
+                                    val part = docChange.document.toObject(Part::class.java)
+                                    partsAdapter.updatePart(part)
                                 }
 
                                 DocumentChange.Type.REMOVED -> {
-
+                                    val part = docChange.document.toObject(Part::class.java)
+                                    partsAdapter.removePart(part)
                                 }
 
                             }
