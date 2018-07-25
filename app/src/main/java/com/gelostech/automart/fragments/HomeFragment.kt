@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.SimpleItemAnimator
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,10 +29,12 @@ import com.gelostech.automart.utils.hideView
 import com.gelostech.automart.utils.showView
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.Transaction
 import kotlinx.android.synthetic.main.activity_add_car.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.toast
 import timber.log.Timber
 
 class HomeFragment : BaseFragment(), CarCallback {
@@ -50,10 +54,11 @@ class HomeFragment : BaseFragment(), CarCallback {
     }
 
     private fun initViews(v: View) {
-        v.rv.setHasFixedSize(true)
-        v.rv.layoutManager = LinearLayoutManager(activity)
-        v.rv.itemAnimator = DefaultItemAnimator()
-        v.rv.addItemDecoration(RecyclerFormatter.DoubleDividerItemDecoration(activity!!))
+        rv.setHasFixedSize(true)
+        rv.layoutManager = LinearLayoutManager(activity)
+        rv.itemAnimator = DefaultItemAnimator()
+        rv.addItemDecoration(RecyclerFormatter.DoubleDividerItemDecoration(activity!!))
+        (rv.itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
 
         carsAdapter = CarsAdapter(activity!!, this)
         v.rv.adapter = carsAdapter
@@ -83,11 +88,13 @@ class HomeFragment : BaseFragment(), CarCallback {
                                 }
 
                                 DocumentChange.Type.MODIFIED -> {
-
+                                    val car = docChange.document.toObject(Car::class.java)
+                                    carsAdapter.updateCar(car)
                                 }
 
                                 DocumentChange.Type.REMOVED -> {
-
+                                    val car = docChange.document.toObject(Car::class.java)
+                                    carsAdapter.removeCar(car)
                                 }
 
                             }
@@ -134,7 +141,7 @@ class HomeFragment : BaseFragment(), CarCallback {
                 if (car.sellerId == getUid()) {
                     sellerOptions()
                 } else {
-                    buyerOptions()
+                    buyerOptions(car)
                 }
             }
 
@@ -172,14 +179,76 @@ class HomeFragment : BaseFragment(), CarCallback {
         alert.show()
     }
 
-    private fun buyerOptions() {
-        val items = arrayOf<CharSequence>("Add to watchlist")
-
+    private fun buyerOptions(car: Car) {
         val builder = AlertDialog.Builder(activity!!)
-        builder.setItems(items) { _, item ->
+
+        if (car.watchlist.containsKey(getUid())) {
+            val items = arrayOf<CharSequence>("Remove from watchlist")
+
+            builder.setItems(items) { _, item ->
+                when(item) {
+                    0 -> {
+                        removeFromWatchlist(car)
+                    }
+                }
+            }
+
+        } else {
+            val items = arrayOf<CharSequence>("Add to watchlist")
+
+            builder.setItems(items) { _, item ->
+                when(item) {
+                    0 -> {
+                        addToWatchList(car)
+                    }
+                }
+            }
 
         }
+
         val alert = builder.create()
         alert.show()
+    }
+
+    private fun addToWatchList(car: Car) {
+        val docRef = getFirestore().collection(K.CARS).document(car.id!!)
+
+        getFirestore().runTransaction {
+            val snapshot = it[docRef].toObject(Car::class.java)
+            val watchlist = snapshot?.watchlist
+            watchlist?.put(getUid(), true)
+
+            it.update(docRef, K.WATCHLIST, watchlist)
+
+            return@runTransaction null
+        }.addOnSuccessListener {
+            Timber.e("Successfully added ${car.id} to ${getUid()} watchlist")
+            activity?.toast("${car.make} ${car.model} added to watchlist")
+
+            getFirestore().collection(K.WATCHLIST).document(getUid()).collection(K.CARS).document(car.id!!).set(car)
+        }.addOnFailureListener {
+            Timber.e("Error adding ${car.id} to watchlist: $it")
+        }
+    }
+
+    private fun removeFromWatchlist(car: Car) {
+        val docRef = getFirestore().collection(K.CARS).document(car.id!!)
+
+        getFirestore().runTransaction {
+            val snapshot = it[docRef].toObject(Car::class.java)
+            val watchlist = snapshot?.watchlist
+            watchlist?.remove(getUid())
+
+            it.update(docRef, K.WATCHLIST, watchlist)
+
+            return@runTransaction null
+        }.addOnSuccessListener {
+            Timber.e("Successfully removed ${car.id} from ${getUid()} watchlist")
+            activity?.toast("${car.make} ${car.model} removed from watchlist")
+
+            getFirestore().collection(K.WATCHLIST).document(getUid()).collection(K.CARS).document(car.id!!).delete()
+        }.addOnFailureListener {
+            Timber.e("Error removing ${car.id} from watchlist: $it")
+        }
     }
 }
