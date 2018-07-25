@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.SimpleItemAnimator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,16 +38,17 @@ class PartsFragment : BaseFragment(), PartCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews(view)
+        initViews()
 
         loadParts()
     }
 
-    private fun initViews(v:View) {
+    private fun initViews() {
         rv.setHasFixedSize(true)
         rv.layoutManager = GridLayoutManager(activity, 2)
         rv.addItemDecoration(RecyclerFormatter.GridItemDecoration(activity!!, 2, 10))
         rv.itemAnimator = DefaultItemAnimator()
+        (rv.itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
 
         partsAdapter = PartsAdapter(this)
         rv.adapter = partsAdapter
@@ -76,11 +78,13 @@ class PartsFragment : BaseFragment(), PartCallback {
                                 }
 
                                 DocumentChange.Type.MODIFIED -> {
-
+                                    val part = docChange.document.toObject(Part::class.java)
+                                    partsAdapter.updatePart(part)
                                 }
 
                                 DocumentChange.Type.REMOVED -> {
-
+                                    val part = docChange.document.toObject(Part::class.java)
+                                    partsAdapter.removePart(part)
                                 }
 
                             }

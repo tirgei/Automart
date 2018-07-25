@@ -25,6 +25,28 @@ class PartsAdapter(private val callback: PartCallback) : RecyclerView.Adapter<Pa
         notifyDataSetChanged()
     }
 
+    fun updatePart(updatedPart: Part) {
+        for ((index, part) in parts.withIndex()) {
+            if (updatedPart.id == part.id) {
+                parts[index] = updatedPart
+                notifyItemChanged(index, updatedPart)
+            }
+        }
+    }
+
+    fun removePart(removedPart: Part) {
+        var indexToRemove: Int = -1
+
+        for ((index, part) in parts.withIndex()) {
+            if (removedPart.id == part.id) {
+                indexToRemove = index
+            }
+        }
+
+        parts.removeAt(indexToRemove)
+        notifyItemRemoved(indexToRemove)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartHolder {
         return PartHolder(parent.inflate(R.layout.item_part), callback)
     }
