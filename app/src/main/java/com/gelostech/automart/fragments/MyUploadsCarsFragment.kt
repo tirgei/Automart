@@ -81,11 +81,13 @@ class MyUploadsCarsFragment : BaseFragment(), CarCallback {
                                 }
 
                                 DocumentChange.Type.MODIFIED -> {
-
+                                    val car = docChange.document.toObject(Car::class.java)
+                                    carsAdapter.updateCar(car)
                                 }
 
                                 DocumentChange.Type.REMOVED -> {
-
+                                    val car = docChange.document.toObject(Car::class.java)
+                                    carsAdapter.removeCar(car)
                                 }
 
                             }
