@@ -105,6 +105,8 @@ dependencies {
     // Permissions
     implementation 'com.karumi:dexter:4.2.0'
 
+    // Crash
+    implementation 'cat.ereza:customactivityoncrash:2.2.0'
 
     testImplementation 'junit:junit:4.12'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
