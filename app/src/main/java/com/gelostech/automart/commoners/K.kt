@@ -8,6 +8,7 @@ object K {
     const val CARS = "cars"
     const val TIMESTAMP = "time"
     const val PARTS = "parts"
+    const val WATCHLIST = "watchlist"
 
     // Chats
     const val ME = 0
