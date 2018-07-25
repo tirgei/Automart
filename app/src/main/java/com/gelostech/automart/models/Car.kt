@@ -21,6 +21,7 @@ data class Car(
         var image: String? = null,
         var images: MutableMap<String, String> = mutableMapOf(),
         var features: MutableMap<String, Boolean> = mutableMapOf(),
+        var watchlist: MutableMap<String, Boolean> = mutableMapOf(),
         var details: MutableMap<String, String> = mutableMapOf(),
         var holderImage: Int? = null,
         var holderAvatar: Int? = null
