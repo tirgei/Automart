@@ -1,26 +1,18 @@
 package com.gelostech.automart.adapters
 
 import android.content.Context
-import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
-import android.text.format.Time
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.gelostech.automart.R
 import com.gelostech.automart.callbacks.CarCallback
-import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.AppUtils.setDrawable
 import com.gelostech.automart.databinding.ItemCarBinding
 import com.gelostech.automart.models.Car
 import com.gelostech.automart.utils.TimeFormatter
 import com.gelostech.automart.utils.inflate
-import com.gelostech.automart.utils.loadUrl
 import com.gelostech.automart.utils.setDrawable
 import com.google.firebase.auth.FirebaseAuth
 import com.mikepenz.ionicons_typeface_library.Ionicons
-import kotlinx.android.synthetic.main.item_car.view.*
-import java.lang.ref.WeakReference
 
 class CarsAdapter(private val context: Context, private val callback: CarCallback) : RecyclerView.Adapter<CarsAdapter.CarHolder>(){
     private val cars = mutableListOf<Car>()
@@ -35,6 +27,28 @@ class CarsAdapter(private val context: Context, private val callback: CarCallbac
 
         cars.addAll(cars)
         notifyItemRangeInserted(initialPos, cars.size)
+    }
+
+    fun updateCar(updatedCar: Car) {
+        for ((index, car) in cars.withIndex()) {
+            if (updatedCar.id == car.id) {
+                cars[index] = updatedCar
+                notifyItemChanged(index, updatedCar)
+            }
+        }
+    }
+
+    fun removeCar(removedCar: Car) {
+        var indexToRemove: Int = -1
+
+        for ((index, car) in cars.withIndex()) {
+            if (removedCar.id == car.id) {
+                indexToRemove = index
+            }
+        }
+
+        cars.removeAt(indexToRemove)
+        notifyItemRemoved(indexToRemove)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarHolder {
