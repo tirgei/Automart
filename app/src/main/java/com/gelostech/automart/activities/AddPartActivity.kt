@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import android.view.View
@@ -203,17 +204,21 @@ class AddPartActivity : BaseActivity() {
                 if (task.isSuccessful) {
                     if (i == 0) {
                         part.image = task.result.toString()
-                        Timber.e("Uploaded image $i url is ${task.result}")
+                        images["0"] = task.result.toString()
+                        Timber.e("Uploaded image one $i url is ${task.result}")
+
                     } else {
                         images[i.toString()] = task.result.toString()
                         Timber.e("Uploaded image $i url is ${task.result}")
 
-                        if(i == (pickedImages.size-1)) {
-                            part.images.putAll(images)
-                            hideLoading()
+                        Handler().postDelayed({
+                            if(i == (pickedImages.size-1)) {
+                                part.images.putAll(images)
+                                hideLoading()
 
-                            setDetails()
-                        }
+                                setDetails()
+                            }
+                        }, 1500)
                     }
 
                 }
