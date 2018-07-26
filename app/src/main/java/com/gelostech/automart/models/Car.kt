@@ -18,6 +18,7 @@ data class Car(
         var year: String? = null,
         var condition: String? = null,
         var price: String? = null,
+        var sold: Boolean? = false,
         var image: String? = null,
         var images: MutableMap<String, String> = mutableMapOf(),
         var features: MutableMap<String, Boolean> = mutableMapOf(),

@@ -15,4 +15,5 @@
     <color name="rvDivider">#CCe0e0e0</color>
     <color name="lightGray">#e6e6e6</color>
     <color name="pink">#ec407a</color>
+    <color name="red">#e53935</color>
 </resources>

@@ -126,9 +126,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/image"
             android:layout_alignParentEnd="true"
-            android:textColor="@color/primaryText"
+            android:textColor="@{data.sold ? @color/red : @color/primaryText}"
             android:textSize="@dimen/username"
-            android:text="@{`KES ` + data.price}"
+            android:text="@{data.sold ? `SOLD` : `KES ` + data.price}"
             tools:text="KES 700000"/>
 
         <TextView
