@@ -106,18 +106,17 @@ class HomeFragment : BaseFragment(), CarCallback {
 
     }
 
+
     private fun hasCars() {
         rv.hideShimmerAdapter()
-        empty.hideView()
-        rv.showView()
+        empty?.hideView()
+        rv?.showView()
     }
 
     private fun noCars() {
-        if (rv != null) {
-            rv.hideShimmerAdapter()
-        }
-        rv.hideView()
-        empty.showView()
+        rv?.hideShimmerAdapter()
+        rv?.hideView()
+        empty?.showView()
     }
 
     override fun onClick(v: View, car: Car) {
@@ -139,7 +138,7 @@ class HomeFragment : BaseFragment(), CarCallback {
 
             R.id.moreOptions -> {
                 if (car.sellerId == getUid()) {
-                    sellerOptions()
+                    sellerOptions(car)
                 } else {
                     buyerOptions(car)
                 }
@@ -168,12 +167,23 @@ class HomeFragment : BaseFragment(), CarCallback {
         }
     }
 
-    private fun sellerOptions() {
+    private fun sellerOptions(car: Car) {
         val items = arrayOf<CharSequence>("Delete")
 
         val builder = AlertDialog.Builder(activity!!)
         builder.setItems(items) { _, item ->
-
+            when(item) {
+                0 -> {
+                    getFirestore().collection(K.CARS).document(car.id!!).delete()
+                            .addOnSuccessListener {
+                                activity?.toast("${car.make} ${car.model} deleted!")
+                            }
+                            .addOnFailureListener {
+                                Timber.e("Error deleting ${car.id}")
+                                activity?.toast("Error deleting ${car.make} ${car.model}")
+                            }
+                }
+            }
         }
         val alert = builder.create()
         alert.show()
@@ -217,6 +227,7 @@ class HomeFragment : BaseFragment(), CarCallback {
             val snapshot = it[docRef].toObject(Car::class.java)
             val watchlist = snapshot?.watchlist
             watchlist?.put(getUid(), true)
+            car.watchlist[getUid()] = true
 
             it.update(docRef, K.WATCHLIST, watchlist)
 
@@ -238,6 +249,7 @@ class HomeFragment : BaseFragment(), CarCallback {
             val snapshot = it[docRef].toObject(Car::class.java)
             val watchlist = snapshot?.watchlist
             watchlist?.remove(getUid())
+            car.watchlist.remove(getUid())
 
             it.update(docRef, K.WATCHLIST, watchlist)
 
