@@ -25,20 +25,11 @@
             app:strokeColor="#FF777777"
             app:strokeWidth="1dp"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/image"
-            android:background="@color/light_background"
-            android:visibility="gone"
-            android:scaleType="centerCrop"/>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:alpha="0.6"
             android:background="@drawable/collapsing_toolbar_bg"/>
-
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
