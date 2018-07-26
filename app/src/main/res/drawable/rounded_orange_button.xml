@@ -3,9 +3,9 @@
     android:shape="rectangle"
     android:padding="10dp">
     <solid android:color="@android:color/holo_orange_dark"/> <!-- this one is ths color of the Rounded Button -->
-    <corners
-        android:bottomRightRadius="5dp"
-        android:bottomLeftRadius="5dp"
-        android:topLeftRadius="5dp"
-        android:topRightRadius="5dp"/>
+    <!--<corners-->
+        <!--android:bottomRightRadius="5dp"-->
+        <!--android:bottomLeftRadius="5dp"-->
+        <!--android:topLeftRadius="5dp"-->
+        <!--android:topRightRadius="5dp"/>-->
 </shape>
