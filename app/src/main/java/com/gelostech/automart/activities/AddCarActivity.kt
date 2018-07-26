@@ -346,7 +346,9 @@ class AddCarActivity : BaseActivity(), CompoundButton.OnCheckedChangeListener {
                 if (task.isSuccessful) {
                     if (i == 0) {
                         car.image = task.result.toString()
+                        images[i.toString()] = task.result.toString()
                         Timber.e("Uploaded image $i url is ${task.result}")
+
                     } else {
                         images[i.toString()] = task.result.toString()
                         Timber.e("Uploaded image $i url is ${task.result}")
