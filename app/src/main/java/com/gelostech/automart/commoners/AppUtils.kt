@@ -8,11 +8,14 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import com.gelostech.automart.R
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.IIcon
+import timber.log.Timber
+import java.util.*
 
 object AppUtils {
 
@@ -78,6 +81,27 @@ object AppUtils {
             }
         }
         return ok
+    }
+
+    // Get other uid from ChatId
+    fun getID2(chat_id: String, my_id: String): String {
+        val ids = chat_id.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        return if (ids[0] == my_id) {
+            ids[1]
+        } else ids[0]
+    }
+
+    // Get chatId
+    fun chatID(id1: String, id2: String): String {
+        val idList = ArrayList<String>()
+        idList.add(id1)
+        idList.add(id2)
+        idList.sort()
+        var chatId = idList.toString()
+        chatId = chatId.substring(1, chatId.length - 1)
+        chatId = chatId.replace(" ".toRegex(), "")
+        Timber.e("Generated ChatId: $chatId")
+        return chatId
     }
 
 }
