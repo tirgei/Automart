@@ -96,17 +96,15 @@ class PartsFragment : BaseFragment(), PartCallback {
     }
 
     private fun hasParts() {
-        rv.hideShimmerAdapter()
-        empty.hideView()
-        rv.showView()
+        rv?.hideShimmerAdapter()
+        empty?.hideView()
+        rv?.showView()
     }
 
     private fun noParts() {
-        if (rv != null) {
-            rv.hideShimmerAdapter()
-        }
-        rv.hideView()
-        empty.showView()
+        rv?.hideShimmerAdapter()
+        rv?.hideView()
+        empty?.showView()
     }
 
     override fun onClick(v: View, part: Part) {

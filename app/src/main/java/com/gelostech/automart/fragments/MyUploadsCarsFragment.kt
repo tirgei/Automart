@@ -102,7 +102,7 @@ class MyUploadsCarsFragment : BaseFragment(), CarCallback {
     }
 
     private fun hasCars() {
-        rv.hideShimmerAdapter()
+        rv?.hideShimmerAdapter()
         empty?.hideView()
         rv?.showView()
     }

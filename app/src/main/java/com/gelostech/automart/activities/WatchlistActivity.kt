@@ -96,7 +96,7 @@ class WatchlistActivity : BaseActivity(), CarCallback {
     }
 
     private fun hasCars() {
-        rv.hideShimmerAdapter()
+        rv?.hideShimmerAdapter()
         empty?.hideView()
         rv?.showView()
     }
