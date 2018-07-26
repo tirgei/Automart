@@ -8,6 +8,7 @@ import com.gelostech.automart.databinding.ItemChatBinding
 import com.gelostech.automart.databinding.ItemChatMeBinding
 import com.gelostech.automart.models.Chat
 import com.gelostech.automart.utils.inflate
+import com.google.firebase.auth.FirebaseAuth
 
 class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var chats = mutableListOf<Chat>()
@@ -30,7 +31,7 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemCount(): Int = chats.size
 
     override fun getItemViewType(position: Int): Int {
-        return if (chats[position].isMe!!) {
+        return if (chats[position].senderId == FirebaseAuth.getInstance().currentUser!!.uid) {
             K.ME
         } else {
             K.OTHER
