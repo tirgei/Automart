@@ -31,5 +31,6 @@ object K {
     const val NAME = "username"
     const val EMAIL = "email"
     const val PHONE = "phone"
+    const val TOKEN = "token"
 
 }

@@ -21,6 +21,7 @@ import com.mikepenz.ionicons_typeface_library.Ionicons
 import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.activity_car.*
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.toast
 import timber.log.Timber
 
 class CarActivity : BaseActivity(), ImageListener, View.OnClickListener {
@@ -154,6 +155,21 @@ class CarActivity : BaseActivity(), ImageListener, View.OnClickListener {
             R.id.testDrive -> {
                 alert("Book test drive?") {
                     positiveButton("BOOK") {}
+                    negativeButton("CANCEL") {}
+                }.show()
+            }
+
+            R.id.delete -> {
+                alert("Delete ${car.make} ${car.model}") {
+                    positiveButton("DELETE") {
+
+                        getFirestore().collection(K.CARS).document(car.id!!).delete()
+                                .addOnSuccessListener {
+                                    toast("${car.make} ${car.model} deleted")
+                                    finish()
+                                    AppUtils.animateEnterLeft(this@CarActivity)
+                                }
+                    }
                     negativeButton("CANCEL") {}
                 }.show()
             }
