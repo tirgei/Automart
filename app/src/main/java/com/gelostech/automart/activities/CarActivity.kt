@@ -146,7 +146,8 @@ class CarActivity : BaseActivity(), ImageListener, View.OnClickListener {
         when(v?.id) {
             R.id.contactSeller -> {
                 val i = Intent(this, ChatActivity::class.java)
-                i.putExtra(K.CHAT_ID, car.sellerId)
+                i.putExtra(K.MY_ID, getUid())
+                i.putExtra(K.OTHER_ID, car.sellerId)
                 i.putExtra(K.CHAT_NAME, car.sellerName)
                 startActivity(i)
                 AppUtils.animateFadein(this)

@@ -156,9 +156,11 @@ class HomeFragment : BaseFragment(), CarCallback {
                     val i = Intent(activity, AddCarActivity::class.java)
                     activity!!.startActivity(i)
                     AppUtils.animateEnterLeft(activity!!)
+
                 } else {
                     val i = Intent(activity, ChatActivity::class.java)
-                    i.putExtra(K.CHAT_ID, car.sellerId)
+                    i.putExtra(K.MY_ID, getUid())
+                    i.putExtra(K.OTHER_ID, car.sellerId)
                     i.putExtra(K.CHAT_NAME, car.sellerName)
                     activity!!.startActivity(i)
                     AppUtils.animateFadein(activity!!)
