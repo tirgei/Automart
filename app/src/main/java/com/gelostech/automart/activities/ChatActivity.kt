@@ -1,42 +1,55 @@
 package com.gelostech.automart.activities
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.support.v7.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
-import android.widget.Adapter
 import com.gelostech.automart.R
-import com.gelostech.automart.adapters.ChatAdapter
+import com.gelostech.automart.adapters.MessagesAdapter
 import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.AppUtils.setDrawable
 import com.gelostech.automart.commoners.BaseActivity
 import com.gelostech.automart.commoners.K
 import com.gelostech.automart.models.Chat
+import com.gelostech.automart.models.Message
+import com.gelostech.automart.utils.PreferenceHelper
+import com.gelostech.automart.utils.hideView
+import com.gelostech.automart.utils.showView
+import com.google.firebase.database.*
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
-import com.mikepenz.iconics.IconicsDrawable
 import kotlinx.android.synthetic.main.activity_chat.*
-import org.jetbrains.anko.toast
+import com.gelostech.automart.utils.PreferenceHelper.get
+import timber.log.Timber
 
 class ChatActivity : BaseActivity(), View.OnClickListener {
-    private lateinit var chatAdapter: ChatAdapter
+    private lateinit var messagesAdapter: MessagesAdapter
     private lateinit var chatName: String
+    private lateinit var chatId: String
+    private lateinit var uid1: String
+    private lateinit var uid2: String
+    private lateinit var chatQuery: Query
+    private lateinit var prefs: SharedPreferences
     private var hasTyped = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+        prefs = PreferenceHelper.defaultPrefs(this)
 
+        uid1 = intent.getStringExtra(K.MY_ID)
+        uid2 = intent.getStringExtra(K.OTHER_ID)
         chatName = intent.getStringExtra(K.CHAT_NAME)
+        chatId = AppUtils.chatID(uid1, uid2)
 
         initViews()
+
+        chatQuery = getDatabaseReference().child(K.MESSAGES).child(chatId).orderByChild(K.TIMESTAMP)
+        chatQuery.addValueEventListener(messagesValueListener)
+        chatQuery.addChildEventListener(messagesChildListener)
     }
 
     private fun initViews() {
@@ -44,11 +57,6 @@ class ChatActivity : BaseActivity(), View.OnClickListener {
         supportActionBar?.title = chatName
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        //toolbar.setLogo(R.drawable.person)
-
-//        var image = BitmapFactory.decodeResource(resources, R.drawable.person)
-//        image = Bitmap.createScaledBitmap(image, 100, 100, true)
-//        supportActionBar?.setIcon(BitmapDrawable(resources, image))
 
         editTextListener()
         send.setImageDrawable(setDrawable(this, FontAwesome.Icon.faw_paper_plane, R.color.colorPrimaryLight, 22))
@@ -57,13 +65,11 @@ class ChatActivity : BaseActivity(), View.OnClickListener {
         rv.layoutManager = LinearLayoutManager(this)
         rv.itemAnimator = DefaultItemAnimator()
 
-        chatAdapter = ChatAdapter()
-        rv.adapter = chatAdapter
-
-        loadSample()
+        messagesAdapter = MessagesAdapter()
+        rv.adapter = messagesAdapter
     }
 
-    // listens for changes on message edittext
+    // listens for changes on message EditText
     private fun editTextListener() {
         message.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -88,34 +94,93 @@ class ChatActivity : BaseActivity(), View.OnClickListener {
         })
     }
 
-    private fun loadSample() {
-        val chat1 = Chat("123", "123", "123", "123", "Hellow", System.currentTimeMillis(), false)
-        chatAdapter.addChat(chat1)
+    private val messagesValueListener = object : ValueEventListener {
+        override fun onCancelled(p0: DatabaseError) {
+            Timber.e("Error fetching messages: $p0")
+            noMessages()
+        }
 
-        val chat2 = Chat("123", "123", "123", "123", "Hi.. How can i help you?", System.currentTimeMillis(), true)
-        chatAdapter.addChat(chat2)
+        override fun onDataChange(p0: DataSnapshot) {
+            if (p0.exists()) {
+                hasMessages()
+            } else {
+                noMessages()
+            }
+        }
+    }
 
-        val chat3 = Chat("123", "123", "123", "123", "I'm looking for BMW 325i series. Do you have any currently in stock?", System.currentTimeMillis(), false)
-        chatAdapter.addChat(chat3)
+    private val messagesChildListener = object : ChildEventListener {
 
-        val chat4 = Chat("123", "123", "123", "123", "Yeah. We have 2 available, black and grey. When do you want to come see them?", System.currentTimeMillis(), true)
-        chatAdapter.addChat(chat4)
+        override fun onCancelled(p0: DatabaseError) {
+            Timber.e("Child listener cancelled: $p0")
+        }
 
-        val chat5 = Chat("123", "123", "123", "123", "Any day next week", System.currentTimeMillis(), false)
-        chatAdapter.addChat(chat5)
+        override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+            Timber.e("Message moved: ${p0.key}")
+        }
 
-        val chat6 = Chat("123", "123", "123", "123", "Okay. You're welcome", System.currentTimeMillis(), true)
-        chatAdapter.addChat(chat6)
+        override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+            Timber.e("Message changed: ${p0.key}")
+        }
 
-        rv.smoothScrollToPosition(chatAdapter.lastPosition())
+        override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+            val message = p0.getValue(Message::class.java)
+            messagesAdapter.addMessage(message!!)
+        }
+
+        override fun onChildRemoved(p0: DataSnapshot) {
+            Timber.e("Message removed: ${p0.key}")
+        }
+    }
+
+    // Upload message
+    private fun sendMessage() {
+        val ref = getDatabaseReference().child(K.MESSAGES).child(chatId)
+        val key = ref.push().key
+
+        val msg = Message()
+        msg.id = key
+        msg.senderId = getUid()
+        msg.chatId = chatId
+        msg.time = System.currentTimeMillis()
+        msg.message = message.text.toString().trim()
+
+        ref.child(key!!).setValue(msg).addOnSuccessListener {
+            message.setText("")
+            updateChats()
+        }
+    }
+
+    // Updates Chat object in chats
+    private fun updateChats() {
+        val chat = Chat()
+        chat.id = chatId
+        chat.username = chatName
+        chat.time = System.currentTimeMillis()
+        chat.message = message.text.toString().trim()
+        chat.senderId = getUid()
+
+        getDatabaseReference().child(K.CHATS).child(getUid()).child(chatId).setValue(chat)
+
+        chat.username = prefs[K.NAME]
+        getDatabaseReference().child(K.CHATS).child(uid2).child(chatId).setValue(chat)
+    }
+
+    private fun hasMessages() {
+        empty?.hideView()
+        rv?.showView()
+    }
+
+    private fun noMessages() {
+        rv?.hideView()
+        empty?.showView()
     }
 
     override fun onClick(v: View?) {
         when(v?.id) {
             send.id -> if (hasTyped) {
-                val chat = Chat("123", "123", "123", "123", "${message.text}", System.currentTimeMillis(), true)
-                chatAdapter.addChat(chat)
-                message.setText("")
+                sendMessage()
+                updateChats()
             }
         }
     }
@@ -131,5 +196,11 @@ class ChatActivity : BaseActivity(), View.OnClickListener {
     override fun onBackPressed() {
         super.onBackPressed()
         AppUtils.animateEnterLeft(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        chatQuery.removeEventListener(messagesChildListener)
+        chatQuery.removeEventListener(messagesValueListener)
     }
 }
