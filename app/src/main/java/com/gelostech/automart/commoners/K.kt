@@ -17,6 +17,8 @@ object K {
     const val CHAT_NAME = "chat_name"
     const val MY_ID = "myId"
     const val OTHER_ID = "otherId"
+    const val CHATS = "chats"
+    const val MESSAGES = "messages"
 
     // Car
     const val CAR = "car"
