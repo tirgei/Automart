@@ -144,9 +144,11 @@ class WatchlistActivity : BaseActivity(), CarCallback {
                     val i = Intent(this, AddCarActivity::class.java)
                     startActivity(i)
                     AppUtils.animateEnterLeft(this)
+
                 } else {
                     val i = Intent(this, ChatActivity::class.java)
-                    i.putExtra(K.CHAT_ID, car.sellerId)
+                    i.putExtra(K.MY_ID, getUid())
+                    i.putExtra(K.OTHER_ID, car.sellerId)
                     i.putExtra(K.CHAT_NAME, car.sellerName)
                     this.startActivity(i)
                     AppUtils.animateFadein(this)
