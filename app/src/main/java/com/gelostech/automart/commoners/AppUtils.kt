@@ -85,7 +85,7 @@ object AppUtils {
 
     // Get other uid from ChatId
     fun getID2(chat_id: String, my_id: String): String {
-        val ids = chat_id.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val ids = chat_id.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         return if (ids[0] == my_id) {
             ids[1]
         } else ids[0]
