@@ -12,21 +12,33 @@ import android.view.ViewGroup
 
 import com.gelostech.automart.R
 import com.gelostech.automart.activities.ChatActivity
-import com.gelostech.automart.adapters.ChatListAdapter
+import com.gelostech.automart.adapters.ChatsAdapter
 import com.gelostech.automart.callbacks.ChatListCallback
 import com.gelostech.automart.commoners.AppUtils
 import com.gelostech.automart.commoners.BaseFragment
 import com.gelostech.automart.commoners.K
-import com.gelostech.automart.models.ChatItem
+import com.gelostech.automart.models.Chat
+import com.gelostech.automart.models.Message
+import com.gelostech.automart.utils.hideView
+import com.gelostech.automart.utils.showView
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_chat.*
 import kotlinx.android.synthetic.main.fragment_chat.view.*
+import timber.log.Timber
 
 
 class ChatFragment : BaseFragment(), ChatListCallback {
-    private lateinit var chatListAdapter: ChatListAdapter
+    private lateinit var chatsAdapter: ChatsAdapter
+    private lateinit var chatsQuery: Query
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+
+        chatsQuery = getDatabaseReference().child(K.CHATS).child(getUid())
+        chatsQuery.addValueEventListener(chatsValueListener)
+        chatsQuery.addChildEventListener(chatsChildListener)
+
         return inflater.inflate(R.layout.fragment_chat, container, false)
     }
 
@@ -36,62 +48,79 @@ class ChatFragment : BaseFragment(), ChatListCallback {
     }
 
     private fun initViews(v: View) {
-        v.rv.setHasFixedSize(true)
-        v.rv.layoutManager = LinearLayoutManager(activity!!)
-        v.rv.itemAnimator = DefaultItemAnimator()
+        rv.setHasFixedSize(true)
+        rv.layoutManager = LinearLayoutManager(activity!!)
+        rv.itemAnimator = DefaultItemAnimator()
 
-        chatListAdapter = ChatListAdapter(this)
-        v.rv.adapter = chatListAdapter
-        v.rv.showShimmerAdapter()
-
-        Handler().postDelayed({
-            v.rv.hideShimmerAdapter()
-            loadSample()
-        }, 2500)
+        chatsAdapter = ChatsAdapter(this)
+        rv.adapter = chatsAdapter
+        rv.showShimmerAdapter()
     }
 
-    private fun loadSample() {
-        val chat1 = ChatItem()
-        chat1.avatar = R.drawable.person
-        chat1.message = "Is the Legacy still available?"
-        chat1.time = System.currentTimeMillis()
-        chat1.username = "Steve Rodgers"
-        chatListAdapter.addChat(chat1)
+    private val chatsValueListener = object : ValueEventListener {
+        override fun onCancelled(p0: DatabaseError) {
+            Timber.e("Error fetching chats: $p0")
+            noChats()
+        }
 
-        val chat2 = ChatItem()
-        chat2.avatar = R.drawable.person
-        chat2.message = "I'm looking for Toyota NZE 2007. Can I get it?"
-        chat2.time = System.currentTimeMillis()
-        chat2.username = "Mike Njuguna"
-        chatListAdapter.addChat(chat2)
-
-        val chat3 = ChatItem()
-        chat3.avatar = R.drawable.person
-        chat3.message = "Naweza pata gari ya 300K?"
-        chat3.time = System.currentTimeMillis()
-        chat3.username = "Juma Allan"
-        chatListAdapter.addChat(chat3)
-
-        val chat4 = ChatItem()
-        chat4.avatar = R.drawable.person
-        chat4.message = "How much is the Honda Airwave?"
-        chat4.time = System.currentTimeMillis()
-        chat4.username = "Peter Kiprotich"
-        chatListAdapter.addChat(chat4)
-
-        val chat5 = ChatItem()
-        chat5.avatar = R.drawable.person
-        chat1.message = "No.. I was looking for 2011 at least"
-        chat1.time = System.currentTimeMillis()
-        chat1.username = "George Omondi"
-        chatListAdapter.addChat(chat1)
+        override fun onDataChange(p0: DataSnapshot) {
+            if (p0.exists()) {
+                hasChats()
+            } else {
+                noChats()
+            }
+        }
     }
 
-    override fun onClick(chat: ChatItem) {
+    private val chatsChildListener = object : ChildEventListener {
+
+        override fun onCancelled(p0: DatabaseError) {
+            Timber.e("Child listener cancelled: $p0")
+        }
+
+        override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+            Timber.e("Chat moved: ${p0.key}")
+        }
+
+        override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+            val chat = p0.getValue(Chat::class.java)
+            chatsAdapter.updateChat(chat!!)
+        }
+
+        override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+            val chat = p0.getValue(Chat::class.java)
+            chatsAdapter.addChat(chat!!)
+        }
+
+        override fun onChildRemoved(p0: DataSnapshot) {
+            Timber.e("Chat removed: ${p0.key}")
+        }
+    }
+
+    private fun hasChats() {
+        rv?.hideShimmerAdapter()
+        empty?.hideView()
+        rv?.showView()
+    }
+
+    private fun noChats() {
+        rv?.hideShimmerAdapter()
+        rv?.hideView()
+        empty?.showView()
+    }
+
+    override fun onClick(chat: Chat) {
         val i = Intent(activity, ChatActivity::class.java)
-        i.putExtra(K.CHAT_ID, chat.id)
+        i.putExtra(K.MY_ID, getUid())
+        i.putExtra(K.OTHER_ID, AppUtils.getID2(chat.id!!, getUid()))
         i.putExtra(K.CHAT_NAME, chat.username)
         activity!!.startActivity(i)
         AppUtils.animateFadein(activity!!)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        chatsQuery.removeEventListener(chatsValueListener)
+        chatsQuery.removeEventListener(chatsChildListener)
     }
 }
