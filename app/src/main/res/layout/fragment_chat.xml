@@ -15,6 +15,14 @@
         app:shimmer_demo_layout_manager_type="linear_vertical"
         app:shimmer_demo_layout="@layout/item_chat_list_shimmer"
         app:shimmer_demo_angle="20"
-        tools:listitem="@layout/item_chat_list"/>
+        tools:listitem="@layout/item_chat"/>
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/no_chats"
+        android:visibility="gone"/>
 
 </RelativeLayout>

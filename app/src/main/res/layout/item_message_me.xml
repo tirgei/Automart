@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="message"
+            type="com.gelostech.automart.models.Message"/>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:paddingEnd="15dp"
+        android:paddingStart="60dp"
+        android:clipToPadding="false">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/chat_me"
+            android:layout_alignParentEnd="true"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:text="@{message.message}"
+            tools:text="Some random message from me?"/>
+
+    </RelativeLayout>
+
+</layout>
+

@@ -97,6 +97,8 @@
     <string name="quantity_available">Quantity available</string>
     <string name="no_parts_added_yet">No parts added yet</string>
     <string name="no_parts_posted_yet">No parts posted yet</string>
+    <string name="no_chats">No chats added yet</string>
+    <string name="no_messages_added_yet">No messages added yet</string>
 
     <string-array name="holder">
         <item name="category">Please select</item>
