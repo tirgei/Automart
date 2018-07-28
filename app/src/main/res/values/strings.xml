@@ -101,6 +101,10 @@
     <string name="no_messages_added_yet">No messages added yet</string>
     <string name="how_many_parts_do_you_need">How many parts do you need?</string>
     <string name="delivery_location">Enter delivery location</string>
+    <string name="date">Date</string>
+    <string name="which_date_would_you_like_to_book">Which date would you like to book?</string>
+    <string name="time">Time</string>
+    <string name="what_time_would_you_like_to_book">What time would you like to book?</string>
 
     <string-array name="holder">
         <item name="category">Please select</item>
