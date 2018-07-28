@@ -9,6 +9,7 @@ object K {
     const val TIMESTAMP = "time"
     const val PARTS = "parts"
     const val WATCHLIST = "watchlist"
+    const val MAKE_ORDER_URL = "https://us-central1-automart-36ac2.cloudfunctions.net/makeOrder"
 
     // Chats
     const val ME = 0
@@ -25,6 +26,7 @@ object K {
 
     // Part
     const val PART = "part"
+    const val PART_ID = "id"
     const val PART_IMAGE = "image"
 
     // Notifications
@@ -36,5 +38,6 @@ object K {
     const val EMAIL = "email"
     const val PHONE = "phone"
     const val TOKEN = "token"
+
 
 }
