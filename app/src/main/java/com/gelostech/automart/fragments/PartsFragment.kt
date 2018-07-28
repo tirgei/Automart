@@ -45,7 +45,7 @@ class PartsFragment : BaseFragment(), PartCallback {
 
     private fun initViews() {
         rv.setHasFixedSize(true)
-        rv.layoutManager = GridLayoutManager(activity, 2)
+        rv.layoutManager = GridLayoutManager(activity!!, 2)
         rv.addItemDecoration(RecyclerFormatter.GridItemDecoration(activity!!, 2, 10))
         rv.itemAnimator = DefaultItemAnimator()
         (rv.itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
