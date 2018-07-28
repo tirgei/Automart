@@ -15,7 +15,7 @@ data class Part(
         var time: Long? = null,
         var make: String? = null,
         var model: String? = null,
-        var quantity: String? = null,
+        var quantity: Int? = null,
         var image: String? = null,
         var images: MutableMap<String, String> = mutableMapOf(),
         var holderImage: Int? = null

@@ -26,6 +26,7 @@ import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.filter.Filter
 import kotlinx.android.synthetic.main.activity_add_part.*
 import com.gelostech.automart.utils.PreferenceHelper.get
+import kotlinx.android.synthetic.main.activity_add_part.view.*
 import org.jetbrains.anko.toast
 import timber.log.Timber
 
@@ -238,7 +239,7 @@ class AddPartActivity : BaseActivity() {
         part.sellerName = prefs[K.NAME]
         part.time = System.currentTimeMillis()
         part.price = price.text.toString().trim()
-        part.quantity = quantity.text.toString().trim()
+        part.quantity = (quantity.text.toString()).toInt()
         part.make = make.selectedItem.toString()
         part.model = model.selectedItem.toString()
         part.location = location.text.toString().trim()
