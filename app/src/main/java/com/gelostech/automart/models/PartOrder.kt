@@ -7,7 +7,7 @@ class PartOrder(
         var buyerName: String? = null,
         var sellerId: String? = null,
         var sellerName: String? = null,
-        var date: Long? = null,
+        var date: String? = null,
         var image: String? = null,
         var holderImage: Int? = null,
         var description: String? = null

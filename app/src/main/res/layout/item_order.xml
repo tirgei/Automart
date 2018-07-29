@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{data.holderImage}"
+                app:imageUrl="@{data.image}"
                 tools:src="@drawable/fozzy"/>
 
         </com.gelostech.automart.utils.SquareLayout>
