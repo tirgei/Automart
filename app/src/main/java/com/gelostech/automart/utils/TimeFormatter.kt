@@ -71,6 +71,10 @@ class TimeFormatter {
         return normalYearFormat.format(millis)
     }
 
+    fun getNormalYear(date: Calendar): String {
+        return normalYearFormat.format(date.time)
+    }
+
     fun getSaveFormat(millis: Long): String {
         return saveFormat.format(millis)
     }

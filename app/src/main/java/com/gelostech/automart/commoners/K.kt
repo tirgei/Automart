@@ -9,7 +9,12 @@ object K {
     const val TIMESTAMP = "time"
     const val PARTS = "parts"
     const val WATCHLIST = "watchlist"
+    const val ORDERS = "orders"
+    const val REQUESTS = "requests"
+    const val BOOKINGS = "bookings"
+    const val TEST_DRIVES = "test-drives"
     const val MAKE_ORDER_URL = "https://us-central1-automart-36ac2.cloudfunctions.net/makeOrder"
+    const val BOOK_TEST_DRIVE_URL = "https://us-central1-automart-36ac2.cloudfunctions.net/bookTestDrive"
 
     // Chats
     const val ME = 0
