@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{data.holderImage}"
+                app:imageUrl="@{data.image}"
                 tools:src="@drawable/fozzy"/>
 
         </com.gelostech.automart.utils.SquareLayout>
@@ -75,7 +75,7 @@
             android:layout_marginTop="3dp"
             android:drawablePadding="5dp"
             android:textColor="@color/secondaryText"
-            android:text="@{time}"
+            android:text="@{data.dateBooked + `, ` + data.timeBooked}"
             tools:text="Thursday 28, 9:00am"/>
 
     </RelativeLayout>
