@@ -45,7 +45,6 @@ class BookingsAdapter(val context: Context) : RecyclerView.Adapter<BookingsAdapt
         fun bind(booking: Booking) {
 
             binding.data = booking
-            binding.time = TimeFormatter().getDetailDate(booking.date!!)
             binding.isMine = (booking.sellerId == FirebaseAuth.getInstance().currentUser?.uid)
 
         }
