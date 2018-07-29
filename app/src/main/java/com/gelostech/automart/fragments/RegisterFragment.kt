@@ -63,7 +63,8 @@ class RegisterFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        registerUsername.setDrawable(setDrawable(activity!!, Ionicons.Icon.ion_person, R.color.secondaryText, 18))
+        registerFirstname.setDrawable(setDrawable(activity!!, Ionicons.Icon.ion_person, R.color.secondaryText, 18))
+        registerLastname.setDrawable(setDrawable(activity!!, Ionicons.Icon.ion_person, R.color.secondaryText, 18))
         registerPhone.setDrawable(setDrawable(activity!!, Ionicons.Icon.ion_android_call, R.color.secondaryText, 18))
         registerEmail.setDrawable(setDrawable(activity!!, Ionicons.Icon.ion_ios_email, R.color.secondaryText, 18))
         registerPassword.setDrawable(setDrawable(activity!!, Ionicons.Icon.ion_android_lock, R.color.secondaryText, 18))
@@ -104,9 +105,9 @@ class RegisterFragment : BaseFragment() {
 
     private fun signUp() {
         // Check if all fields are filled
-        if (!AppUtils.validated(registerUsername, registerEmail, registerPassword, registerConfirmPassword)) return
+        if (!AppUtils.validated(registerFirstname, registerLastname, registerEmail, registerPassword, registerConfirmPassword)) return
 
-        val name = registerUsername.text.toString().trim()
+        val name = "${registerFirstname.text.toString().trim()} ${registerLastname.text.toString().trim()}"
         val email = registerEmail.text.toString().trim()
         val pw = registerPassword.text.toString().trim()
         val confirmPw = registerConfirmPassword.text.toString().trim()
@@ -180,7 +181,7 @@ class RegisterFragment : BaseFragment() {
         val id = user.uid
 
         val newUser = User()
-        newUser.name = registerUsername.text.toString().trim()
+        newUser.name = "${registerFirstname.text.toString().trim()} ${registerLastname.text.toString().trim()}"
         newUser.email = user.email
         newUser.dateCreated = TimeFormatter().getNormalYear(System.currentTimeMillis())
         //newUser.token = getToken()
@@ -208,7 +209,7 @@ class RegisterFragment : BaseFragment() {
                     Timber.e("Adding user: $newUser")
                     registerButton.doneLoadingAnimation(getColor(activity!!, R.color.pink), registerSuccessful)
 
-                    activity!!.toast("Welcome ${registerUsername.text.toString().trim()}")
+                    activity!!.toast("Welcome ${registerFirstname.text.toString().trim()} ${registerLastname.text.toString().trim()}")
                     startActivity(Intent(activity!!, MainActivity::class.java))
                     AppUtils.animateEnterRight(activity!!)
                     activity!!.finish()

@@ -50,16 +50,28 @@
                 android:contentDescription="@string/image"/>
 
             <EditText
-                android:id="@+id/registerUsername"
+                android:id="@+id/registerFirstname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/wire_drawable"
                 android:drawablePadding="10dp"
-                android:hint="@string/username"
+                android:hint="@string/firstname"
                 android:textSize="13sp"
-                android:inputType="textEmailAddress"/>
+                android:inputType="text"/>
+
+            <EditText
+                android:id="@+id/registerLastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/wire_drawable"
+                android:drawablePadding="10dp"
+                android:hint="@string/lastname"
+                android:textSize="13sp"
+                android:inputType="text"/>
 
             <EditText
                 android:id="@+id/registerPhone"
