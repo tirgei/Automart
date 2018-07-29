@@ -16,5 +16,12 @@
         app:shimmer_demo_angle="20"
         tools:listitem="@layout/item_car"/>
 
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No test drives booked yet"
+        android:visibility="gone"/>
 
 </RelativeLayout>
