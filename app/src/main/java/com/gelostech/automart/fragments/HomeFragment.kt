@@ -124,7 +124,14 @@ class HomeFragment : BaseFragment(), CarCallback {
             R.id.action -> {
                 if (car.sellerId == getUid()) {
                     activity?.alert("Mark ${car.make} ${car.model} as sold?") {
-                        positiveButton("YES") {}
+                        positiveButton("YES") {
+
+                            getFirestore().collection(K.SOLD).document(getUid()).collection(K.CARS).document(car.id!!).set(car)
+
+                            getFirestore().collection(K.CARS).document(car.id!!).delete().addOnSuccessListener {
+                                activity?.toast("${car.make} ${car.model} sold")
+                            }
+                        }
                         negativeButton("CANCEL") {}
                     }!!.show()
 
@@ -154,6 +161,7 @@ class HomeFragment : BaseFragment(), CarCallback {
             R.id.contact -> {
                 if (car.sellerId == getUid()) {
                     val i = Intent(activity, AddCarActivity::class.java)
+                    i.putExtra(K.CAR, car)
                     activity!!.startActivity(i)
                     AppUtils.animateEnterLeft(activity!!)
 

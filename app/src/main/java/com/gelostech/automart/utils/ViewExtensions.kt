@@ -23,6 +23,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.makeramen.roundedimageview.RoundedImageView
 import de.hdodenhof.circleimageview.CircleImageView
+import java.util.*
 
 inline fun <reified T : ViewDataBinding> ViewGroup.inflate(@LayoutRes layoutRes: Int): T {
     return DataBindingUtil.inflate(LayoutInflater.from(context), layoutRes, this, false)
@@ -97,6 +98,8 @@ fun Snackbar.action(action: String, color: Int? = null, listener: (View) -> Unit
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
     beginTransaction().func().commit()
 }
+
+fun <E> List<E>.random(): E? = if (size > 0) get(Random().nextInt(size)) else null
 
 fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int){
     supportFragmentManager.inTransaction { add(frameId, fragment) }

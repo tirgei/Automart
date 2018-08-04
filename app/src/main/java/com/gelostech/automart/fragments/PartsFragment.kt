@@ -110,6 +110,7 @@ class PartsFragment : BaseFragment(), PartCallback {
     override fun onClick(v: View, part: Part) {
         val i = Intent(activity, PartActivity::class.java)
         i.putExtra(K.PART, part)
+        i.putExtra(K.MINE, (part.sellerId == getUid()))
         startActivity(i)
         AppUtils.animateFadein(activity!!)
 

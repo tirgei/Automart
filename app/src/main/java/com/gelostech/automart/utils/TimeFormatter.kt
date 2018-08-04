@@ -15,6 +15,7 @@ class TimeFormatter {
     private var detailFormat = SimpleDateFormat("dd MMM, h:mm a", Locale.getDefault())
     private var simpleYearFormat = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
     private var normalYearFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    private var reportTime = SimpleDateFormat("MMM dd, yyy", Locale.getDefault())
     private var saveFormat = SimpleDateFormat("yyyyMMdd-mmss", Locale.getDefault())
 
     fun getTimeStamp(time: Long): String {
@@ -77,6 +78,10 @@ class TimeFormatter {
 
     fun getSaveFormat(millis: Long): String {
         return saveFormat.format(millis)
+    }
+
+    fun getReportTime(millis: Long): String {
+        return reportTime.format(millis)
     }
 
     private fun isThisYear(millis: Long): Boolean {

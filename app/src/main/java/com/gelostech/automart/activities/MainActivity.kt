@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast
 import com.gelostech.automart.utils.PreferenceHelper.get
+import timber.log.Timber
 
 class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         AHBottomNavigation.OnNavigationPositionListener, ViewPager.OnPageChangeListener {
@@ -58,6 +59,8 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         prefs = PreferenceHelper.defaultPrefs(this)
+
+        Timber.e("UID: ${getUid()}")
 
         homeFragment = HomeFragment()
         partsFragment = PartsFragment()
@@ -131,7 +134,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         val myOrders = SecondaryDrawerItem().withIdentifier(2).withName("My Orders").withIcon(Ionicons.Icon.ion_ios_cart)
         val myProducts = SecondaryDrawerItem().withIdentifier(4).withName("My Uploads").withIcon(Ionicons.Icon.ion_upload)
         val watchlist = SecondaryDrawerItem().withIdentifier(5).withName("Watchlist").withIcon(Ionicons.Icon.ion_star)
-        val sales = SecondaryDrawerItem().withIdentifier(6).withName("My sales").withIcon(Ionicons.Icon.ion_android_list)
+        val sales = SecondaryDrawerItem().withIdentifier(6).withName("Sales Reports").withIcon(Ionicons.Icon.ion_android_list)
         val settings = SecondaryDrawerItem().withIdentifier(8).withName("Settings").withIcon(Ionicons.Icon.ion_ios_gear)
         val support = SecondaryDrawerItem().withIdentifier(9).withName("Help & Support").withIcon(Ionicons.Icon.ion_ios_help)
         val exit = SecondaryDrawerItem().withIdentifier(10).withName("Logout").withIcon(Ionicons.Icon.ion_log_out)
@@ -139,12 +142,13 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener,
         drawer = DrawerBuilder().withActivity(this)
                 .withToolbar(toolbar)
                 .withAccountHeader(accountHeader)
-                .addDrawerItems(default, DividerDrawerItem(), orders, myOrders, myProducts, watchlist, DividerDrawerItem(), settings, support, exit)
+                .addDrawerItems(default, DividerDrawerItem(), orders, myOrders, myProducts, sales, watchlist, DividerDrawerItem(), settings, exit)
                 .withOnDrawerItemClickListener { _, _, drawerItem ->
                     when(drawerItem) {
                         orders -> launchActivity(OrdersActivity::class.java)
                         myOrders -> launchActivity(MyOrdersActivity::class.java)
                         myProducts -> launchActivity(MyUploadsActivity::class.java)
+                        sales -> launchActivity(SalesActivity::class.java)
                         watchlist -> launchActivity(WatchlistActivity::class.java)
                         settings -> launchActivity(SettingsActivity::class.java)
                         exit -> logOut()
