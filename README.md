@@ -1,6 +1,7 @@
 # Automart
 
-An e-commerce mobile app for selling and/or buying motor vehicles and their spare parts
+An e-commerce mobile app for selling and/or buying motor vehicles and their spare parts. The app relies on [Firebase](https://firebase.google.com) for backend 
+and [Firebase Functions](https://firebase.google.com/docs/functions) is used to supplement backend functionality. You can view it at [Automart-Functions](https://github.com/tirgei/Automart-Functions)
 
 ### Screenshots
 <img src="screenshots/one.png" width="200">    <img src="screenshots/two.png" width="200">
