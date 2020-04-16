@@ -90,7 +90,7 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
 
     private fun feedback() {
         val emailIntent = Intent(Intent.ACTION_SENDTO)
-        emailIntent.data = Uri.parse("mailto: tirgeic@gmail.com")
+        emailIntent.data = Uri.parse("mailto: devtirgei@gmail.com")
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Automart")
         startActivity(Intent.createChooser(emailIntent, "Send feedback"))
     }
