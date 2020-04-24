@@ -10,4 +10,4 @@ and [Firebase Functions](https://firebase.google.com/docs/functions) is used to 
 <img src="screenshots/seven.png" width="200">
 
 ### Test apk
-You can download a test apk here: https://drive.google.com/open?id=1eSmVOn3qo18REjPYh6WEmWXFZgA0VIDf
+You can download a test apk here: [Automart](https://drive.google.com/open?id=1eSmVOn3qo18REjPYh6WEmWXFZgA0VIDf)
