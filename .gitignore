@@ -48,6 +48,7 @@ captures/
 .idea/gradle.xml
 .idea/dictionaries
 .idea/libraries
+.settings/
 
 # Google Services (e.g. APIs or Firebase)
 app/google-services.json
